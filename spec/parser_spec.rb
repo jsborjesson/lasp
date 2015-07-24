@@ -7,8 +7,8 @@ module Lasp
     end
 
     it "parses forms" do
-      input  = "(func 42 27 (+ 1 2))"
-      parsed = [:func, 42, 27, [:+, 1, 2]]
+      input  = "(func 42 2.7 (+ 1 2))"
+      parsed = [:func, 42, 2.7, [:+, 1, 2]]
 
       expect(Lasp::parse(input)).to eq parsed
     end
