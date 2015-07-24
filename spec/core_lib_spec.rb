@@ -16,4 +16,9 @@ describe CORE_LIB do
   it "*" do
     expect(CORE_LIB[:/].(20, 2, 2)).to eq 5
   end
+
+  it "=" do
+    expect(CORE_LIB[:"="].(20, 20, 2)).to eq false
+    expect(CORE_LIB[:"="].(20, 20, 20)).to eq true
+  end
 end
