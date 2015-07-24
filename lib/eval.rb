@@ -6,9 +6,7 @@ module Lasp
     if Array === ast
       head, *tail = *ast
       fn = env[head]
-      tail.map { |form| eval(form) }
-
-      fn.(*tail)
+      fn.(*tail.map { |form| eval(form) })
     else
       ast
     end
