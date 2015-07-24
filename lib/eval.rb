@@ -2,7 +2,13 @@ require "./lib/parser"
 require "./lib/core_lib"
 
 module Lasp
-  def self.eval(ast, env = CORE_LIB)
+  module_function
+
+  def execute(program)
+    Lasp::eval(Lasp::parse(program))
+  end
+
+  def eval(ast, env = CORE_LIB)
     if Array === ast
       head, *tail = *ast
       fn = env[head]
