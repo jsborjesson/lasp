@@ -13,7 +13,7 @@ loop do
     input = gets.chomp
 
     result = Lasp::execute(input)
-    puts "  =>> #{result}"
+    puts "  =>> #{result.inspect}"
   rescue
     puts "  **> #{$!}"
   end
