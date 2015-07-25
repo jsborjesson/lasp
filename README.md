@@ -13,3 +13,4 @@ A very simple Lisp implementation in Ruby. Run `lasp-repl` to play around with i
 - `*`
 - `/`
 - `=`
+- `def`

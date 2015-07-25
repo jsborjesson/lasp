@@ -1,7 +1,10 @@
-CORE_LIB = {
-  :+ =>   -> (*args) { args.reduce(:+) },
-  :- =>   -> (*args) { args.reduce(:-) },
-  :* =>   -> (*args) { args.reduce(:*) },
-  :/ =>   -> (*args) { args.reduce(:/) },
-  :"=" => -> (*args) { args.uniq.count == 1 },
-}
+module Lasp
+  CORE_LIB = {
+    :+   => -> (_, *args) { args.reduce(:+) },
+    :-   => -> (_, *args) { args.reduce(:-) },
+    :*   => -> (_, *args) { args.reduce(:*) },
+    :/   => -> (_, *args) { args.reduce(:/) },
+    :"=" => -> (_, *args) { args.uniq.count == 1 },
+    :def => -> (env, key, value) { env[key] = value },
+  }
+end

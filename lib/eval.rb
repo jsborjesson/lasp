@@ -1,18 +1,18 @@
 require "./lib/parser"
-require "./lib/core_lib"
+require "./lib/env"
 
 module Lasp
   module_function
 
-  def execute(program)
-    Lasp::eval(Lasp::parse(program))
+  def execute(program, env = global_env)
+    Lasp::eval(Lasp::parse(program), env)
   end
 
-  def eval(ast, env = CORE_LIB)
+  def eval(ast, env = global_env)
     if Array === ast
       head, *tail = *ast
       fn = env[head]
-      fn.(*tail.map { |form| eval(form) })
+      fn.(env, *tail.map { |form| eval(form) })
     else
       ast
     end
