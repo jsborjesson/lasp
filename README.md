@@ -1,6 +1,7 @@
 # Läsp
 
-A very simple Lisp implementation in Ruby. Run `lasp-repl` to play around with it.
+A very simple Lisp implementation in Ruby. Run `lasp-repl` to play around with
+it, or `lasp path/to/program.lasp` to execute a Läsp file.
 
 ## Examples
 
@@ -17,7 +18,7 @@ x
 # => 6
 ```
 
-## Methods in core lib
+## Functions in corelib (ruby)
 
 - `+`
 - `-`
