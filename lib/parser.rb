@@ -29,8 +29,9 @@ module Lasp
 
   def atom(token)
     case token
-    when /\A\d+\z/ then Integer(token)
-    when /\A\d+.\d+\z/ then Float(token)
+    when /\Atrue|false\z/ then token == "true"
+    when /\A\d+\z/        then Integer(token)
+    when /\A\d+.\d+\z/    then Float(token)
     else token.to_sym
     end
   end
