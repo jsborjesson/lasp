@@ -8,6 +8,6 @@ loop do
   print "lasp> "
   input = gets.chomp
 
-  result = Lasp::eval(Lasp::parse(input))
+  result = Lasp::execute(input)
   puts "  =>> #{result}"
 end

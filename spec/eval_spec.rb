@@ -15,5 +15,14 @@ module Lasp
 
       expect(Lasp::global_env[:five]).to eq 5
     end
+
+    it "creates and executes functions with fn" do
+      expect(Lasp::execute("((fn (x) (+ x 1)) 10)")).to eq 11
+    end
+
+    it "can define functions" do
+      Lasp::execute("(def inc (fn (x) (+ x 1)))")
+      expect(Lasp::execute("(inc 1)")).to eq 2
+    end
   end
 end
