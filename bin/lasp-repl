@@ -5,9 +5,13 @@ require_relative "../lib/eval"
 trap("SIGINT") { puts "\n\nBye!"; exit! }
 
 loop do
-  print "lasp> "
-  input = gets.chomp
+  begin
+    print "lasp> "
+    input = gets.chomp
 
-  result = Lasp::execute(input)
-  puts "  =>> #{result}"
+    result = Lasp::execute(input)
+    puts "  =>> #{result}"
+  rescue
+    puts "  **> #{$!}"
+  end
 end
