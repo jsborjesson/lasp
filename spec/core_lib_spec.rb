@@ -23,11 +23,5 @@ module Lasp
       expect(CORE_LIB[:"="].({}, 20, 20, 20)).to eq true
       expect(CORE_LIB[:"="].({}, 20)).to eq true
     end
-
-    it "def" do
-      env = {}
-      CORE_LIB[:def].(env, :foo, 5)
-      expect(env).to eq(foo: 5)
-    end
   end
 end
