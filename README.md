@@ -35,6 +35,7 @@ x
 - `def`
 - `fn`
 - `begin`
+- `if`
 
 ## Functions in stdlib (lasp)
 

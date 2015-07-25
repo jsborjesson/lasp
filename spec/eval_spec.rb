@@ -33,6 +33,12 @@ module Lasp
         expect(STDOUT).to have_received(:puts).with(1).ordered
         expect(STDOUT).to have_received(:puts).with(2).ordered
       end
+
+      it "if evaluates only the correct form" do
+        expect(Lasp::execute("(if (= 1 1) true false)")).to eq true
+        expect(Lasp::execute("(if (= 1 2) true false)")).to eq false
+        expect(Lasp::execute("(if (= 1 2) true)")).to eq nil
+      end
     end
   end
 end
