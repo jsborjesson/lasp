@@ -10,9 +10,7 @@ trap("SIGINT") { puts "\n\nBye!"; exit! }
 loop do
   begin
     print "lasp> "
-    input = gets.chomp
-
-    result = Lasp::execute(input)
+    result = Lasp::execute(gets.chomp)
     puts "  =>> #{result.inspect}"
   rescue
     puts "  **> #{$!}"
