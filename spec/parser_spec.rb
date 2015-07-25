@@ -12,5 +12,12 @@ module Lasp
 
       expect(Lasp::parse(input)).to eq parsed
     end
+
+    it "parses complex forms" do
+      input  = "((fn (x) (+ x 1)) 10)"
+      parsed = [[:fn, [:x], [:+, :x, 1]], 10]
+
+      expect(Lasp::parse(input)).to eq parsed
+    end
   end
 end

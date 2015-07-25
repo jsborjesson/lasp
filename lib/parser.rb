@@ -13,6 +13,7 @@ module Lasp
       while tokens.first != ")"
         form << build_ast(tokens)
       end
+      tokens.shift
       form
     else
       atom(token)
