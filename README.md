@@ -4,7 +4,18 @@ A very simple Lisp implementation in Ruby. Run `lasp-repl` to play around with i
 
 ## Examples
 
-    (+ 1 2 3)
+```lisp
+(+ 1 2 3)
+# => 6
+
+(def x 5)
+x
+# => 6
+
+(def inc (fn (x) (+ x 1)))
+(inc 5)
+# => 6
+```
 
 ## Methods in core lib
 
@@ -14,6 +25,10 @@ A very simple Lisp implementation in Ruby. Run `lasp-repl` to play around with i
 - `/`
 - `=`
 - `def`
+- `fn`
+- `head`
+- `tail`
+- `cons`
 
 ## Developing
 
