@@ -1,5 +1,5 @@
 module Lasp
-  CORE_LIB = {
+  CORELIB = {
     :+   => -> (_, *args) { args.reduce(:+) },
     :-   => -> (_, *args) { args.reduce(:-) },
     :*   => -> (_, *args) { args.reduce(:*) },
