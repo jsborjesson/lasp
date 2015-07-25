@@ -2,16 +2,16 @@ module Lasp
   module_function
 
   def parse(program)
-    read_tokens(tokenize(program))
+    build_ast(tokenize(program))
   end
 
-  def read_tokens(tokens)
+  def build_ast(tokens)
     token = tokens.shift
 
     if token == "("
       form = []
       while tokens.first != ")"
-        form << read_tokens(tokens)
+        form << build_ast(tokens)
       end
       form
     else
