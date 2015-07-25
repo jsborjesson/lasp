@@ -9,21 +9,25 @@ module Lasp
   end
 
   def eval(ast, env)
-    if Symbol === ast
-      env.fetch(ast)
-    elsif not Array === ast
-      ast
-    elsif ast.first == :def
-      _, key, value = ast
+    case ast
+    when Symbol then env.fetch(ast)
+    when Array  then eval_form(ast, env)
+    else ast
+    end
+  end
+
+  def eval_form(form, env)
+    head, *tail = *form
+
+    if head == :def
+      key, value = tail
       env[key] = eval(value, env)
-    elsif ast.first == :fn
-      _, params, func = *ast
-      -> (_, *args) { eval(func, env.merge(Hash[params.zip(args)])) }
-    elsif Proc === ast.first
-      head, *tail = *ast
-      head.call(env, *tail)
+    elsif head == :fn
+      params, func = tail
+      -> (env, *args) { eval(func, env.merge(Hash[params.zip(args)])) }
+    elsif Proc === head
+      head.(env, *tail)
     else
-      head, *tail = *ast
       fn = eval(head, env)
       fn.(env, *tail.map { |form| eval(form, env) })
     end
