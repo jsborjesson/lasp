@@ -34,6 +34,7 @@ x
 
 - `def`
 - `fn`
+- `begin`
 
 ## Developing
 

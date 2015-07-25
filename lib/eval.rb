@@ -29,6 +29,8 @@ module Lasp
     elsif head == :fn
       params, func = tail
       -> (env, *args) { eval(func, env.merge(Hash[params.zip(args)])) }
+    elsif head == :begin
+      tail.each do |form| eval(form, env) end
     elsif Proc === head
       head.(env, *tail)
     else
