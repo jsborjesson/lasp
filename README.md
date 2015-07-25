@@ -24,11 +24,15 @@ x
 - `*`
 - `/`
 - `=`
-- `def`
-- `fn`
 - `head`
 - `tail`
 - `cons`
+- `println`
+
+## Special forms
+
+- `def`
+- `fn`
 
 ## Developing
 

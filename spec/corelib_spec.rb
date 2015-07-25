@@ -42,5 +42,11 @@ module Lasp
       expect(described_class[:cons].({}, 1, [2, 3])).to eq [1, 2, 3]
       expect(described_class[:cons].({}, 1, [])).to eq [1]
     end
+
+    it "outputs to the console" do
+      allow(STDOUT).to receive(:puts)
+      described_class[:println].({}, 5)
+      expect(STDOUT).to have_received(:puts).with(5)
+    end
   end
 end

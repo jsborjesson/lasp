@@ -9,5 +9,6 @@ module Lasp
     :head => -> (_, list) { list.first },
     :tail => -> (_, list) { list.drop(1) },
     :cons => -> (_, item, list) { [item] + list },
+    :println => -> (_, output) { puts output }
   }
 end
