@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/eval"
+
+Lasp::execute_file(ARGV.first)

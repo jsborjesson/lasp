@@ -4,6 +4,10 @@ require "./lib/env"
 module Lasp
   module_function
 
+  def execute_file(path)
+    execute(File.read(path))
+  end
+
   def execute(program, env = global_env)
     Lasp::eval(Lasp::parse(program), env)
   end
