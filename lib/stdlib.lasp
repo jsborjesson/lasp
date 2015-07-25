@@ -1,0 +1,3 @@
+(begin
+  (def inc (fn (x) (+ x 1)))
+)

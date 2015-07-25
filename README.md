@@ -36,6 +36,10 @@ x
 - `fn`
 - `begin`
 
+## Functions in stdlib (lasp)
+
+- `inc`
+
 ## Developing
 
 Run the tests with `rspec`.
