@@ -41,6 +41,7 @@ x
 
 - `inc`
 - `len`
+- `nth`
 - `map`
 
 ## Developing

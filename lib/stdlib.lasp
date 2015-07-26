@@ -2,14 +2,21 @@
   ; Increment a number by one
   (def inc (fn (x) (+ x 1)))
 
-  ; Length of a collection
+  ; Length of a list
   (def len
     (fn (coll)
       (if (= (head coll) nil)
         0
         (inc (len (tail coll))))))
 
-  ; Apply f to all items in collection
+  ; Gets an item in a list by index
+  (def nth
+    (fn (index coll)
+      (if (= 0 index)
+        (head coll)
+        (nth (- index 1) (tail coll)))))
+
+  ; Apply f to all items in list
   (def map
     (fn (f coll)
       (if (= nil (head coll))
