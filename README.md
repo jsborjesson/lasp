@@ -41,6 +41,7 @@ x
 
 - `inc`
 - `len`
+- `map`
 
 ## Developing
 

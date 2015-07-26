@@ -10,4 +10,8 @@ describe "stdlib" do
   it "len" do
     expect(Lasp::execute("(len (list 1 2 3 4 5))")).to eq 5
   end
+
+  it "map" do
+    expect(Lasp::execute("(map inc (list 1 2 3))")).to eq [2, 3, 4]
+  end
 end

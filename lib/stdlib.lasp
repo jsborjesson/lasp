@@ -1,9 +1,20 @@
 (begin
+  ; Increment a number by one
   (def inc (fn (x) (+ x 1)))
 
+  ; Length of a collection
   (def len
     (fn (coll)
       (if (= (head coll) nil)
         0
         (inc (len (tail coll))))))
+
+  ; Apply f to all items in collection
+  (def map
+    (fn (f coll)
+      (if (= nil (head coll))
+        coll
+        (cons
+          (f (head coll))
+          (map f (tail coll))) )))
 )
