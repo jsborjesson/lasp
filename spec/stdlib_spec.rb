@@ -3,6 +3,11 @@ require "./lib/eval"
 Lasp::execute_file(File.expand_path("./lib/stdlib.lasp"))
 
 describe "stdlib" do
+  it "has aliases" do
+    expect(Lasp::execute("first")).to eq Lasp::CORELIB[:head]
+    expect(Lasp::execute("rest")).to eq Lasp::CORELIB[:tail]
+  end
+
   it "inc" do
     expect(Lasp::execute("(inc 5)")).to eq 6
   end

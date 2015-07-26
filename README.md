@@ -18,7 +18,9 @@ x
 ; => 6
 ```
 
-## Functions in corelib (ruby)
+## Functions in corelib
+
+Implemented as Ruby lambdas.
 
 - `+`
 - `-`
@@ -33,17 +35,23 @@ x
 
 ## Special forms
 
+Implemented as special cases while evaluating.
+
 - `def`
 - `fn`
 - `begin`
 - `if`
 
-## Functions in stdlib (lasp)
+## Functions in stdlib
+
+Implemented in Läsp itself.
 
 - `inc`
 - `len`
 - `nth`
 - `map`
+- `first` (alias of `head`)
+- `rest` (alias of `tail`)
 
 ## Developing
 

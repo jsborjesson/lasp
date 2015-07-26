@@ -1,4 +1,8 @@
 (begin
+  ; Aliases
+  (def first head)
+  (def rest tail)
+
   ; Increment a number by one
   (def inc (fn (x) (+ x 1)))
 
