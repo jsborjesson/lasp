@@ -6,6 +6,7 @@ module Lasp
   end
 
   def build_ast(tokens)
+    return if tokens.empty?
     token = tokens.shift
 
     if token == "("

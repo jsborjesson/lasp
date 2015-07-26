@@ -29,5 +29,9 @@ module Lasp
 
       expect(Lasp::parse(input)).to eq parsed
     end
+
+    it "returns nil when input is empty" do
+      expect(Lasp::parse("")).to eq nil
+    end
   end
 end
