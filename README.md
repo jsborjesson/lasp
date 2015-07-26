@@ -28,6 +28,7 @@ x
 - `head`
 - `tail`
 - `cons`
+- `not`
 - `println`
 
 ## Special forms

@@ -43,6 +43,10 @@ module Lasp
       expect(described_class[:cons].({}, 1, [])).to eq [1]
     end
 
+    it "not" do
+      expect(described_class[:not].({}, true)).to eq false
+    end
+
     it "outputs to the console" do
       allow(STDOUT).to receive(:puts)
       described_class[:println].({}, 5)
