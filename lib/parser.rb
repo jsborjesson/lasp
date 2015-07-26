@@ -2,7 +2,7 @@ module Lasp
   module_function
 
   def parse(program)
-    build_ast(tokenize(program))
+    build_ast(tokenize(sanitize(program)))
   end
 
   def build_ast(tokens)
@@ -36,5 +36,9 @@ module Lasp
     when /\A\d+.\d+\z/ then Float(token)
     else token.to_sym
     end
+  end
+
+  def sanitize(string)
+    string.gsub(/;.*$/, "")
   end
 end

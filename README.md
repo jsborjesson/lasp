@@ -7,15 +7,15 @@ it, or `lasp path/to/program.lasp` to execute a Läsp file.
 
 ```lisp
 (+ 1 2 3)
-# => 6
+; => 6
 
 (def x 5)
 x
-# => 6
+; => 6
 
 (def inc (fn (x) (+ x 1)))
 (inc 5)
-# => 6
+; => 6
 ```
 
 ## Functions in corelib (ruby)
