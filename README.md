@@ -40,6 +40,7 @@ x
 ## Functions in stdlib (lasp)
 
 - `inc`
+- `len`
 
 ## Developing
 

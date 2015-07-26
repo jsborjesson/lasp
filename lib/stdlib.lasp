@@ -1,3 +1,9 @@
 (begin
   (def inc (fn (x) (+ x 1)))
+
+  (def len
+    (fn (coll)
+      (if (= (head coll) nil)
+        0
+        (inc (len (tail coll))))))
 )
