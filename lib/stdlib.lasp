@@ -6,10 +6,15 @@
   ; Increment a number by one
   (def inc (fn (x) (+ x 1)))
 
+  ; If a list is empty
+  (def empty?
+    (fn (coll)
+      (= (head coll) nil)))
+
   ; Length of a list
   (def len
     (fn (coll)
-      (if (= (head coll) nil)
+      (if (empty? coll)
         0
         (inc (len (tail coll))))))
 
@@ -27,5 +32,5 @@
         coll
         (cons
           (f (head coll))
-          (map f (tail coll))) )))
+          (map f (tail coll))))))
 )

@@ -12,6 +12,11 @@ describe "stdlib" do
     expect(Lasp::execute("(inc 5)")).to eq 6
   end
 
+  it "empty?" do
+    expect(Lasp::execute("(empty? (list 1))")).to eq false
+    expect(Lasp::execute("(empty? (list))")).to eq true
+  end
+
   it "len" do
     expect(Lasp::execute("(len (list 1 2 3 4 5))")).to eq 5
   end

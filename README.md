@@ -68,6 +68,7 @@ Implemented as special cases while evaluating.
 Implemented in Läsp itself.
 
 - `inc`
+- `empty?`
 - `len`
 - `nth`
 - `map`
