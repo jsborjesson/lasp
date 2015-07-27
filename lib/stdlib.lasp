@@ -33,4 +33,11 @@
         (cons
           (f (head coll))
           (map f (tail coll))))))
+
+  ; Sum over list with an accumulator
+  (def reduce
+    (fn (f acc coll)
+      (if (empty? coll)
+        acc
+        (reduce f (f acc (head coll)) (tail coll)))))
 )

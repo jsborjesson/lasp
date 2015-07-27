@@ -28,4 +28,9 @@ describe "stdlib" do
   it "map" do
     expect(Lasp::execute("(map inc (list 1 2 3))")).to eq [2, 3, 4]
   end
+
+  it "reduce" do
+    expect(Lasp::execute("(reduce + 0 (list 1 2 3))")).to eq 6
+    expect(Lasp::execute("(reduce * 1 (list 5 10))")).to eq 50
+  end
 end

@@ -72,6 +72,7 @@ Implemented in Läsp itself.
 - `len`
 - `nth`
 - `map`
+- `reduce`
 - `first` (alias of `head`)
 - `rest` (alias of `tail`)
 
