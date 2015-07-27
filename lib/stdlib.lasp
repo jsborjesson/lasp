@@ -40,4 +40,9 @@
       (if (empty? coll)
         acc
         (reduce f (f acc (head coll)) (tail coll)))))
+
+  ; Sum of all items in a list
+  (def sum
+    (fn (coll)
+      (reduce + 0 coll)))
 )

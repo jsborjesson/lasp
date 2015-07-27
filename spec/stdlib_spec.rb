@@ -33,4 +33,8 @@ describe "stdlib" do
     expect(Lasp::execute("(reduce + 0 (list 1 2 3))")).to eq 6
     expect(Lasp::execute("(reduce * 1 (list 5 10))")).to eq 50
   end
+
+  it "sum" do
+    expect(Lasp::execute("(sum (list 5 10 15))")).to eq 30
+  end
 end

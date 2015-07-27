@@ -67,14 +67,15 @@ Implemented as special cases while evaluating.
 
 Implemented in Läsp itself.
 
+- `first` (alias of `head`)
+- `rest` (alias of `tail`)
 - `inc`
 - `empty?`
 - `len`
 - `nth`
 - `map`
 - `reduce`
-- `first` (alias of `head`)
-- `rest` (alias of `tail`)
+- `sum`
 
 ## Developing
 
