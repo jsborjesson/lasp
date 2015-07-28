@@ -23,6 +23,9 @@
   (def even?
     (fn (x) (= (mod x 2) 0)))
 
+  ; If a number is odd
+  (def odd? (complement even?))
+
   ; Length of a list
   (def len
     (fn (coll)

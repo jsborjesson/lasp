@@ -74,6 +74,7 @@ Implemented in Läsp itself.
 - `mod`
 - `complement`
 - `even?`
+- `odd?`
 - `len`
 - `nth`
 - `map`
