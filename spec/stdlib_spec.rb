@@ -43,6 +43,10 @@ describe "stdlib" do
     expect(Lasp::execute("(nth 2 (list 0 1 2 3 4))")).to eq 2
   end
 
+  it "reverse" do
+    expect(Lasp::execute("(reverse (list 1 2 3))")).to eq [3, 2, 1]
+  end
+
   it "map" do
     expect(Lasp::execute("(map inc (list 1 2 3))")).to eq [2, 3, 4]
   end
@@ -50,6 +54,10 @@ describe "stdlib" do
   it "reduce" do
     expect(Lasp::execute("(reduce + 0 (list 1 2 3))")).to eq 6
     expect(Lasp::execute("(reduce * 1 (list 5 10))")).to eq 50
+  end
+
+  it "filter" do
+    expect(Lasp::execute("(filter odd? (list 1 2 3))")).to eq [1, 3]
   end
 
   it "sum" do

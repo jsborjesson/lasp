@@ -40,6 +40,11 @@
         (head coll)
         (nth (- index 1) (tail coll)))))
 
+  ; Reverses a list
+  (def reverse
+    (fn (coll)
+      (reduce (fn (acc item) (cons item acc)) (list) coll)))
+
   ; Apply f to all items in list
   (def map
     (fn (f coll)
@@ -55,6 +60,14 @@
       (if (empty? coll)
         acc
         (reduce f (f acc (head coll)) (tail coll)))))
+
+  ; Filter a list of items based on a function
+  (def filter
+    (fn (f coll)
+      (reduce
+        (fn (acc item) (if (f item) (cons item acc) acc))
+        (list)
+        (reverse coll))))
 
   ; Sum of all items in a list
   (def sum

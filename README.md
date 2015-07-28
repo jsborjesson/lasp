@@ -77,8 +77,10 @@ Implemented in Läsp itself.
 - `odd?`
 - `len`
 - `nth`
+- `reverse`
 - `map`
 - `reduce`
+- `filter`
 - `sum`
 
 ## Developing
