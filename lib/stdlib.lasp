@@ -77,6 +77,13 @@
     (fn (coll)
       (reduce + 0 coll)))
 
+  ; Take x items from list
+  (def take
+    (fn (num coll)
+      (if (= num 0)
+        (list)
+        (cons (head coll) (take (dec num) (tail coll))))))
+
   ; Drop x items from list
   (def drop
     (fn (num coll)

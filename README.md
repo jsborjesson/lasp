@@ -83,6 +83,7 @@ Implemented in Läsp itself.
 - `reduce`
 - `filter`
 - `sum`
+- `take`
 - `drop`
 
 ## Developing
