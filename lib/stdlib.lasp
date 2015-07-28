@@ -15,6 +15,10 @@
   (def mod
     (fn (x y) (- x (* (/ x y) y))))
 
+  ; Returns a function that does the opposite of the given function
+  (def complement
+    (fn (f) (fn (x) (not (f x)))))
+
   ; If a number is even
   (def even?
     (fn (x) (= (mod x 2) 0)))

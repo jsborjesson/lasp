@@ -72,6 +72,7 @@ Implemented in Läsp itself.
 - `inc`
 - `empty?`
 - `mod`
+- `complement`
 - `even?`
 - `len`
 - `nth`

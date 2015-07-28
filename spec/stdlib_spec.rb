@@ -21,6 +21,10 @@ describe "stdlib" do
     expect(Lasp::execute("(mod 133 51)")).to eq 31
   end
 
+  it "complement" do
+    expect(Lasp::execute("((complement empty?) (list 1))")).to eq true
+  end
+
   it "even?" do
     expect(Lasp::execute("(even? 7)")).to eq false
     expect(Lasp::execute("(even? 4)")).to eq true
