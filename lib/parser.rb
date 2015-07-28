@@ -25,7 +25,7 @@ module Lasp
     string
       .gsub("(", " ( ")
       .gsub(")", " ) ")
-      .split
+      .scan(/(?:[^\s"]|"[^"]*")+/)
   end
 
   def atom(token)

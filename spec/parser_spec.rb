@@ -6,9 +6,16 @@ module Lasp
       expect(Lasp::tokenize("(func 1 2)")).to eq %w[( func 1 2 )]
     end
 
+    it "tokenizes a complex string" do
+      input    = '(+  1.2 2 ( len "test test ")) ' # intentionally messy whitespace
+      expected = ["(", "+", "1.2", "2", "(", "len", "\"test test \"", ")", ")"]
+
+      expect(Lasp::tokenize(input)).to eq expected
+    end
+
     it "parses forms" do
-      input  = '(func true 2.7 "str" (+ false 2 nil))'
-      parsed = [:func, true, 2.7, "str", [:+, false, 2, nil]]
+      input  = "(func 1  2 (+ 1 2 )) "
+      parsed = [:func, 1, 2, [:+, 1, 2]]
 
       expect(Lasp::parse(input)).to eq parsed
     end
@@ -32,6 +39,33 @@ module Lasp
 
     it "returns nil when input is empty" do
       expect(Lasp::parse("")).to eq nil
+    end
+
+    describe "datatypes" do
+      it "recognizes integers" do
+        expect(Lasp::parse("7")).to eq 7
+      end
+
+      it "recognizes floats" do
+        expect(Lasp::parse("7.5")).to eq 7.5
+      end
+
+      it "recognizes booleans" do
+        expect(Lasp::parse("true")).to eq true
+        expect(Lasp::parse("false")).to eq false
+      end
+
+      it "recognizes nil" do
+        expect(Lasp::parse("nil")).to eq nil
+      end
+
+      it "recognizes keywords" do
+        expect(Lasp::parse("func")).to eq :func
+      end
+
+      it "recognizes strings" do
+        expect(Lasp::parse('"a quick brown fox"')).to eq "a quick brown fox"
+      end
     end
   end
 end
