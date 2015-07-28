@@ -28,7 +28,8 @@ module Lasp
       env[key] = eval(value, env)
     elsif head == :fn
       params, func = tail
-      -> (env, *args) { eval(func, env.merge(Hash[params.zip(args)])) }
+      # Use env from context to properly scope closures
+      -> (_, *args) { eval(func, env.merge(Hash[params.zip(args)])) }
     elsif head == :begin
       tail.each do |form| eval(form, env) end
     elsif head == :if

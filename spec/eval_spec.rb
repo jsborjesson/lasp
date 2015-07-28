@@ -44,5 +44,9 @@ module Lasp
       Lasp::execute('(if (= 1 1) true (println "not evaled!"))')
       expect(STDOUT).not_to have_received(:puts)
     end
+
+    it "handles closures" do
+      expect(Lasp::execute("(((fn (x) (fn () x)) 42))")).to eq 42
+    end
   end
 end
