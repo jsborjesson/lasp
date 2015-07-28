@@ -75,4 +75,8 @@ describe "stdlib" do
   it "drop" do
     expect(Lasp::execute("(drop 2 (list 1 2 3 4))")).to eq [3, 4]
   end
+
+  it "range" do
+    expect(Lasp::execute("(range 0 10)")).to eq (0...10).to_a
+  end
 end

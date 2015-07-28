@@ -85,6 +85,7 @@ Implemented in Läsp itself.
 - `sum`
 - `take`
 - `drop`
+- `range`
 
 ## Developing
 

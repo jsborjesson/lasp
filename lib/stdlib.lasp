@@ -90,4 +90,11 @@
       (if (= num 0)
         coll
         (drop (dec num) (tail coll)))))
+
+  ; Exclusive range
+  (def range
+    (fn (from to)
+      (if (= from to)
+        (list)
+        (cons from (range (inc from) to)))))
 )
