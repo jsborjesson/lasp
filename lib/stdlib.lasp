@@ -6,6 +6,9 @@
   ; Increment a number by one
   (def inc (fn (x) (+ x 1)))
 
+  ; Decrement a number by one
+  (def dec (fn (x) (- x 1)))
+
   ; If a list is empty
   (def empty?
     (fn (coll)
@@ -38,7 +41,7 @@
     (fn (index coll)
       (if (= 0 index)
         (head coll)
-        (nth (- index 1) (tail coll)))))
+        (nth (dec index) (tail coll)))))
 
   ; Reverses a list
   (def reverse
@@ -73,4 +76,11 @@
   (def sum
     (fn (coll)
       (reduce + 0 coll)))
+
+  ; Drop x items from list
+  (def drop
+    (fn (num coll)
+      (if (= num 0)
+        coll
+        (drop (dec num) (tail coll)))))
 )

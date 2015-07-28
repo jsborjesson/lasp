@@ -12,6 +12,10 @@ describe "stdlib" do
     expect(Lasp::execute("(inc 5)")).to eq 6
   end
 
+  it "dec" do
+    expect(Lasp::execute("(dec 5)")).to eq 4
+  end
+
   it "empty?" do
     expect(Lasp::execute("(empty? (list 1))")).to eq false
     expect(Lasp::execute("(empty? (list))")).to eq true
@@ -62,5 +66,9 @@ describe "stdlib" do
 
   it "sum" do
     expect(Lasp::execute("(sum (list 5 10 15))")).to eq 30
+  end
+
+  it "drop" do
+    expect(Lasp::execute("(drop 2 (list 1 2 3 4))")).to eq [3, 4]
   end
 end

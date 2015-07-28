@@ -70,6 +70,7 @@ Implemented in Läsp itself.
 - `first` (alias of `head`)
 - `rest` (alias of `tail`)
 - `inc`
+- `dec`
 - `empty?`
 - `mod`
 - `complement`
@@ -82,6 +83,7 @@ Implemented in Läsp itself.
 - `reduce`
 - `filter`
 - `sum`
+- `drop`
 
 ## Developing
 
