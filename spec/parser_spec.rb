@@ -65,6 +65,7 @@ module Lasp
 
       it "recognizes strings" do
         expect(Lasp::parse('"a quick brown fox"')).to eq "a quick brown fox"
+        expect(Lasp::parse('"a \"quick\" brown fox"')).to eq 'a "quick" brown fox'
       end
     end
   end
