@@ -11,6 +11,14 @@
     (fn (coll)
       (= (head coll) nil)))
 
+  ; Modulus
+  (def mod
+    (fn (x y) (- x (* (/ x y) y))))
+
+  ; If a number is even
+  (def even?
+    (fn (x) (= (mod x 2) 0)))
+
   ; Length of a list
   (def len
     (fn (coll)

@@ -71,6 +71,8 @@ Implemented in Läsp itself.
 - `rest` (alias of `tail`)
 - `inc`
 - `empty?`
+- `mod`
+- `even?`
 - `len`
 - `nth`
 - `map`

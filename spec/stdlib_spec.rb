@@ -17,6 +17,15 @@ describe "stdlib" do
     expect(Lasp::execute("(empty? (list))")).to eq true
   end
 
+  it "mod" do
+    expect(Lasp::execute("(mod 133 51)")).to eq 31
+  end
+
+  it "even?" do
+    expect(Lasp::execute("(even? 7)")).to eq false
+    expect(Lasp::execute("(even? 4)")).to eq true
+  end
+
   it "len" do
     expect(Lasp::execute("(len (list 1 2 3 4 5))")).to eq 5
   end
