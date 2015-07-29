@@ -43,6 +43,11 @@
         (head coll)
         (nth (dec index) (tail coll)))))
 
+  ; Last item in list
+  (def last
+    (fn (coll)
+      (nth (dec (len coll)) coll)))
+
   ; Reverses a list
   (def reverse
     (fn (coll)
@@ -65,7 +70,7 @@
         acc
         (reduce f (f acc (head coll)) (tail coll)))))
 
-  ; Filter a list of items based on a function
+  ; Fil er a list of items based on a function
   (def filter
     (fn (f coll)
       (reduce

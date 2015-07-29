@@ -47,6 +47,10 @@ describe "stdlib" do
     expect(Lasp::execute("(nth 2 (list 0 1 2 3 4))")).to eq 2
   end
 
+  it "last" do
+    expect(Lasp::execute("(last (list 0 1 2 3 4))")).to eq 4
+  end
+
   it "reverse" do
     expect(Lasp::execute("(reverse (list 1 2 3))")).to eq [3, 2, 1]
   end

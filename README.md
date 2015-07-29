@@ -80,6 +80,7 @@ Implemented in Läsp itself.
 - `odd?`
 - `len`
 - `nth`
+- `last`
 - `reverse`
 - `map`
 - `reduce`
