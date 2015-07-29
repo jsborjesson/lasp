@@ -18,6 +18,18 @@ module Lasp
       expect(described_class[:/].({}, 20, 2, 2)).to eq 5
     end
 
+    it "<" do
+      expect(described_class[:<].({}, 20, 10)).to eq false
+      expect(described_class[:<].({}, 10, 11, 12)).to eq true
+      expect(described_class[:<].({}, 10, 11, 10)).to eq false
+    end
+
+    it ">" do
+      expect(described_class[:>].({}, 20, 10)).to eq true
+      expect(described_class[:>].({}, 10, 9, 8)).to eq true
+      expect(described_class[:>].({}, 10, 9, 10)).to eq false
+    end
+
     it "=" do
       expect(described_class[:"="].({}, 20, 20, 2)).to eq false
       expect(described_class[:"="].({}, 20, 20, 20)).to eq true

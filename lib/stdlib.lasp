@@ -57,7 +57,8 @@
           (f (head coll))
           (map f (tail coll))))))
 
-  ; Sum over list with an accumulator
+  ; Go through a list passing an accumulator and each item of the list through f
+  ; f(acc item)
   (def reduce
     (fn (f acc coll)
       (if (empty? coll)
@@ -97,4 +98,20 @@
       (if (= from to)
         (list)
         (cons from (range (inc from) to)))))
+
+  ; Highest value in list
+  (def max
+    (fn (coll)
+      (reduce
+        (fn (acc item) (if (< acc item) item acc))
+        (head coll)
+        (tail coll))))
+
+  ; Lowest value in list
+  (def min
+    (fn (coll)
+      (reduce
+        (fn (acc item) (if (> acc item) item acc))
+        (head coll)
+        (tail coll))))
 )

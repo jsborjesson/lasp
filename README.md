@@ -47,6 +47,8 @@ Implemented as Ruby lambdas.
 - `-`
 - `*`
 - `/`
+- `<`
+- `>`
 - `=`
 - `head`
 - `tail`
@@ -86,6 +88,8 @@ Implemented in Läsp itself.
 - `take`
 - `drop`
 - `range`
+- `max`
+- `min`
 
 ## Developing
 
