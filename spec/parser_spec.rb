@@ -63,9 +63,12 @@ module Lasp
         expect(Lasp::parse("func")).to eq :func
       end
 
-      it "recognizes strings" do
+      it "recognizes simple strings" do
         expect(Lasp::parse('"a quick brown fox"')).to eq "a quick brown fox"
-        expect(Lasp::parse('"a \"quick\" brown fox"')).to eq 'a "quick" brown fox'
+      end
+
+      it "recognizes symbol-style strings" do
+        expect(Lasp::parse(":justastring")).to eq "justastring"
       end
     end
   end

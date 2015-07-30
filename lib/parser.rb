@@ -35,7 +35,8 @@ module Lasp
     when "nil"         then nil
     when /\A\d+\z/     then Integer(token)
     when /\A\d+.\d+\z/ then Float(token)
-    when /"(.*)"/      then String($1.gsub('\\', "")) # Use the match to remove the quotes, then take out the \ to allow escaping
+    when /"(.*)"/      then String($1)
+    when /:(\w+)/      then String($1) # Symbol style strings are actually just strings
     else token.to_sym
     end
   end
