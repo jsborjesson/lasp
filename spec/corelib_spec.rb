@@ -64,5 +64,9 @@ module Lasp
       described_class[:println].({}, 5)
       expect(STDOUT).to have_received(:puts).with(5)
     end
+
+    it "interops" do
+      expect(described_class[:"."].({}, "str", "bytesize")).to eq 3
+    end
   end
 end

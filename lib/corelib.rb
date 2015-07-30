@@ -13,5 +13,6 @@ module Lasp
     :cons    => -> (_, item, list) { [item] + list             },
     :not     => -> (_, arg)        { !arg                      },
     :println => -> (_, output)     { puts output               },
+    :"."     => -> (_, obj, meth)  { obj.send(meth)            }
   }
 end

@@ -48,5 +48,9 @@ module Lasp
     it "handles closures" do
       expect(Lasp::execute("(((fn (x) (fn () x)) 42))")).to eq 42
     end
+
+    it "does ruby interop" do
+      expect(Lasp::execute('(. "hello" :upcase)')).to eq "HELLO"
+    end
   end
 end
