@@ -5,6 +5,7 @@ Lasp::load_stdlib!
 
 trap("SIGINT") { puts "\n\nBye!"; exit! }
 
+puts "((( Läsp v#{Lasp::VERSION} REPL )))\n\n"
 loop do
   begin
     print "lasp> "
