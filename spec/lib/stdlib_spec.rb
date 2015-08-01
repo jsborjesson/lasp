@@ -1,6 +1,7 @@
-require "./lib/eval"
+require "lasp/eval"
 
-Lasp::execute_file(File.expand_path("./lib/stdlib.lasp"))
+require "lasp"
+Lasp::load_stdlib!
 
 describe "stdlib" do
   it "has aliases" do

@@ -1,4 +1,4 @@
-require "./lib/corelib"
+require "lasp/corelib"
 
 module Lasp
   describe CORELIB do

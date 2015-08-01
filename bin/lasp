@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/eval"
+require "./lib/eval"
 
 # Load the stdlib
 Lasp::execute_file(File.expand_path("./lib/stdlib.lasp"))

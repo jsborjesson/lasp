@@ -1,5 +1,5 @@
-require "./lib/parser"
-require "./lib/env"
+require "lasp/parser"
+require "lasp/env"
 
 module Lasp
   module_function

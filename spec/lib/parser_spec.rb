@@ -1,4 +1,4 @@
-require "./lib/parser"
+require "lasp/parser"
 
 module Lasp
   describe "parse" do
