@@ -1,4 +1,4 @@
-(begin
+(do
   ; Aliases
   (def first head)
   (def rest tail)

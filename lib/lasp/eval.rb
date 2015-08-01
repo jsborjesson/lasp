@@ -30,7 +30,7 @@ module Lasp
       params, func = tail
       # Use env from context to properly scope closures
       -> (_, *args) { eval(func, env.merge(Hash[params.zip(args)])) }
-    elsif head == :begin
+    elsif head == :do
       tail.each do |form| eval(form, env) end
     elsif head == :if
       conditional, true_form, false_form = tail

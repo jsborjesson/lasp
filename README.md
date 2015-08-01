@@ -62,7 +62,7 @@ Implemented as special cases while evaluating.
 
 - `def`
 - `fn`
-- `begin`
+- `do`
 - `if`
 
 ### Functions in stdlib

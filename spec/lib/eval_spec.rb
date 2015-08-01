@@ -25,9 +25,9 @@ module Lasp
       expect(Lasp::execute("(inc 1)")).to eq 2
     end
 
-    it "begin executes multiple statements" do
+    it "do executes multiple statements" do
       allow(STDOUT).to receive(:puts)
-      Lasp::execute("(begin (println 1) (println 2))")
+      Lasp::execute("(do (println 1) (println 2))")
 
       expect(STDOUT).to have_received(:puts).with(1).ordered
       expect(STDOUT).to have_received(:puts).with(2).ordered
