@@ -1,4 +1,4 @@
-require "lasp/eval"
+require "lasp"
 
 module Lasp
   describe "eval" do

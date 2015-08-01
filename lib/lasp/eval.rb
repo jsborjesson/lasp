@@ -4,14 +4,6 @@ require "lasp/env"
 module Lasp
   module_function
 
-  def execute_file(path)
-    execute(File.read(path))
-  end
-
-  def execute(program, env = global_env)
-    Lasp::eval(Lasp::parse(program), env)
-  end
-
   def eval(ast, env)
     case ast
     when Symbol then env.fetch(ast)
