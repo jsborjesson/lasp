@@ -31,7 +31,9 @@ lasp path/to/program.lasp
 
 ### Examples
 
-More advanced examples can be found in [EXAMPLES.md](EXAMPLES.md).
+More advanced examples can be found in [EXAMPLES.md](EXAMPLES.md), you can also
+look at the [standard library](lib/lasp/stdlib.lasp) which is implemented in
+Läsp itself.
 
 ```lisp
 (+ 1 2 3) ;; => 6
