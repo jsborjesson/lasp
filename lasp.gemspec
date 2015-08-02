@@ -5,7 +5,7 @@ require 'lasp/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "lasp"
-  spec.version       = "0.1.0"
+  spec.version       = Lasp::VERSION
   spec.authors       = ["Jimmy Börjesson"]
   spec.email         = ["lagginglion@gmail.com"]
 
