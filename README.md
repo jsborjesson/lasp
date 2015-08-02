@@ -7,6 +7,8 @@ it, or `lasp path/to/program.lasp` to execute a Läsp file.
 
 ### Examples
 
+More advanced examples can be found in [EXAMPLES.md](EXAMPLES.md).
+
 ```lisp
 (+ 1 2 3)
 ;; => 6
