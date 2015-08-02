@@ -32,6 +32,7 @@ Supports these datatypes (implemented as their Ruby counterparts)
 - boolean
 - nil
 - string
+- list
 
 ### Comments
 
