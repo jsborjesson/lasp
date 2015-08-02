@@ -70,7 +70,7 @@
         acc
         (reduce f (f acc (head coll)) (tail coll)))))
 
-  ; Fil er a list of items based on a function
+  ; Filter a list of items based on a function
   (def filter
     (fn (f coll)
       (reduce
