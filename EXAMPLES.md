@@ -20,8 +20,10 @@ false
 nil
 
 ; Strings
-"hello world!"
-:hey ; Symbol-style string (not its own type)
+"hello world!" ;; => "hello world!"
+
+; Symbol-style strings (not its own type)
+:hey ;; => "hey"
 
 ; Lists
 (list 1 2 3) ;; => [1, 2, 3]
