@@ -9,15 +9,18 @@ it, or `lasp path/to/program.lasp` to execute a Läsp file.
 
 ```lisp
 (+ 1 2 3)
-; => 6
+;; => 6
 
 (def x 5)
 x
-; => 6
+;; => 6
+
+(sum (list 5 10 15))
+;; => 30
 
 (def inc (fn (x) (+ x 1)))
 (inc 5)
-; => 6
+;; => 6
 ```
 
 ### Data types
@@ -50,11 +53,13 @@ Implemented as Ruby lambdas.
 - `<`
 - `>`
 - `=`
+- `list`
 - `head`
 - `tail`
 - `cons`
 - `not`
 - `println`
+- `.`
 
 ### Special forms
 
