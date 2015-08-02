@@ -1,7 +1,31 @@
 # Läsp
 
-A very simple Lisp implementation in Ruby. Run `lasp-repl` to play around with
-it, or `lasp path/to/program.lasp` to execute a Läsp file.
+A very simple programming language implemented in Ruby.
+
+It is just a toy Lisp implementation and should not be used seriously by anyone.
+
+## Installation
+
+It needs Ruby to work, on Mac or most Linux OS:s it's already there and you can simply
+
+```bash
+gem install lasp
+
+# If it doesn't work you might need to sudo
+sudo gem install lasp
+```
+
+## Running
+
+After installing there are two commands available to you:
+
+```bash
+# An interactive prompt that lets you play with the language
+lasp-repl
+
+# Run lasp-files
+lasp path/to/program.lasp
+```
 
 ## The language
 
