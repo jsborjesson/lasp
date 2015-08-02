@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 
-require "./lib/eval"
-
-# Load the stdlib
-Lasp::execute_file(File.expand_path("./lib/stdlib.lasp"))
+require "lasp"
+Lasp::load_stdlib!
 
 Lasp::execute_file(ARGV.first)
