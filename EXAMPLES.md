@@ -121,7 +121,4 @@ x                    ;; => [1, 2, 3]
 ; You can give it a name yourself
 (def add-ten (fn (x) (+ 10 x)))
 (add-ten 50) ;; => 60
-
-; Ruby interop
-(. (list 1 2 3) :)
 ```
