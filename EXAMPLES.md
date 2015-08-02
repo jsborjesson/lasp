@@ -10,6 +10,23 @@
 ;
 ; In this document output is shown with ;; and normal comments with ;.
 
+; Number types
+1
+1.5
+
+; Booleans and nil
+true
+false
+nil
+
+; Strings
+"hello world!"
+:hey ; Symbol-style string (not its own type)
+
+; Lists
+(list 1 2 3) ;; => [1, 2, 3]
+(list)       ;; => []
+
 ; Basic function call
 ; inc is a function that increments its argument, and 1 is the single argument
 (inc 1) ;; => 2
@@ -27,8 +44,7 @@
 ; Boolean inversion
 (not true) ;; => false
 
-; Lists
-(list 1 2 3) ;; => [1, 2, 3]
+; List operations
 
 (head (list 1 2 3))  ;; => 1
 (first (list 1 2 3)) ;; => 1
@@ -103,4 +119,7 @@ x                    ;; => [1, 2, 3]
 ; You can give it a name yourself
 (def add-ten (fn (x) (+ 10 x)))
 (add-ten 50) ;; => 60
+
+; Ruby interop
+(. (list 1 2 3) :)
 ```
