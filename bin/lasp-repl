@@ -5,13 +5,13 @@ Lasp::load_stdlib!
 
 trap("SIGINT") { puts "\n\nBye!"; exit! }
 
-puts "((( Läsp v#{Lasp::VERSION} REPL )))\n\n"
+puts "((( Läsp v#{Lasp::VERSION} REPL (ctrl+c to exit) )))\n\n"
 loop do
   begin
     print "lasp> "
     result = Lasp::execute(gets.chomp)
-    puts "  =>> #{result.inspect}"
+    puts "   => #{result.inspect}"
   rescue
-    puts "  **> #{$!}"
+    puts "   *> #{$!}"
   end
 end
