@@ -2,11 +2,11 @@ require "lasp/parser"
 
 module Lasp
   describe "parse" do
-    it "tokenizes a string" do
+    it "tokenizes strings" do
       expect(Lasp::tokenize("(func 1 2)")).to eq %w[( func 1 2 )]
     end
 
-    it "tokenizes a complex string" do
+    it "tokenizes complex strings" do
       input    = '(+  1.2 2 ( len "test test ")) ' # intentionally messy whitespace
       expected = ["(", "+", "1.2", "2", "(", "len", "\"test test \"", ")", ")"]
 
@@ -42,32 +42,32 @@ module Lasp
     end
 
     describe "datatypes" do
-      it "recognizes integers" do
+      it "integers" do
         expect(Lasp::parse("7")).to eq 7
       end
 
-      it "recognizes floats" do
+      it "floats" do
         expect(Lasp::parse("7.5")).to eq 7.5
       end
 
-      it "recognizes booleans" do
+      it "booleans" do
         expect(Lasp::parse("true")).to eq true
         expect(Lasp::parse("false")).to eq false
       end
 
-      it "recognizes nil" do
+      it "nil" do
         expect(Lasp::parse("nil")).to eq nil
       end
 
-      it "recognizes keywords" do
+      it "keywords" do
         expect(Lasp::parse("func")).to eq :func
       end
 
-      it "recognizes simple strings" do
+      it "strings" do
         expect(Lasp::parse('"a quick brown fox"')).to eq "a quick brown fox"
       end
 
-      it "recognizes symbol-style strings" do
+      it "symbol-style strings" do
         expect(Lasp::parse(":justastring")).to eq "justastring"
       end
     end

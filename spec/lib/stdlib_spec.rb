@@ -4,7 +4,7 @@ require "lasp"
 Lasp::load_stdlib!
 
 describe "stdlib" do
-  it "has aliases" do
+  it "aliases" do
     expect(Lasp::execute("first")).to eq Lasp::CORELIB[:head]
     expect(Lasp::execute("rest")).to eq Lasp::CORELIB[:tail]
   end
