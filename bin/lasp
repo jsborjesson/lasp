@@ -3,4 +3,9 @@
 require "lasp"
 Lasp::load_stdlib!
 
+unless ARGV.first
+  puts "You have to supply a path"
+  exit!
+end
+
 Lasp::execute_file(ARGV.first)
