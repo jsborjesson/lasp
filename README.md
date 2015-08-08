@@ -124,4 +124,18 @@ Implemented in Läsp itself.
 
 ## Developing
 
-Run the tests with `rspec`.
+### Run the specs
+
+```bash
+rspec
+
+# or more verbose
+rspec --format=documentation
+```
+
+### Dev REPL
+
+```bash
+# This is basically just a shorthand for `rake install && lasp-repl`
+rake repl
+```
