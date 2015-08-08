@@ -82,6 +82,10 @@ Implemented as Ruby lambdas.
 - `head`
 - `tail`
 - `cons`
+- `hash-map`
+- `get`
+- `assoc`
+- `dissoc`
 - `not`
 - `println`
 - `.`

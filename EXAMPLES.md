@@ -59,6 +59,13 @@ nil
 (nth 1 (list 1 2 3)) ;; => 2
 (nth 3 (list 1 2 3)) ;; => nil
 
+; get does the same as nth on lists (although implemented differently)
+(get 1 (list 1 2 3)) ;; => 2
+(get 3 (list 1 2 3)) ;; => nil
+
+; assoc returns a new array with the specified index updated
+(assoc (list 1 2 3) 0 "one") ;; => ["one", 2, 3]
+
 (last (list 1 2 3)) ;; => 3
 
 (take 2 (list 1 2 3)) ;; => [1, 2]
@@ -70,6 +77,18 @@ nil
 
 ; Ranges
 (range 1 10) ;; => [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+; Hash-maps
+(hash-map :one 1 :two 2) ;; => {"one"=>1, "two"=>2}
+
+; get also works with hash-maps
+(get :one (hash-map :one 1 :two 2)) ;; => 1
+
+; assoc works with hash-maps too
+(assoc (hash-map :one 1 :two 2) :three 3) ;; => {"one"=>1, "two"=>2, "three"=>3}
+
+; dissoc removes values
+(dissoc (hash-map :one 1 :two 2) :one) ;; => {"two"=>2}
 
 ; Apply a function to all items in a list
 (map inc (list 1 2 3)) ;; => [2, 3, 4]

@@ -55,6 +55,60 @@ module Lasp
       expect(CORELIB[:cons].({}, 1, [])).to eq [1]
     end
 
+    describe "hash-map" do
+      it "creates a hash" do
+        expect(CORELIB[:"hash-map"].({}, "one", 1, "two", 2)).to eq("one" => 1, "two" => 2)
+      end
+
+      it "errors when given an uneven number of arguments" do
+        expect { CORELIB[:"hash-map"].({}, "one", 1, "two") }.to raise_error ArgumentError, /odd number of arguments/
+      end
+    end
+
+    describe "get" do
+      it "returns item of index in list" do
+        expect(CORELIB[:get].({}, 0, [1, 2, 3])).to eq 1
+      end
+
+      it "returns item of key in hash-map" do
+        expect(CORELIB[:get].({}, "one", {"one"=>1, "two"=>2})).to eq 1
+      end
+    end
+
+    describe "assoc" do
+      it "associates a key with a value in a hash" do
+        expect(CORELIB[:assoc].({}, {}, "one", 1)).to eq("one" => 1)
+      end
+
+      it "replaces the value if already present" do
+        expect(CORELIB[:assoc].({}, {"one" => 1}, "one", 2)).to eq("one" => 2)
+      end
+
+      it "does not change the original data structure" do
+        data = {"one" => 1}
+        expect{ CORELIB[:assoc].({}, data, "one", 2) }.not_to change { data }
+      end
+
+      it "associates an index with a value in a list" do
+        expect(CORELIB[:assoc].({}, [1, 2, 3], 0, 0)).to eq [0, 2, 3]
+      end
+
+      it "errors when trying to use a non-integer key in a list" do
+        expect { CORELIB[:assoc].({}, [1, 2, 3], "one", 1) }.to raise_error TypeError
+      end
+    end
+
+    describe "dissoc" do
+      it "returns a hash without a value" do
+        expect(CORELIB[:dissoc].({}, {"one"=>1, "two"=>2}, "one")).to eq("two" => 2)
+      end
+
+      it "does not change the original data structure" do
+        data = {"one"=>1, "two"=>2}
+        expect{ CORELIB[:dissoc].({}, data, "one") }.not_to change { data }
+      end
+    end
+
     it "not" do
       expect(CORELIB[:not].({}, true)).to eq false
     end
