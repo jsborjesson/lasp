@@ -1,5 +1,21 @@
 # Läsp changelog
 
+## v0.4.0
+
+Implicit do-blocks around files. You can now do this...:
+
+```lisp
+(def x 5)
+
+(def y 10)
+```
+
+...in a Läsp file without having to wrap the entire contents of the file in
+`(do ...)`. Previously it just stopped reading after the first form and
+anything after would seemingly inexplicably not be run.
+
+**This is only enabled in files, not every form of evaluation.**
+
 ## v0.3.2
 
 Fix bug in `do` - it accidentally returned part of the AST, now it correctly
