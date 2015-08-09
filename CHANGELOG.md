@@ -1,5 +1,10 @@
 # Läsp changelog
 
+## v0.3.2
+
+Fix bug in `do` - it accidentally returned part of the AST, now it correctly
+returns the result of the last expression.
+
 ## v0.3.1
 
 Make readline support actually work once released to rubygems by implementing it directly in Ruby.
