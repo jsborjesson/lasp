@@ -7,7 +7,7 @@ module Lasp
   module_function
 
   def execute_file(path)
-    execute(File.read(path))
+    execute("(do #{File.read(path)})")
   end
 
   def execute(program, env = global_env)

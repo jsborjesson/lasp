@@ -1,4 +1,5 @@
 require "lasp"
+require "tempfile"
 
 module Lasp
   describe "evaluation" do
@@ -53,6 +54,15 @@ module Lasp
           Lasp::execute('(if (= 1 1) true (println "not evaled!"))')
           expect(STDOUT).not_to have_received(:puts)
         end
+      end
+    end
+
+    it "wraps the top level with a do block when reading lasp files" do
+      Tempfile.open("lasp-test") do |file|
+        file.write('(+ "fi" "rst") (+ "la" "st")')
+        file.rewind
+
+        expect(Lasp::execute_file(file.path)).to eq "last"
       end
     end
 

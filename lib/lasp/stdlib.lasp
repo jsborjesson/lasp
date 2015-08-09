@@ -1,122 +1,120 @@
-(do
-  ; Aliases
-  (def first head)
-  (def rest tail)
+; Aliases
+(def first head)
+(def rest tail)
 
-  ; Increment a number by one
-  (def inc (fn (x) (+ x 1)))
+; Increment a number by one
+(def inc (fn (x) (+ x 1)))
 
-  ; Decrement a number by one
-  (def dec (fn (x) (- x 1)))
+; Decrement a number by one
+(def dec (fn (x) (- x 1)))
 
-  ; If a list is empty
-  (def empty?
-    (fn (coll)
-      (= (head coll) nil)))
+; If a list is empty
+(def empty?
+  (fn (coll)
+    (= (head coll) nil)))
 
-  ; Modulus
-  (def mod
-    (fn (x y) (- x (* (/ x y) y))))
+; Modulus
+(def mod
+  (fn (x y) (- x (* (/ x y) y))))
 
-  ; Returns a function that does the opposite of the given function
-  (def complement
-    (fn (f) (fn (x) (not (f x)))))
+; Returns a function that does the opposite of the given function
+(def complement
+  (fn (f) (fn (x) (not (f x)))))
 
-  ; If a number is even
-  (def even?
-    (fn (x) (= (mod x 2) 0)))
+; If a number is even
+(def even?
+  (fn (x) (= (mod x 2) 0)))
 
-  ; If a number is odd
-  (def odd? (complement even?))
+; If a number is odd
+(def odd? (complement even?))
 
-  ; Length of a list
-  (def len
-    (fn (coll)
-      (if (empty? coll)
-        0
-        (inc (len (tail coll))))))
+; Length of a list
+(def len
+  (fn (coll)
+    (if (empty? coll)
+      0
+      (inc (len (tail coll))))))
 
-  ; Gets an item in a list by index
-  (def nth
-    (fn (index coll)
-      (if (= 0 index)
-        (head coll)
-        (nth (dec index) (tail coll)))))
+; Gets an item in a list by index
+(def nth
+  (fn (index coll)
+    (if (= 0 index)
+      (head coll)
+      (nth (dec index) (tail coll)))))
 
-  ; Last item in list
-  (def last
-    (fn (coll)
-      (nth (dec (len coll)) coll)))
+; Last item in list
+(def last
+  (fn (coll)
+    (nth (dec (len coll)) coll)))
 
-  ; Reverses a list
-  (def reverse
-    (fn (coll)
-      (reduce (fn (acc item) (cons item acc)) (list) coll)))
+; Reverses a list
+(def reverse
+  (fn (coll)
+    (reduce (fn (acc item) (cons item acc)) (list) coll)))
 
-  ; Apply f to all items in list
-  (def map
-    (fn (f coll)
-      (if (= nil (head coll))
-        coll
-        (cons
-          (f (head coll))
-          (map f (tail coll))))))
+; Apply f to all items in list
+(def map
+  (fn (f coll)
+    (if (= nil (head coll))
+      coll
+      (cons
+        (f (head coll))
+        (map f (tail coll))))))
 
-  ; Go through a list passing an accumulator and each item of the list through f
-  ; f(acc item)
-  (def reduce
-    (fn (f acc coll)
-      (if (empty? coll)
-        acc
-        (reduce f (f acc (head coll)) (tail coll)))))
+; Go through a list passing an accumulator and each item of the list through f
+; f(acc item)
+(def reduce
+  (fn (f acc coll)
+    (if (empty? coll)
+      acc
+      (reduce f (f acc (head coll)) (tail coll)))))
 
-  ; Filter a list of items based on a function
-  (def filter
-    (fn (f coll)
-      (reduce
-        (fn (acc item) (if (f item) (cons item acc) acc))
-        (list)
-        (reverse coll))))
+; Filter a list of items based on a function
+(def filter
+  (fn (f coll)
+    (reduce
+      (fn (acc item) (if (f item) (cons item acc) acc))
+      (list)
+      (reverse coll))))
 
-  ; Sum of all items in a list
-  (def sum
-    (fn (coll)
-      (reduce + 0 coll)))
+; Sum of all items in a list
+(def sum
+  (fn (coll)
+    (reduce + 0 coll)))
 
-  ; Take x items from list
-  (def take
-    (fn (num coll)
-      (if (= num 0)
-        (list)
-        (cons (head coll) (take (dec num) (tail coll))))))
+; Take x items from list
+(def take
+  (fn (num coll)
+    (if (= num 0)
+      (list)
+      (cons (head coll) (take (dec num) (tail coll))))))
 
-  ; Drop x items from list
-  (def drop
-    (fn (num coll)
-      (if (= num 0)
-        coll
-        (drop (dec num) (tail coll)))))
+; Drop x items from list
+(def drop
+  (fn (num coll)
+    (if (= num 0)
+      coll
+      (drop (dec num) (tail coll)))))
 
-  ; Exclusive range
-  (def range
-    (fn (from to)
-      (if (= from to)
-        (list)
-        (cons from (range (inc from) to)))))
+; Exclusive range
+(def range
+  (fn (from to)
+    (if (= from to)
+      (list)
+      (cons from (range (inc from) to)))))
 
-  ; Highest value in list
-  (def max
-    (fn (coll)
-      (reduce
-        (fn (acc item) (if (< acc item) item acc))
-        (head coll)
-        (tail coll))))
+; Highest value in list
+(def max
+  (fn (coll)
+    (reduce
+      (fn (acc item) (if (< acc item) item acc))
+      (head coll)
+      (tail coll))))
 
-  ; Lowest value in list
-  (def min
-    (fn (coll)
-      (reduce
-        (fn (acc item) (if (> acc item) item acc))
-        (head coll)
-        (tail coll))))
-)
+; Lowest value in list
+(def min
+  (fn (coll)
+    (reduce
+      (fn (acc item) (if (> acc item) item acc))
+      (head coll)
+      (tail coll))))
