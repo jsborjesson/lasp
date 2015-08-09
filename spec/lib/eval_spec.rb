@@ -1,77 +1,70 @@
-require "lasp"
-require "tempfile"
+require "lasp/eval"
+
+def lasp_eval(program)
+  Lasp::eval(Lasp::parse(program), Lasp::global_env)
+end
 
 module Lasp
-  describe "evaluation" do
+  describe "eval" do
     it "handles simple forms" do
-      expect(Lasp::execute("(+ 1 1)")).to eq 2
+      expect(lasp_eval("(+ 1 1)")).to eq 2
     end
 
     it "handles nested forms" do
-      expect(Lasp::execute("(+ 1 (+ 2 2))")).to eq 5
+      expect(lasp_eval("(+ 1 (+ 2 2))")).to eq 5
     end
-
 
     describe "special forms" do
       it "def defines values in the environment" do
-        Lasp::execute("(def five 5)")
+        lasp_eval("(def five 5)")
 
         expect(Lasp::global_env[:five]).to eq 5
       end
 
       it "fn creates a function" do
-        expect(Lasp::execute("((fn (x) (+ x 1)) 10)")).to eq 11
+        expect(lasp_eval("((fn (x) (+ x 1)) 10)")).to eq 11
       end
 
-      it "def can define functions" do
-        Lasp::execute("(def inc (fn (x) (+ x 1)))")
-        expect(Lasp::execute("(inc 1)")).to eq 2
+      it "user-defined functions are executable" do
+        lasp_eval("(def inc (fn (x) (+ x 1)))")
+        expect(lasp_eval("(inc 1)")).to eq 2
       end
 
       describe "do" do
-        it "do executes multiple statements" do
+        it "executes multiple statements" do
           allow(STDOUT).to receive(:puts)
-          Lasp::execute("(do (println 1) (println 2))")
+          lasp_eval("(do (println 1) (println 2))")
 
           expect(STDOUT).to have_received(:puts).with(1).ordered
           expect(STDOUT).to have_received(:puts).with(2).ordered
         end
 
-        it "do returns the value of the last statement" do
-          expect(Lasp::execute("(do (+ 1 1) (+ 1 2))")).to eq 3
+        it "returns the value of the last statement" do
+          expect(lasp_eval("(do (+ 1 1) (+ 1 2))")).to eq 3
         end
       end
 
       describe "if" do
         it "returns the result of the correct form" do
-          expect(Lasp::execute("(if (= 1 1) true false)")).to eq true
-          expect(Lasp::execute("(if (= 1 2) true false)")).to eq false
-          expect(Lasp::execute("(if (= 1 2) true)")).to eq nil
+          expect(lasp_eval("(if (= 1 1) true false)")).to eq true
+          expect(lasp_eval("(if (= 1 2) true false)")).to eq false
+          expect(lasp_eval("(if (= 1 2) true)")).to eq nil
         end
 
         it "does not evaluate the other form" do
           allow(STDOUT).to receive(:puts)
-          Lasp::execute('(if (= 1 1) true (println "not evaled!"))')
+          lasp_eval('(if (= 1 1) true (println "not evaled!"))')
           expect(STDOUT).not_to have_received(:puts)
         end
       end
     end
 
-    it "wraps the top level with a do block when reading lasp files" do
-      Tempfile.open("lasp-test") do |file|
-        file.write('(+ "fi" "rst") (+ "la" "st")')
-        file.rewind
-
-        expect(Lasp::execute_file(file.path)).to eq "last"
-      end
-    end
-
     it "handles closures" do
-      expect(Lasp::execute("(((fn (x) (fn () x)) 42))")).to eq 42
+      expect(lasp_eval("(((fn (x) (fn () x)) 42))")).to eq 42
     end
 
     it "does ruby interop" do
-      expect(Lasp::execute('(. "hello" :upcase)')).to eq "HELLO"
+      expect(lasp_eval('(. "hello" :upcase)')).to eq "HELLO"
     end
   end
 end
