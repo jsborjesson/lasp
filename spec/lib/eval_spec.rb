@@ -27,12 +27,18 @@ module Lasp
         expect(Lasp::execute("(inc 1)")).to eq 2
       end
 
-      it "do executes multiple statements" do
-        allow(STDOUT).to receive(:puts)
-        Lasp::execute("(do (println 1) (println 2))")
+      describe "do" do
+        it "do executes multiple statements" do
+          allow(STDOUT).to receive(:puts)
+          Lasp::execute("(do (println 1) (println 2))")
 
-        expect(STDOUT).to have_received(:puts).with(1).ordered
-        expect(STDOUT).to have_received(:puts).with(2).ordered
+          expect(STDOUT).to have_received(:puts).with(1).ordered
+          expect(STDOUT).to have_received(:puts).with(2).ordered
+        end
+
+        it "do returns the value of the last statement" do
+          expect(Lasp::execute("(do (+ 1 1) (+ 1 2))")).to eq 3
+        end
       end
 
       describe "if" do
