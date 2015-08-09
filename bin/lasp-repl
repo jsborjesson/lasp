@@ -1,7 +1,19 @@
-#!/usr/bin/env bash
+#!/usr/bin/env ruby
 
-# Use rlwrap for readline support if it exists
-if hash rlwrap 2>/dev/null
-then rlwrap lasp-repl.rb
-else lasp-repl.rb
-fi
+require "lasp"
+require "readline"
+
+Lasp::load_stdlib!
+
+trap("SIGINT") { puts "\n\nBye!"; exit }
+
+puts "((( Läsp v#{Lasp::VERSION} REPL (ctrl+c to exit) )))\n\n"
+loop do
+  begin
+    input =  Readline.readline("lasp> ", true)
+    result = Lasp::execute(input)
+    puts "   => #{result.inspect}"
+  rescue
+    puts "   *> #{$!}"
+  end
+end
