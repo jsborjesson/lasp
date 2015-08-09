@@ -27,6 +27,9 @@ lasp-repl
 lasp path/to/program.lasp
 ```
 
+It is highly recommended that you also install rlwrap (`brew install rlwrap`),
+this gives the repl readline support and makes it **much** nicer to use.
+
 ## The language
 
 ### Examples

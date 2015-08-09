@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require "lasp"
+Lasp::load_stdlib!
+
+trap("SIGINT") { puts "\n\nBye!"; exit! }
+
+puts "((( Läsp v#{Lasp::VERSION} REPL (ctrl+c to exit) )))\n\n"
+loop do
+  begin
+    print "lasp> "
+    result = Lasp::execute(gets.chomp)
+    puts "   => #{result.inspect}"
+  rescue
+    puts "   *> #{$!}"
+  end
+end
