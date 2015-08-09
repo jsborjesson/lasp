@@ -158,9 +158,9 @@ x ;; => [1, 2, 3]
 (def square (fn (x) (* x x)))
 (square 5) ;; => 25
 
-; --- More complex function examples ---
+; --- Count the amount of 5:s in a list ---
 
-; Count the amount of 5:s in a list
+; The list we will operate on
 (def fives (list 1 5 2 3 5 8 5)) ; 5 occurs 3 times.
 
 (reduce        ; Reduce takes a function(1), a starting value(2) and a list(3).
@@ -171,6 +171,37 @@ x ;; => [1, 2, 3]
   0            ; (2) We start counting from 0
   fives)       ; (3) We operate over the previously defined `fives` list.
 ;; => 3
+
+; --- Print a beautiful pyramid ---
+
+; Print one row in the pyramid
+(def print-row
+  (fn
+    (length)
+    (println (* "#" length)))) ; We use the fact that the host platform (Ruby) can multiply strings
+
+; Print the entire pyramid
+(def print-pyramid
+  (fn
+    (height current-width)
+    (if (= current-width height)
+      nil
+      (do
+        (print-row current-width)
+        (print-pyramid height (inc current-width))))))
+
+; Do it!
+(print-pyramid 10 1)
+;; #
+;; ##
+;; ###
+;; ####
+;; #####
+;; ######
+;; #######
+;; ########
+;; #########
+
 
 ; --- Interoperability ---
 
