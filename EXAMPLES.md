@@ -10,6 +10,7 @@
 ;
 ; In this document output is shown with ;; and normal comments with ;.
 
+; --- Data types ---
 ; Number types
 1
 1.5
@@ -29,7 +30,8 @@ nil
 (list 1 2 3) ;; => [1, 2, 3]
 (list)       ;; => []
 
-; Basic function call
+; --- Basic function calls ---
+
 ; inc is a function that increments its argument, and 1 is the single argument
 (inc 1) ;; => 2
 
@@ -46,7 +48,7 @@ nil
 ; Boolean inversion
 (not true) ;; => false
 
-; List operations
+; --- List operations ---
 
 (head (list 1 2 3))  ;; => 1
 (first (list 1 2 3)) ;; => 1
@@ -78,7 +80,9 @@ nil
 ; Ranges
 (range 1 10) ;; => [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-; Hash-maps
+; --- Hash-maps ---
+
+; Create a hash-map
 (hash-map :one 1 :two 2) ;; => {"one"=>1, "two"=>2}
 
 ; get also works with hash-maps
@@ -89,6 +93,8 @@ nil
 
 ; dissoc removes values
 (dissoc (hash-map :one 1 :two 2) :one) ;; => {"two"=>2}
+
+; --- More complex functions ---
 
 ; Apply a function to all items in a list
 (map inc (list 1 2 3)) ;; => [2, 3, 4]
@@ -107,9 +113,16 @@ nil
 ; Filtering
 (filter odd? (list 1 2 3)) ;; => [1, 3]
 
-; Variables
-(def x (list 1 2 3)) ;; => [1, 2, 3]
-x                    ;; => [1, 2, 3]
+; --- Variables ---
+
+; Define and evaluate a variable
+(def x (list 1 2 3))
+x ;; => [1, 2, 3]
+
+; Use it in a function
+(sum x) ;; => 6
+
+--- Misc ---
 
 ; Outputting to the terminal
 (println "hello world!")
@@ -129,7 +142,8 @@ x                    ;; => [1, 2, 3]
 ;; nope!
 ;; => nil
 
-; Functions
+; --- Creating functions ---
+
 ; A function has 2 forms, one with the parameters and one with the body.
 ; Here's a function that adds 10 to its argument
 (fn (x) (+ 10 x))
@@ -140,6 +154,25 @@ x                    ;; => [1, 2, 3]
 ; You can give it a name yourself
 (def add-ten (fn (x) (+ 10 x)))
 (add-ten 50) ;; => 60
+
+(def square (fn (x) (* x x)))
+(square 5) ;; => 25
+
+; --- More complex function examples ---
+
+; Count the amount of 5:s in a list
+(def fives (list 1 5 2 3 5 8 5)) ; 5 occurs 3 times.
+
+(reduce        ; Reduce takes a function(1), a starting value(2) and a list(3).
+  (fn (acc x)  ; (1) The function in turn takes an accumulator and an item in the list.
+    (if (= x 5)  ; If the item is five:
+      (inc acc)  ; We increment the accumulator and move on to the next item.
+      acc))      ; Otherwise we return the total as is.
+  0            ; (2) We start counting from 0
+  fives)       ; (3) We operate over the previously defined `fives` list.
+;; => 3
+
+; --- Interoperability ---
 
 ; The . function allows for Ruby interoperability.
 (. "01011101" :to_i 2) ;; => 93
