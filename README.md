@@ -57,6 +57,7 @@ Supports these datatypes (implemented as their Ruby counterparts)
 - nil
 - string
 - list
+- hash-map
 
 ### Comments
 
