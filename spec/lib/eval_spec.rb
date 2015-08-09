@@ -60,6 +60,10 @@ module Lasp
     end
 
     it "handles closures" do
+      # This is a function that takes an argument, and returns another function
+      # that simply returns the argument of the outer function on invocation; this is what
+      # the outer parenthesis are for: to execute the inner function too. What is important here
+      # is that the inner function has access to the env in the outer one.
       expect(lasp_eval("(((fn (x) (fn () x)) 42))")).to eq 42
     end
 
