@@ -120,7 +120,7 @@ module Lasp
     end
 
     it "interop" do
-      expect(CORELIB[:"."].({}, "str", "bytesize")).to eq 3
+      expect(CORELIB[:"."].({}, "01011101", "to_i", 2)).to eq 93
     end
   end
 end

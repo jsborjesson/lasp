@@ -140,4 +140,10 @@ x                    ;; => [1, 2, 3]
 ; You can give it a name yourself
 (def add-ten (fn (x) (+ 10 x)))
 (add-ten 50) ;; => 60
+
+; The . function allows for Ruby interoperability.
+(. "01011101" :to_i 2) ;; => 93
+
+(def parse_binary (fn (bin) (. bin :to_i 2)))
+(parse_binary "01011101") ;; => 93
 ```
