@@ -1,5 +1,9 @@
 # Läsp changelog
 
+## v0.3.0
+
+Add readline support in the REPL using rlwrap, this makes the REPL a **lot** nicer to use.
+
 ## v0.2.0
 
 Add support for hash-maps with the following added functions to the core library:
