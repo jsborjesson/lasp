@@ -132,10 +132,7 @@ Implemented in Läsp itself.
 ### Run the specs
 
 ```bash
-rspec
-
-# or more verbose
-rspec --format=documentation
+rake
 ```
 
 ### Dev REPL
