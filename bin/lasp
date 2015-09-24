@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
 require "lasp"
+require "lasp/repl"
 Lasp::load_stdlib!
 
-unless ARGV.first
-  puts "You have to supply a path"
-  exit!
+if ARGV.first
+  Lasp::execute_file(ARGV.first)
+else
+  Lasp::repl
 end
-
-Lasp::execute_file(ARGV.first)

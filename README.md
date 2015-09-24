@@ -17,11 +17,11 @@ sudo gem install lasp
 
 ## Running
 
-After installing there are two commands available to you:
+After installing you can invoke `lasp` for a REPL or provide a lasp-file to execute.
 
 ```bash
 # An interactive prompt that lets you play with the language
-lasp-repl
+lasp
 
 # Run lasp-files
 lasp path/to/program.lasp
@@ -141,6 +141,6 @@ rspec --format=documentation
 ### Dev REPL
 
 ```bash
-# This is basically just a shorthand for `rake install && lasp-repl`
+# This is basically just a shorthand for `rake install && lasp`
 rake repl
 ```
