@@ -1,5 +1,11 @@
 # Läsp changelog
 
+## v0.5.0
+
+- Merge `lasp-repl` command into `lasp`, it starts when not provided with a filename.
+- Don't send env to functions implemented as Ruby procs, it was never used.
+- Specs as default rake task.
+
 ## v0.4.0
 
 Implicit do-blocks around files. You can now do this...:
