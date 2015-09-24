@@ -20,18 +20,17 @@ module Lasp
       env[key] = eval(value, env)
     elsif head == :fn
       params, func = tail
-      # Use env from context to properly scope closures
-      -> (_, *args) { eval(func, env.merge(Hash[params.zip(args)])) }
+      -> (*args) { eval(func, env.merge(Hash[params.zip(args)])) }
     elsif head == :do
       tail.map { |form| eval(form, env) }.last
     elsif head == :if
       conditional, true_form, false_form = tail
       eval(conditional, env) ? eval(true_form, env) : eval(false_form, env)
     elsif Proc === head
-      head.(env, *tail)
+      head.(*tail)
     else
       fn = eval(head, env)
-      fn.(env, *tail.map { |form| eval(form, env) })
+      fn.(*tail.map { |form| eval(form, env) })
     end
   end
 end
