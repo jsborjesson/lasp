@@ -17,20 +17,20 @@ module Lasp
 
     if head == :def
       key, value = tail
-      env[key] = eval(value, env)
+      env[key] = Lasp::eval(value, env)
     elsif head == :fn
       params, func = tail
-      -> (*args) { eval(func, env.merge(Hash[params.zip(args)])) }
+      -> (*args) { Lasp::eval(func, env.merge(Hash[params.zip(args)])) }
     elsif head == :do
-      tail.map { |form| eval(form, env) }.last
+      tail.map { |form| Lasp::eval(form, env) }.last
     elsif head == :if
       conditional, true_form, false_form = tail
-      eval(conditional, env) ? eval(true_form, env) : eval(false_form, env)
+      Lasp::eval(conditional, env) ? Lasp::eval(true_form, env) : Lasp::eval(false_form, env)
     elsif Proc === head
       head.(*tail)
     else
-      fn = eval(head, env)
-      fn.(*tail.map { |form| eval(form, env) })
+      fn = Lasp::eval(head, env)
+      fn.(*tail.map { |form| Lasp::eval(form, env) })
     end
   end
 end
