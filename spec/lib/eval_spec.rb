@@ -21,6 +21,10 @@ module Lasp
         expect(Lasp::global_env[:five]).to eq 5
       end
 
+      it "def returns the value it sets" do
+        expect(lasp_eval("(def five 5)")).to eq 5
+      end
+
       it "fn creates a function" do
         expect(lasp_eval("((fn (x) (+ x 1)) 10)")).to eq 11
       end
