@@ -1,7 +1,7 @@
 require "lasp/eval"
 
-def lasp_eval(program)
-  Lasp::eval(Lasp::parse(program), Lasp::global_env)
+def lasp_eval(program, env = Lasp::global_env)
+  Lasp::eval(Lasp::parse(program), env)
 end
 
 module Lasp
@@ -54,12 +54,14 @@ module Lasp
       end
 
       describe "do" do
-        it "executes multiple statements" do
-          allow(STDOUT).to receive(:puts)
-          lasp_eval("(do (println 1) (println 2))")
+        it "executes multiple statements in order" do
+          mock_fn  = spy
+          test_env = { test: mock_fn }
 
-          expect(STDOUT).to have_received(:puts).with(1).ordered
-          expect(STDOUT).to have_received(:puts).with(2).ordered
+          lasp_eval("(do (test 1) (test 2))", test_env)
+
+          expect(mock_fn).to have_received(:call).with(1).ordered
+          expect(mock_fn).to have_received(:call).with(2).ordered
         end
 
         it "returns the value of the last statement" do
@@ -75,9 +77,14 @@ module Lasp
         end
 
         it "does not evaluate the other form" do
-          allow(STDOUT).to receive(:puts)
-          lasp_eval('(if (= 1 1) true (println "not evaled!"))')
-          expect(STDOUT).not_to have_received(:puts)
+          # This is different than simply not returning its result, the other
+          # form cannot even be evaluated.
+          mock_fn  = spy
+          test_env = Lasp::global_env.merge({ test: mock_fn })
+
+          lasp_eval('(if (= 1 1) true (test "not evaled!"))', test_env)
+
+          expect(mock_fn).not_to have_received(:call)
         end
       end
     end
