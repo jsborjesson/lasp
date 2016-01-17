@@ -11,7 +11,7 @@
 ; If a list is empty
 (def empty?
   (fn (coll)
-    (= (head coll) nil)))
+    (= nil (head coll))))
 
 ; Modulus
 (def mod
@@ -23,7 +23,7 @@
 
 ; If a number is even
 (def even?
-  (fn (x) (= (mod x 2) 0)))
+  (fn (x) (= 0 (mod x 2))))
 
 ; If a number is odd
 (def odd? (complement even?))
@@ -85,14 +85,14 @@
 ; Take x items from list
 (def take
   (fn (num coll)
-    (if (= num 0)
+    (if (= 0 num)
       (list)
       (cons (head coll) (take (dec num) (tail coll))))))
 
 ; Drop x items from list
 (def drop
   (fn (num coll)
-    (if (= num 0)
+    (if (= 0 num)
       coll
       (drop (dec num) (tail coll)))))
 
