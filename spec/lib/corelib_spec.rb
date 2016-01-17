@@ -38,6 +38,18 @@ module Lasp
       expect(CORELIB[:"="].(20)).to eq true
     end
 
+    it "<=" do
+      expect(CORELIB[:"<="].(20, 20, 30)).to eq true
+      expect(CORELIB[:"<="].(20, 20, 10)).to eq false
+      expect(CORELIB[:"<="].(20, 20)).to eq true
+    end
+
+    it ">=" do
+      expect(CORELIB[:"<="].(20, 20, 30)).to eq false
+      expect(CORELIB[:"<="].(20, 20, 10)).to eq true
+      expect(CORELIB[:"<="].(20, 20)).to eq true
+    end
+
     it "list" do
       expect(CORELIB[:list].(1, 2, 3)).to eq [1, 2, 3]
     end
