@@ -32,6 +32,12 @@ module Lasp
           expect(lasp_eval("(fn (x) (+ x 1))")).to be_a Proc
         end
 
+        it "enforces arity" do
+          expect {
+            lasp_eval("((fn (x) (+ x 1)) 3 6)")
+          }.to raise_error(ArgumentError, "wrong number of arguments (2 for 1)")
+        end
+
         it "executes defined functions" do
           lasp_eval("(def inc (fn (x) (+ x 1)))")
           expect(lasp_eval("(inc 1)")).to eq 2

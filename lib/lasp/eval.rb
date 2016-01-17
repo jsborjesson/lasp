@@ -37,7 +37,12 @@ module Lasp
 
   def fn_special_form(form, env)
     params, func = form
-    -> (*args) { Lasp::eval(func, env.merge(Hash[params.zip(args)])) }
+    -> (*args) {
+      unless args.count == params.count
+        fail ArgumentError, "wrong number of arguments (#{args.count} for #{params.count})"
+      end
+      Lasp::eval(func, env.merge(Hash[params.zip(args)]))
+    }
   end
 
   def do_special_form(form, env)
