@@ -78,6 +78,8 @@ Implemented as Ruby lambdas.
 - `/`
 - `<`
 - `>`
+- `<=`
+- `>=`
 - `=`
 - `list`
 - `head`
