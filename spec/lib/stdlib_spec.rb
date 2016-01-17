@@ -83,6 +83,7 @@ describe "stdlib" do
 
   it "range" do
     expect(Lasp::execute("(range 0 10)")).to eq (0...10).to_a
+    expect(Lasp::execute("(range 10 0)")).to eq []
   end
 
   it "max" do
