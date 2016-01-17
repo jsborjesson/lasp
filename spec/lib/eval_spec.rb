@@ -15,23 +15,35 @@ module Lasp
     end
 
     describe "special forms" do
-      it "def defines values in the environment" do
-        lasp_eval("(def five 5)")
+      describe "def" do
+        it "defines values in the environment" do
+          lasp_eval("(def five 5)")
 
-        expect(Lasp::global_env[:five]).to eq 5
+          expect(Lasp::global_env[:five]).to eq 5
+        end
+
+        it "returns the value it sets" do
+          expect(lasp_eval("(def five 5)")).to eq 5
+        end
       end
 
-      it "def returns the value it sets" do
-        expect(lasp_eval("(def five 5)")).to eq 5
-      end
+      describe "fn" do
+        it "creates a function" do
+          expect(lasp_eval("(fn (x) (+ x 1))")).to be_a Proc
+        end
 
-      it "fn creates a function" do
-        expect(lasp_eval("(fn (x) (+ x 1))")).to be_a Proc
-      end
+        it "executes defined functions" do
+          lasp_eval("(def inc (fn (x) (+ x 1)))")
+          expect(lasp_eval("(inc 1)")).to eq 2
+        end
 
-      it "user-defined functions are executable" do
-        lasp_eval("(def inc (fn (x) (+ x 1)))")
-        expect(lasp_eval("(inc 1)")).to eq 2
+        it "handles closures" do
+          # This is a function that takes an argument, and returns another function
+          # that simply returns the argument of the outer function on invocation; this is what
+          # the outer parenthesis are for: to execute the inner function too. What is important here
+          # is that the inner function has access to the env in the outer one.
+          expect(lasp_eval("(((fn (x) (fn () x)) 42))")).to eq 42
+        end
       end
 
       describe "do" do
@@ -61,14 +73,6 @@ module Lasp
           expect(STDOUT).not_to have_received(:puts)
         end
       end
-    end
-
-    it "handles closures" do
-      # This is a function that takes an argument, and returns another function
-      # that simply returns the argument of the outer function on invocation; this is what
-      # the outer parenthesis are for: to execute the inner function too. What is important here
-      # is that the inner function has access to the env in the outer one.
-      expect(lasp_eval("(((fn (x) (fn () x)) 42))")).to eq 42
     end
 
     it "does ruby interop" do
