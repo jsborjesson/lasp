@@ -1,5 +1,11 @@
 # Läsp changelog
 
+## v0.6.0
+
+- `<` and `>` now return false when given a list of equal items, they all **have to** increase or decrease.
+- Add `<=` and `>=` to the core library.
+- Fix stack overflowing when using `range` with an upper bound less than the lower bound, this now returns an empty list.
+
 ## v0.5.0
 
 - Merge `lasp-repl` command into `lasp`, it starts when not provided with a filename.
