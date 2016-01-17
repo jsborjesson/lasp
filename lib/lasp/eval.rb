@@ -4,11 +4,11 @@ require "lasp/env"
 module Lasp
   module_function
 
-  def eval(ast, env)
-    case ast
-    when Symbol then env.fetch(ast)
-    when Array  then eval_form(ast, env)
-    else ast
+  def eval(form, env)
+    case form
+    when Symbol then env.fetch(form)
+    when Array  then eval_form(form, env)
+    else form
     end
   end
 
