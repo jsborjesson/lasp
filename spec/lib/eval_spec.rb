@@ -26,7 +26,7 @@ module Lasp
       end
 
       it "fn creates a function" do
-        expect(lasp_eval("((fn (x) (+ x 1)) 10)")).to eq 11
+        expect(lasp_eval("(fn (x) (+ x 1))")).to be_a Proc
       end
 
       it "user-defined functions are executable" do
