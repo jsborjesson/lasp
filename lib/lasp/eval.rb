@@ -15,18 +15,19 @@ module Lasp
   def eval_form(form, env)
     head, *tail = *form
 
-    if head == :def
+    case head
+    when :def
       key, value = tail
       env[key] = Lasp::eval(value, env)
-    elsif head == :fn
+    when :fn
       params, func = tail
       -> (*args) { Lasp::eval(func, env.merge(Hash[params.zip(args)])) }
-    elsif head == :do
+    when :do
       tail.map { |form| Lasp::eval(form, env) }.last
-    elsif head == :if
+    when :if
       conditional, true_form, false_form = tail
       Lasp::eval(conditional, env) ? Lasp::eval(true_form, env) : Lasp::eval(false_form, env)
-    elsif Proc === head
+    when Proc
       head.(*tail)
     else
       fn = Lasp::eval(head, env)
