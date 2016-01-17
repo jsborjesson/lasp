@@ -13,7 +13,7 @@ module Lasp
     :cons       => -> (item, list)    { [item] + list                   },
     :"hash-map" => -> (*args)         { Hash[*args]                     },
     :get        => -> (key, a)        { a[key]                          },
-    :assoc      => -> (a, key, val)   { a.dup.tap { |a| a[key]=val    } },
+    :assoc      => -> (a, key, val)   { a.dup.tap { |a| a[key] = val  } },
     :dissoc     => -> (a, key)        { a.dup.tap { |a| a.delete(key) } },
     :not        => -> (arg)           { !arg                            },
     :println    => -> (output)        { puts output                     },
