@@ -122,3 +122,15 @@
       (fn (acc item) (if (> acc item) item acc))
       (head coll)
       (tail coll))))
+
+; Takes a method from Ruby-land and returns a Lasp function
+(def ruby-method
+  (fn (meth)
+    (fn (arg)
+      (. arg meth))))
+
+; Convert string to list
+(def str->list (ruby-method :chars))
+
+; Convert list to string
+(def list->str (ruby-method :join))

@@ -129,6 +129,9 @@ Implemented in Läsp itself.
 - `range`
 - `max`
 - `min`
+- `ruby-method`
+- `str->list`
+- `list->str`
 
 ## Developing
 
