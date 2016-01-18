@@ -1,6 +1,6 @@
 # Läsp changelog
 
-## v0.7.0
+## v0.7.0 - 2016-01-18
 
 - Arity is now enforced in function calls and will throw errors when mismatched
 - Add methods to stdlib:
@@ -17,19 +17,19 @@
     - Return nil when pressing Ctrl+D (this used to cause an error)
 - Many refactorings
 
-## v0.6.0
+## v0.6.0 - 2016-01-17
 
 - `<` and `>` now return false when given a list of equal items, they all **have to** increase or decrease.
 - Add `<=` and `>=` to the core library.
 - Fix stack overflowing when using `range` with an upper bound less than the lower bound, this now returns an empty list.
 
-## v0.5.0
+## v0.5.0 - 2015-09-24
 
 - Merge `lasp-repl` command into `lasp`, it starts when not provided with a filename.
 - Don't send env to functions implemented as Ruby procs, it was never used.
 - Specs as default rake task.
 
-## v0.4.0
+## v0.4.0 - 2015-08-09
 
 Implicit do-blocks around files. You can now do this...:
 
@@ -45,12 +45,12 @@ anything after would seemingly inexplicably not be run.
 
 **This is only enabled in files, not every form of evaluation.**
 
-## v0.3.2
+## v0.3.2 - 2015-08-09
 
 Fix bug in `do` - it accidentally returned part of the AST, now it correctly
 returns the result of the last expression.
 
-## v0.3.1
+## v0.3.1 - 2015-08-09
 
 Make readline support actually work once released to rubygems by implementing it directly in Ruby.
 
@@ -58,11 +58,11 @@ It does not seem to remember history between runs like rlwrap did, but trying
 to deploy an interactive bash script to rubygems is just too much of a headache
 and this is almost as nice with just a single line of Ruby.
 
-## v0.3.0
+## v0.3.0 - 2015-08-09
 
 Add readline support in the REPL using rlwrap, this makes the REPL a **lot** nicer to use.
 
-## v0.2.0
+## v0.2.0 - 2015-08-08
 
 Add support for hash-maps with the following added functions to the core library:
 
@@ -73,10 +73,10 @@ Add support for hash-maps with the following added functions to the core library
 
 Also adds exit instructions to the REPL welcome message.
 
-## v0.1.1
+## v0.1.1 - 2015-08-02
 
 Fix broken `lasp` executable.
 
-## v0.1.0
+## v0.1.0 - 2015-08-01
 
 First release.
