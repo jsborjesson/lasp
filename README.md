@@ -133,6 +133,8 @@ Implemented in Läsp itself.
 - `str->list`
 - `list->str`
 - `->str`
+- `pipe`
+- `reverse-str`
 
 ## Developing
 

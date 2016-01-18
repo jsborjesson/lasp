@@ -135,4 +135,17 @@
 ; Convert list to string
 (def list->str (ruby-method :join))
 
+; Convert most things to a string
 (def ->str (ruby-method :to_s))
+
+; Pass a value in order through a list of functions
+(def pipe
+  (fn (item fns)
+    (if (empty? fns)
+      item
+      (pipe ((head fns) item) (tail fns)))))
+
+; Reverses a string
+(def reverse-str
+  (fn (str)
+    (pipe str (list str->list reverse list->str))))
