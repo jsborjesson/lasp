@@ -11,7 +11,7 @@ module Lasp
     loop do
       begin
         history = true
-        input   = Readline.readline("lasp> ", history)
+        input   = Readline.readline("lasp> ", history).to_s
         input   = autoclose_parentheses(input)
         result  = Lasp::execute(input)
         puts "   => #{result.inspect}"
