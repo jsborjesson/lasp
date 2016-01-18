@@ -115,6 +115,7 @@ Implemented in Läsp itself.
 - `complement`
 - `even?`
 - `odd?`
+- `zero?`
 - `len`
 - `nth`
 - `last`

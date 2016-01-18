@@ -28,6 +28,10 @@
 ; If a number is odd
 (def odd? (complement even?))
 
+; If a number is zero
+(def zero?
+  (fn (x) (= 0 x)))
+
 ; Length of a list
 (def len
   (fn (coll)

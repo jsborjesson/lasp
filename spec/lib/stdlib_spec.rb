@@ -40,6 +40,11 @@ describe "stdlib" do
     expect(Lasp::execute("(odd? 4)")).to eq false
   end
 
+  it "zero?" do
+    expect(Lasp::execute("(zero? 0)")).to eq true
+    expect(Lasp::execute("(zero? 1)")).to eq false
+  end
+
   it "len" do
     expect(Lasp::execute("(len (list 1 2 3 4 5))")).to eq 5
   end
