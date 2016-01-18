@@ -1,5 +1,22 @@
 # Läsp changelog
 
+## v0.7.0
+
+- Arity is now enforced in function calls and will throw errors when mismatched
+- Add methods to stdlib:
+    - `zero?`
+    - `list->str`
+    - `str->list`
+    - `->str`
+    - `reverse-str`
+    - `ruby-method`
+    - `pipe`
+- REPL improvements:
+    - Automatically close trailing parentheses
+    - Change error prompt from `*>` to `!>`
+    - Return nil when pressing Ctrl+D (this used to cause an error)
+- Many refactorings
+
 ## v0.6.0
 
 - `<` and `>` now return false when given a list of equal items, they all **have to** increase or decrease.
