@@ -132,6 +132,7 @@ Implemented in Läsp itself.
 - `ruby-method`
 - `str->list`
 - `list->str`
+- `->str`
 
 ## Developing
 

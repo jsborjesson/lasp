@@ -134,3 +134,5 @@
 
 ; Convert list to string
 (def list->str (ruby-method :join))
+
+(def ->str (ruby-method :to_s))

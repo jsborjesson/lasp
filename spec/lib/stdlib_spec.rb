@@ -104,6 +104,10 @@ describe "stdlib" do
   end
 
   it "list->str" do
-    expect(Lasp::execute('(list->str (list 1 2 3 4))')).to eq "1234"
+    expect(Lasp::execute("(list->str (list 1 2 3 4))")).to eq "1234"
+  end
+
+  it "->str" do
+    expect(Lasp::execute("(->str 5)")).to eq "5"
   end
 end
