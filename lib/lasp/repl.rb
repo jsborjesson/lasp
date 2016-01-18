@@ -16,7 +16,7 @@ module Lasp
         result  = Lasp::execute(input)
         puts "   => #{result.inspect}"
       rescue
-        puts "   *> #{$!}"
+        puts "   !> #{$!}"
       end
     end
   end
