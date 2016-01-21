@@ -20,7 +20,6 @@ module Lasp
     when :fn  then fn_special_form(tail, env)
     when :do  then do_special_form(tail, env)
     when :if  then if_special_form(tail, env)
-    when Proc then head.(*tail)
     else call_function(head, tail, env)
     end
   end
