@@ -35,7 +35,7 @@ nil
 ; inc is a function that increments its argument, and 1 is the single argument
 (inc 1) ;; => 2
 
-; Simple maths functions takes any number of arguments
+; Simple maths functions take any number of arguments
 (/ 20 2)     ;; => 10
 (+ 1 3 5)    ;; => 9
 (* 2 5 6 10) ;; => 600
