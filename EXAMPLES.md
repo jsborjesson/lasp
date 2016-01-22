@@ -176,14 +176,12 @@ x ;; => [1, 2, 3]
 
 ; Print one row in the pyramid
 (def print-row
-  (fn
-    (length)
+  (fn (length)
     (println (* "#" length)))) ; We use the fact that the host platform (Ruby) can multiply strings
 
 ; Print the entire pyramid
 (def print-pyramid
-  (fn
-    (height current-width)
+  (fn (height current-width)
     (if (= current-width height)
       nil
       (do
