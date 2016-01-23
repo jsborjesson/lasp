@@ -8,6 +8,11 @@ module Lasp
       expect(fn.(3, 4)).to eq 7
     end
 
+    it "is inspectable" do
+      fn = described_class.new([:a, :b, :&, :c], [:+, :a, :b], {})
+      expect(fn.inspect).to eq "#<Fn (a b & c)>"
+    end
+
     it "fails at instantiation when the same parameter name is used more than once" do
       expect { described_class.new([:a, :a], :a, {}) }
         .to raise_error(Lasp::SyntaxError, /Parameter names have to be unique. a is used more than once/)

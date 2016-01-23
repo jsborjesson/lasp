@@ -14,6 +14,10 @@ module Lasp
       Lasp::eval(body, env_with_args(args))
     end
 
+    def inspect
+      "#<Fn #{parameters}>"
+    end
+
     private
 
     def parameter_object(params)
@@ -36,6 +40,10 @@ module Lasp
     def to_h(args)
       enforce_arity!(args)
       Hash[parameter_list.zip(args)]
+    end
+
+    def to_s
+      "(" + parameter_list.join(" ") + ")"
     end
 
     private
