@@ -122,7 +122,7 @@ x ;; => [1, 2, 3]
 ; Use it in a function
 (sum x) ;; => 6
 
---- Misc ---
+; --- Misc ---
 
 ; Outputting to the terminal
 (println "hello world!")
@@ -148,15 +148,37 @@ x ;; => [1, 2, 3]
 ; Here's a function that adds 10 to its argument
 (fn (x) (+ 10 x))
 
-; You can call it just like one of the named functions
+; You can call it just like one of the named functions by placing the entire
+; fn-form at the first position
 ((fn (x) (+ 10 x)) 50) ;; => 60
 
-; You can give it a name yourself
+; You can give it a name by defining it
 (def add-ten (fn (x) (+ 10 x)))
 (add-ten 50) ;; => 60
 
 (def square (fn (x) (* x x)))
 (square 5) ;; => 25
+
+; Arity is enforced when calling a function, this yields an error:
+(square 5 2) ;; !> wrong number of arguments (2 for 1)
+
+
+; Rest arguments are passed in as a list to the binding after the &
+(def last-argument
+  (fn (& args)
+    (last args)))
+
+(last-argument 1 2)   ;; => 2
+(last-argument 1 2 3) ;; => 3
+
+; You can also have mandatory positional arguments and rest arguments at the same time
+(def add-first-two
+  (fn (a b & args)
+    (+ a b)))
+
+(add-first-two 1 2)   ;; => 3
+(add-first-two 1 2 3) ;; => 3
+(add-first-two 1)     ;; !> wrong number of arguments (1 for 2+)
 
 ; --- Count the amount of 5:s in a list ---
 
