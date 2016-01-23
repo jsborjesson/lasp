@@ -51,16 +51,20 @@ module Lasp
       it "fails at instantiation when more than one ampersand is used in a function definition" do
         expect {
           described_class.new([:a, :&, :b, :&, :c], :a, {})
-        }.to raise_error(Lasp::SyntaxError, /Rest-arguments may only be used once at the end of a function definition/)
+        }.to raise_error(Lasp::SyntaxError, /Rest-arguments may only be used once, at the end, with a single binding./)
       end
 
       it "fails at instantiation when more than one binding is used after the ampersand" do
         expect {
           described_class.new([:a, :&, :b, :c], :a, {})
-        }.to raise_error(Lasp::SyntaxError, /Rest-arguments may only be used once at the end of a function definition/)
+        }.to raise_error(Lasp::SyntaxError, /Rest-arguments may only be used once, at the end, with a single binding./)
       end
 
-      xit "fails at instantiation when & is last"
+      it "fails at instantiation when & is last" do
+        expect {
+          described_class.new([:a, :&], :a, {})
+        }.to raise_error(Lasp::SyntaxError, /Rest-arguments may only be used once, at the end, with a single binding./)
+      end
     end
   end
 end

@@ -54,8 +54,8 @@ module Lasp
     private
 
     def valid_signature!
-      if multiple_rest_arguments? || multiple_rest_argument_bindings?
-        fail SyntaxError, "Rest-arguments may only be used once at the end of a function definition"
+      if multiple_rest_arguments? || ampersand_not_second_to_last?
+        fail SyntaxError, "Rest-arguments may only be used once, at the end, with a single binding."
       end
       super
     end
@@ -66,7 +66,7 @@ module Lasp
     end
 
     # Several variables after &
-    def multiple_rest_argument_bindings?
+    def ampersand_not_second_to_last?
       parameter_list.find_index(:&) != parameter_list.count - 2
     end
 
