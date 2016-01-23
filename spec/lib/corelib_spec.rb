@@ -133,6 +133,11 @@ module Lasp
       expect(STDOUT).to have_received(:puts).with(5)
     end
 
+    it "apply" do
+      plus = CORELIB[:+]
+      expect(CORELIB[:apply].(plus, [1, 2, 3])).to eq 6
+    end
+
     it "interop" do
       expect(CORELIB[:"."].("01011101", "to_i", 2)).to eq 93
     end
