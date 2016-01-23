@@ -1,5 +1,29 @@
+require "lasp/errors"
+
 module Lasp
-  class SyntaxError < StandardError; end
+  class Fn
+    attr_reader :parameters, :body, :env
+
+    def initialize(parameters, body, env)
+      @parameters = parameter_object(parameters)
+      @body       = body
+      @env        = env
+    end
+
+    def call(*args)
+      Lasp::eval(body, env_with_args(args))
+    end
+
+    private
+
+    def parameter_object(params)
+      params.include?(:&) ? RestParameters.new(params) : Parameters.new(params)
+    end
+
+    def env_with_args(args)
+      env.merge(parameters.to_h(args))
+    end
+  end
 
   class Parameters
     attr_reader :parameter_list
@@ -41,14 +65,13 @@ module Lasp
     def to_h(args)
       enforce_arity!(args)
 
-      # Already checked
       ordered = parameter_list[0, parameter_list.count - 2]
       rest    = parameter_list.last
 
       env = ordered.zip(args.take(ordered.length))
       env << [ rest, args.drop(ordered.length) ]
 
-      return Hash[env]
+      Hash[env]
     end
 
     private
@@ -60,12 +83,10 @@ module Lasp
       super
     end
 
-    # Several &
     def multiple_rest_arguments?
       parameter_list.select { |b| b == :& }.length > 1
     end
 
-    # Several variables after &
     def ampersand_not_second_to_last?
       parameter_list.find_index(:&) != parameter_list.count - 2
     end
@@ -75,30 +96,6 @@ module Lasp
       if args.count < minimum_arguments
         fail ArgumentError, "wrong number of arguments (#{args.count} for #{minimum_arguments}+)"
       end
-    end
-  end
-
-  class Fn
-    attr_reader :parameters, :body, :env
-
-    def initialize(parameters, body, env)
-      @parameters = parameter_object(parameters)
-      @body       = body
-      @env        = env
-    end
-
-    def call(*args)
-      Lasp::eval(body, env_with_args(args))
-    end
-
-    private
-
-    def parameter_object(params)
-      params.include?(:&) ? RestParameters.new(params) : Parameters.new(params)
-    end
-
-    def env_with_args(args)
-      env.merge(parameters.to_h(args))
     end
   end
 end
