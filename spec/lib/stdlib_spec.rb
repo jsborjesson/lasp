@@ -112,7 +112,7 @@ describe "stdlib" do
   end
 
   it "pipe" do
-    expect(Lasp::execute("(pipe 5 (list inc inc dec ->str))")).to eq "6"
+    expect(Lasp::execute("(pipe 5 inc inc dec ->str)")).to eq "6"
   end
 
   it "reverse-str" do
