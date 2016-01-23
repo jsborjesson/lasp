@@ -73,7 +73,7 @@ module Lasp
     def to_h(args)
       enforce_arity!(args)
 
-      ordered = parameter_list[0, parameter_list.count - 2]
+      ordered = parameter_list[0, minimum_arguments]
       rest    = parameter_list.last
 
       env = ordered.zip(args.take(ordered.length))
@@ -96,11 +96,14 @@ module Lasp
     end
 
     def ampersand_not_second_to_last?
-      parameter_list.find_index(:&) != parameter_list.count - 2
+      parameter_list.find_index(:&) != minimum_arguments
+    end
+
+    def minimum_arguments
+      parameter_list.count - 2
     end
 
     def enforce_arity!(args)
-      minimum_arguments = parameter_list.count - 2
       if args.count < minimum_arguments
         fail ArgumentError, "wrong number of arguments (#{args.count} for #{minimum_arguments}+)"
       end
