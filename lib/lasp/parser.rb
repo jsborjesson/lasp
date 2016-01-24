@@ -30,13 +30,13 @@ module Lasp
 
   def atom(token)
     case token
-    when "true"        then true
-    when "false"       then false
-    when "nil"         then nil
-    when /\A\d+\z/     then Integer(token)
-    when /\A\d+.\d+\z/ then Float(token)
-    when /"(.*)"/      then String($1)
-    when /:(\w+)/      then String($1) # Symbol style strings are actually just strings
+    when "true"          then true
+    when "false"         then false
+    when "nil"           then nil
+    when /\A-?\d+\z/     then Integer(token)
+    when /\A-?\d+.\d+\z/ then Float(token)
+    when /"(.*)"/        then String($1)
+    when /:(\w+)/        then String($1) # Symbol style strings are actually just strings
     else token.to_sym
     end
   end

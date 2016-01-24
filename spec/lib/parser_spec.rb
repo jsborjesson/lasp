@@ -44,10 +44,12 @@ module Lasp
     describe "datatypes" do
       it "integers" do
         expect(Lasp::parse("7")).to eq 7
+        expect(Lasp::parse("-7")).to eq -7
       end
 
       it "floats" do
         expect(Lasp::parse("7.5")).to eq 7.5
+        expect(Lasp::parse("-7.5")).to eq -7.5
       end
 
       it "booleans" do
