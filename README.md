@@ -113,6 +113,7 @@ Implemented in Läsp itself.
 - `dec`
 - `empty?`
 - `not=`
+- `second`
 - `mod`
 - `complement`
 - `even?`

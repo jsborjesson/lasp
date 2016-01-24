@@ -18,6 +18,11 @@
   (fn (& args)
     (not (apply = args))))
 
+; The second item in a list
+(def second
+  (fn (coll)
+    (head (tail coll))))
+
 ; Modulus
 (def mod
   (fn (x y) (- x (* (/ x y) y))))
