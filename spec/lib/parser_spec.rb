@@ -7,8 +7,8 @@ module Lasp
     end
 
     it "tokenizes complex strings" do
-      input    = '(+  1.2 2 ( len "test test ")) ' # intentionally messy whitespace
-      expected = ["(", "+", "1.2", "2", "(", "len", "\"test test \"", ")", ")"]
+      input    = '(+  1.2 2 ( len "test test (")) ' # intentionally messy whitespace
+      expected = ["(", "+", "1.2", "2", "(", "len", "\"test test (\"", ")", ")"]
 
       expect(Lasp::tokenize(input)).to eq expected
     end

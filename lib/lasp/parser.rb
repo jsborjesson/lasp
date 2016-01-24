@@ -22,10 +22,7 @@ module Lasp
   end
 
   def tokenize(string)
-    string
-      .gsub("(", " ( ")
-      .gsub(")", " ) ")
-      .scan(/(?:[^\s"]|"[^"]*")+/)
+    string.scan(/(?:(?:[^\s"()]|"[^"]*")+|[()])/)
   end
 
   def atom(token)
