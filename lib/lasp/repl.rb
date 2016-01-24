@@ -1,4 +1,5 @@
 require "lasp"
+require "lasp/parser"
 require "readline"
 
 module Lasp
@@ -22,8 +23,9 @@ module Lasp
   end
 
   def autoclose_parentheses(input)
-    num_opens  = input.chars.select { |c| c == "(" }.count
-    num_closes = input.chars.select { |c| c == ")" }.count
+    tokens     = Lasp::tokenize(input)
+    num_opens  = tokens.select { |t| t == "(" }.count
+    num_closes = tokens.select { |t| t == ")" }.count
 
     if num_opens > num_closes
       missing_closes = num_opens - num_closes
