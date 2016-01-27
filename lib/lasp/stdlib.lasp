@@ -140,12 +140,14 @@
 
 ; Pass a value in order through a list of functions
 (def pipe
-  (fn (item fns)
+  (fn (item & fns)
     (if (empty? fns)
       item
-      (pipe ((head fns) item) (tail fns)))))
+      ; Note that you need to take special care when recursing with rest
+      ; arguments, hence the use of apply.
+      (apply pipe (cons ((head fns) item) (tail fns))))))
 
 ; Reverses a string
 (def reverse-str
   (fn (str)
-    (pipe str (list str->list reverse list->str))))
+    (pipe str str->list reverse list->str)))

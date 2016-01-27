@@ -29,7 +29,7 @@ module Lasp
 
       describe "fn" do
         it "creates a function" do
-          expect(lasp_eval("(fn (x) (+ x 1))")).to be_a Proc
+          expect(lasp_eval("(fn (x) (+ x 1))")).to be_a Fn
         end
 
         it "enforces arity" do

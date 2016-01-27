@@ -91,6 +91,7 @@ Implemented as Ruby lambdas.
 - `dissoc`
 - `not`
 - `println`
+- `apply`
 - `.`
 
 ### Special forms
