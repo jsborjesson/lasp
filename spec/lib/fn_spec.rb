@@ -14,8 +14,9 @@ module Lasp
     end
 
     it "fails at instantiation when the same parameter name is used more than once" do
-      expect { described_class.new([:a, :a], :a, {}) }
-        .to raise_error(Lasp::SyntaxError, /Parameter names have to be unique. a is used more than once/)
+      expect {
+        described_class.new([:a, :a], :a, {})
+      }.to raise_error(Lasp::SyntaxError, /Parameter names have to be unique. a is used more than once/)
     end
 
     describe "arity" do
