@@ -42,9 +42,7 @@ module Lasp
     end
 
     def wrong_number_of_args!(args)
-      given    = args.length
-      expected = params.arity
-      fail ArgumentError, "wrong number of arguments (#{given} for #{expected})"
+      fail ArgumentError, "wrong number of arguments (#{args.length} for #{params.arity})"
     end
   end
 end
