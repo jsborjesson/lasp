@@ -1,16 +1,15 @@
 # Examples
 
-```lisp
-; Notes:
-;
-; A complete list of the available functions can be found in the README.
-;
-; Since Läsp is very similar to Clojure, you can get pretty decent syntax
-; highlighting by just setting your editor to treat .lasp files as .clj
-;
-; In this document output is shown with ;; and normal comments with ;.
+A complete list of the available functions can be found in the README.
 
-; --- Data types ---
+Since Läsp is very similar to Clojure, you can get pretty decent syntax
+highlighting by just setting your editor to treat .lasp files as .clj
+
+In this document output is shown with ;; and normal comments with ;.
+
+## Data types
+
+```lisp
 ; Number types
 1
 1.5
@@ -29,9 +28,11 @@ nil
 ; Lists
 (list 1 2 3) ;; => [1, 2, 3]
 (list)       ;; => []
+```
 
-; --- Basic function calls ---
+## Basic function calls
 
+```lisp
 ; inc is a function that increments its argument, and 1 is the single argument
 (inc 1) ;; => 2
 
@@ -47,9 +48,11 @@ nil
 
 ; Boolean inversion
 (not true) ;; => false
+```
 
-; --- List operations ---
+## List operations
 
+```lisp
 (head (list 1 2 3))  ;; => 1
 (first (list 1 2 3)) ;; => 1
 
@@ -79,9 +82,11 @@ nil
 
 ; Ranges
 (range 1 10) ;; => [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
 
-; --- Hash-maps ---
+## Hash-maps
 
+```lisp
 ; Create a hash-map
 (hash-map :one 1 :two 2) ;; => {"one"=>1, "two"=>2}
 
@@ -93,9 +98,11 @@ nil
 
 ; dissoc removes values
 (dissoc (hash-map :one 1 :two 2) :one) ;; => {"two"=>2}
+```
 
-; --- More complex functions ---
+## More complex functions
 
+```lisp
 ; Apply a function to all items in a list
 (map inc (list 1 2 3)) ;; => [2, 3, 4]
 
@@ -112,18 +119,22 @@ nil
 
 ; Filtering
 (filter odd? (list 1 2 3)) ;; => [1, 3]
+```
 
-; --- Variables ---
+## Variables
 
+```lisp
 ; Define and evaluate a variable
 (def x (list 1 2 3))
 x ;; => [1, 2, 3]
 
 ; Use it in a function
 (sum x) ;; => 6
+```
 
-; --- Misc ---
+## Misc
 
+```lisp
 ; Outputting to the terminal
 (println "hello world!")
 ;; hello world!
@@ -141,9 +152,11 @@ x ;; => [1, 2, 3]
   (println "nope!"))
 ;; nope!
 ;; => nil
+```
 
-; --- Creating functions ---
+## Creating functions
 
+```lisp
 ; A function has 2 forms, one with the parameters and one with the body.
 ; Here's a function that adds 10 to its argument
 (fn (x) (+ 10 x))
@@ -179,9 +192,11 @@ x ;; => [1, 2, 3]
 (add-first-two 1 2)   ;; => 3
 (add-first-two 1 2 3) ;; => 3
 (add-first-two 1)     ;; !> wrong number of arguments (1 for 2+)
+```
 
-; --- Count the amount of 5:s in a list ---
+### Count the amount of 5:s in a list
 
+```lisp
 ; The list we will operate on
 (def fives (list 1 5 2 3 5 8 5)) ; 5 occurs 3 times.
 
@@ -193,9 +208,11 @@ x ;; => [1, 2, 3]
   0            ; (2) We start counting from 0
   fives)       ; (3) We operate over the previously defined `fives` list.
 ;; => 3
+```
 
-; --- Print a beautiful pyramid ---
+### Print a beautiful pyramid
 
+```lisp
 ; Print one row in the pyramid
 (def print-row
   (fn (length)
@@ -221,10 +238,11 @@ x ;; => [1, 2, 3]
 ;; #######
 ;; ########
 ;; #########
+```
 
+## Interoperability
 
-; --- Interoperability ---
-
+```lisp
 ; The . function allows for Ruby interoperability.
 (. "01011101" :to_i 2) ;; => 93
 
