@@ -13,6 +13,11 @@
   (fn (coll)
     (= nil (head coll))))
 
+; If all arguments are not equal
+(def not=
+  (fn (& args)
+    (not (apply = args))))
+
 ; Modulus
 (def mod
   (fn (x y) (- x (* (/ x y) y))))

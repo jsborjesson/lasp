@@ -112,6 +112,7 @@ Implemented in Läsp itself.
 - `inc`
 - `dec`
 - `empty?`
+- `not=`
 - `mod`
 - `complement`
 - `even?`

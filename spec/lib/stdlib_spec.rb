@@ -22,6 +22,11 @@ describe "stdlib" do
     expect(Lasp::execute("(empty? (list))")).to eq true
   end
 
+  it "not=" do
+    expect(Lasp::execute("(not= 2 2 3)")).to eq true
+    expect(Lasp::execute("(not= 2 2 2)")).to eq false
+  end
+
   it "mod" do
     expect(Lasp::execute("(mod 133 51)")).to eq 31
   end
