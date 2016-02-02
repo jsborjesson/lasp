@@ -9,3 +9,9 @@ class Symbol
     to_s
   end
 end
+
+class Hash
+  def inspect
+    "{#{ map { |pair| pair.map(&:inspect).join(" ")}.join(", ") }}"
+  end
+end
