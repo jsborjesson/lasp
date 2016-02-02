@@ -1,5 +1,5 @@
-require "lasp/fn"
 require "lasp"
+require "lasp/fn"
 
 module Lasp
   describe Fn do
