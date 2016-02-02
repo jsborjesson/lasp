@@ -56,10 +56,10 @@ nil
 (head (list 1 2 3))  ;; => 1
 (first (list 1 2 3)) ;; => 1
 
-(tail (list 1 2 3)) ;; => [2, 3]
-(rest (list 1 2 3)) ;; => [2, 3]
+(tail (list 1 2 3)) ;; => (2 3)
+(rest (list 1 2 3)) ;; => (2 3)
 
-(cons 0 (list 1 2 3)) ;; => [0, 1, 2, 3]
+(cons 0 (list 1 2 3)) ;; => (0 1 2 3)
 
 (nth 1 (list 1 2 3)) ;; => 2
 (nth 3 (list 1 2 3)) ;; => nil
@@ -69,42 +69,42 @@ nil
 (get 3 (list 1 2 3)) ;; => nil
 
 ; assoc returns a new array with the specified index updated
-(assoc (list 1 2 3) 0 "one") ;; => ["one", 2, 3]
+(assoc (list 1 2 3) 0 "one") ;; => ("one" 2 3)
 
 (last (list 1 2 3)) ;; => 3
 
-(take 2 (list 1 2 3)) ;; => [1, 2]
-(drop 2 (list 1 2 3)) ;; => [3]
+(take 2 (list 1 2 3)) ;; => (1 2)
+(drop 2 (list 1 2 3)) ;; => (3)
 
 (max (list 1 3 2)) ;; => 3
 
-(reverse (list 1 2 3)) ;; => [3, 2, 1]
+(reverse (list 1 2 3)) ;; => (3 2 1)
 
 ; Ranges
-(range 1 10) ;; => [1, 2, 3, 4, 5, 6, 7, 8, 9]
+(range 1 10) ;; => (1 2 3 4 5 6 7 8 9)
 ```
 
 ## Hash-maps
 
 ```lisp
 ; Create a hash-map
-(hash-map :one 1 :two 2) ;; => {"one"=>1, "two"=>2}
+(hash-map :one 1 :two 2) ;; => {"one" 1, "two" 2}
 
 ; get also works with hash-maps
 (get :one (hash-map :one 1 :two 2)) ;; => 1
 
 ; assoc works with hash-maps too
-(assoc (hash-map :one 1 :two 2) :three 3) ;; => {"one"=>1, "two"=>2, "three"=>3}
+(assoc (hash-map :one 1 :two 2) :three 3) ;; => {"one" 1, "two" 2, "three" 3}
 
 ; dissoc removes values
-(dissoc (hash-map :one 1 :two 2) :one) ;; => {"two"=>2}
+(dissoc (hash-map :one 1 :two 2) :one) ;; => {"two" 2}
 ```
 
 ## More complex functions
 
 ```lisp
 ; Apply a function to all items in a list
-(map inc (list 1 2 3)) ;; => [2, 3, 4]
+(map inc (list 1 2 3)) ;; => (2 3 4)
 
 ; Accumulate a value with a function
 ; The function (here +) will receive a memo (the running total)
@@ -118,7 +118,7 @@ nil
 (reduce * 1 (list 1 2 3)) ;; => 6
 
 ; Filtering
-(filter odd? (list 1 2 3)) ;; => [1, 3]
+(filter odd? (list 1 2 3)) ;; => (1 3)
 ```
 
 ## Variables
@@ -126,7 +126,7 @@ nil
 ```lisp
 ; Define and evaluate a variable
 (def x (list 1 2 3))
-x ;; => [1, 2, 3]
+x ;; => (1 2 3)
 
 ; Use it in a function
 (sum x) ;; => 6
