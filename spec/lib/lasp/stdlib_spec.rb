@@ -17,6 +17,12 @@ describe "stdlib" do
     expect(Lasp::execute("(dec 5)")).to eq 4
   end
 
+  it "nil?" do
+    expect(Lasp::execute("(nil? (list))")).to eq false
+    expect(Lasp::execute("(nil? false)")).to eq false
+    expect(Lasp::execute("(nil? nil)")).to eq true
+  end
+
   it "empty?" do
     expect(Lasp::execute("(empty? (list 1))")).to eq false
     expect(Lasp::execute("(empty? (list))")).to eq true

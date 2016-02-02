@@ -8,10 +8,13 @@
 ; Decrement a number by one
 (def dec (fn (x) (- x 1)))
 
+; Is it nil?
+(def nil? (fn (arg) (= nil arg)))
+
 ; If a list is empty
 (def empty?
   (fn (coll)
-    (= nil (head coll))))
+    (nil? (head coll))))
 
 ; If all arguments are not equal
 (def not=
@@ -69,7 +72,7 @@
 ; Apply f to all items in list
 (def map
   (fn (f coll)
-    (if (= nil (head coll))
+    (if (nil? (head coll))
       coll
       (cons
         (f (head coll))

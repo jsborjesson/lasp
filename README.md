@@ -111,6 +111,7 @@ Implemented in Läsp itself.
 - `rest` (alias of `tail`)
 - `inc`
 - `dec`
+- `nil?`
 - `empty?`
 - `not=`
 - `second`
