@@ -22,6 +22,7 @@ module Lasp
     when :fn    then fn_special_form(tail, env)
     when :do    then do_special_form(tail, env)
     when :if    then if_special_form(tail, env)
+    when :quote then quote_special_form(tail, env)
     when :macro then macro_special_form(tail, env)
     else call_function(head, tail, env)
     end
@@ -53,6 +54,10 @@ module Lasp
   def if_special_form(form, env)
     conditional, true_form, false_form = form
     Lasp::eval(conditional, env) ? Lasp::eval(true_form, env) : Lasp::eval(false_form, env)
+  end
+
+  def quote_special_form(form, _)
+    form.first
   end
 
   def macro_special_form(form, env)
