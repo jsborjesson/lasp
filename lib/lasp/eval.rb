@@ -1,4 +1,3 @@
-require "lasp/parser"
 require "lasp/env"
 require "lasp/fn"
 require "lasp/macro"

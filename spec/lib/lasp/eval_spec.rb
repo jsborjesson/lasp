@@ -1,7 +1,8 @@
 require "lasp/eval"
+require "lasp/parser"
 
 def lasp_eval(program, env = Lasp::global_env)
-  Lasp::eval(Lasp::parse(program), env)
+  Lasp::eval(Lasp::Parser.new.parse(program), env)
 end
 
 module Lasp

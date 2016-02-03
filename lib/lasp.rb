@@ -11,7 +11,7 @@ module Lasp
   end
 
   def execute(program, env = global_env)
-    Lasp::eval(Lasp::parse(program), env)
+    Lasp::eval(Parser.new.parse(program), env)
   end
 
   def load_stdlib!
