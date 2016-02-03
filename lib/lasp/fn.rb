@@ -17,7 +17,8 @@ module Lasp
     end
 
     def inspect
-      "#<Fn #{params}>"
+      class_name = self.class.name.split("::").last
+      "#<#{class_name} #{params}>"
     end
 
     private
