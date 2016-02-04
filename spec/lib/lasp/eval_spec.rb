@@ -27,6 +27,11 @@ module Lasp
         it "returns the value it sets" do
           expect(lasp_eval("(def five 5)")).to eq 5
         end
+
+        it "only allows defining symbols" do
+          expect { lasp_eval("(def \"str\" 5)") }.to raise_error(Lasp::ArgumentError)
+          expect { lasp_eval("(def (list) 5)") }.to raise_error(Lasp::ArgumentError)
+        end
       end
 
       describe "fn" do

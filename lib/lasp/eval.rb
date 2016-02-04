@@ -1,6 +1,7 @@
 require "lasp/env"
 require "lasp/fn"
 require "lasp/macro"
+require "lasp/errors"
 
 module Lasp
   module_function
@@ -38,6 +39,7 @@ module Lasp
 
   def def_special_form(form, env)
     key, value = form
+    fail ArgumentError, "you can only def symbols" unless Symbol === key
     env[key] = Lasp::eval(value, env)
   end
 
