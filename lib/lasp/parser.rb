@@ -5,7 +5,7 @@ module Lasp
     end
 
     def tokenize(string)
-      string.scan(/(?:(?:[^\s"()]|"[^"]*")+|[()])/)
+      string.scan(/(?:(?:[^\s"()']|"[^"]*")+|[()'])/)
     end
 
     private
@@ -21,6 +21,8 @@ module Lasp
         end
         tokens.shift
         form
+      elsif token == "'"
+        [:quote] << build_ast(tokens)
       else
         atom(token)
       end

@@ -15,6 +15,13 @@ module Lasp
       expect(subject.tokenize(input)).to eq expected
     end
 
+    it "tokenizes quotes" do
+      input    = "('f '(gh 1 2))"
+      expected = ["(", "'", "f", "'", "(", "gh", "1", "2", ")", ")"]
+
+      expect(subject.tokenize(input)).to eq expected
+    end
+
     it "parses forms" do
       input  = "(func 1  2 (+ 1 2 )) "
       parsed = [:func, 1, 2, [:+, 1, 2]]
@@ -25,6 +32,13 @@ module Lasp
     it "parses complex forms" do
       input  = "((fn (x) (+ x 1)) 10)"
       parsed = [[:fn, [:x], [:+, :x, 1]], 10]
+
+      expect(subject.parse(input)).to eq parsed
+    end
+
+    it "surrounds quoted forms in quote" do
+      input  = "('f '(gh 1 2))"
+      parsed = [[:quote, :f], [:quote, [:gh, 1, 2]]]
 
       expect(subject.parse(input)).to eq parsed
     end
