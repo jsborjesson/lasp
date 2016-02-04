@@ -70,13 +70,13 @@ module Lasp
       expect(CORELIB[:cons].(1, [])).to eq [1]
     end
 
-    describe "hash-map" do
-      it "creates a hash" do
-        expect(CORELIB[:"hash-map"].("one", 1, "two", 2)).to eq("one" => 1, "two" => 2)
+    describe "dict" do
+      it "creates a dict" do
+        expect(CORELIB[:dict].("one", 1, "two", 2)).to eq("one" => 1, "two" => 2)
       end
 
       it "errors when given an uneven number of arguments" do
-        expect { CORELIB[:"hash-map"].("one", 1, "two") }.to raise_error ArgumentError, /odd number of arguments/
+        expect { CORELIB[:dict].("one", 1, "two") }.to raise_error ArgumentError, /odd number of arguments/
       end
     end
 
@@ -85,7 +85,7 @@ module Lasp
         expect(CORELIB[:get].(0, [1, 2, 3])).to eq 1
       end
 
-      it "returns item of key in hash-map" do
+      it "returns item of key in dict" do
         expect(CORELIB[:get].("one", {"one"=>1, "two"=>2})).to eq 1
       end
     end

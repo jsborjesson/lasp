@@ -84,20 +84,20 @@ nil
 (range 1 10) ;; => (1 2 3 4 5 6 7 8 9)
 ```
 
-## Hash-maps
+## Dictionaries
 
 ```lisp
-; Create a hash-map
-(hash-map :one 1 :two 2) ;; => {"one" 1, "two" 2}
+; Create a dict
+(dict :one 1 :two 2) ;; => {"one" 1, "two" 2}
 
-; get also works with hash-maps
-(get :one (hash-map :one 1 :two 2)) ;; => 1
+; get also works with dicts
+(get :one (dict :one 1 :two 2)) ;; => 1
 
-; assoc works with hash-maps too
-(assoc (hash-map :one 1 :two 2) :three 3) ;; => {"one" 1, "two" 2, "three" 3}
+; assoc works with dicts too
+(assoc (dict :one 1 :two 2) :three 3) ;; => {"one" 1, "two" 2, "three" 3}
 
 ; dissoc removes values
-(dissoc (hash-map :one 1 :two 2) :one) ;; => {"two" 2}
+(dissoc (dict :one 1 :two 2) :one) ;; => {"two" 2}
 ```
 
 ## More complex functions

@@ -1,8 +1,14 @@
 # Läsp
 
-A very simple programming language implemented in Ruby.
+A Lisp implementation in Ruby.
 
-It is just a toy Lisp implementation and should not be used seriously by anyone.
+## Features
+
+- Very concise [core library](lib/lasp/corelib.rb) written in Ruby
+- [Standard library](lib/lasp/stdlib.lisp) written in Läsp itself
+- Interactive REPL with auto-closing of missing trailing parentheses
+- Fully functional macro system
+- Interoperability with Ruby
 
 ## Installation
 
@@ -57,7 +63,7 @@ Supports these datatypes (implemented as their Ruby counterparts)
 - nil
 - string
 - list
-- hash-map
+- dict
 
 ### Comments
 
@@ -85,7 +91,7 @@ Implemented as Ruby lambdas.
 - `head`
 - `tail`
 - `cons`
-- `hash-map`
+- `dict`
 - `get`
 - `assoc`
 - `dissoc`
