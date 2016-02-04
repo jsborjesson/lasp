@@ -103,6 +103,8 @@ Implemented as special cases while evaluating.
 - `fn`
 - `do`
 - `if`
+- `quote`
+- `macro`
 
 ### Functions in stdlib
 
