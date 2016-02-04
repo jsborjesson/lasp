@@ -7,5 +7,5 @@ Lasp::load_stdlib!
 if ARGV.first
   Lasp::execute_file(ARGV.first)
 else
-  Lasp::repl
+  Lasp::Repl.run
 end
