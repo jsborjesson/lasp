@@ -24,7 +24,7 @@ module Lasp
   end
 
   def autoclose_parentheses(input)
-    tokens     = Lasp::tokenize(input)
+    tokens     = Parser.new.tokenize(input)
     num_opens  = tokens.select { |t| t == "(" }.count
     num_closes = tokens.select { |t| t == ")" }.count
 

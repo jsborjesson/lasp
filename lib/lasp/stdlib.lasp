@@ -1,3 +1,5 @@
+(require "./lib/lasp/stdmacros.lasp")
+
 ; Aliases
 (def first head)
 (def rest tail)

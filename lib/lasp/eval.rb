@@ -1,6 +1,6 @@
-require "lasp/parser"
 require "lasp/env"
 require "lasp/fn"
+require "lasp/macro"
 
 module Lasp
   module_function
@@ -17,17 +17,23 @@ module Lasp
     head, *tail = *form
 
     case head
-    when :def then def_special_form(tail, env)
-    when :fn  then fn_special_form(tail, env)
-    when :do  then do_special_form(tail, env)
-    when :if  then if_special_form(tail, env)
+    when :def   then def_special_form(tail, env)
+    when :fn    then fn_special_form(tail, env)
+    when :do    then do_special_form(tail, env)
+    when :if    then if_special_form(tail, env)
+    when :quote then quote_special_form(tail, env)
+    when :macro then macro_special_form(tail, env)
     else call_function(head, tail, env)
     end
   end
 
   def call_function(symbol, args, env)
     fn = Lasp::eval(symbol, env)
-    fn.(*args.map { |form| Lasp::eval(form, env) })
+
+    case fn
+    when Macro then Lasp::eval(fn.(*args), env)
+    else fn.(*args.map { |form| Lasp::eval(form, env) })
+    end
   end
 
   def def_special_form(form, env)
@@ -47,5 +53,14 @@ module Lasp
   def if_special_form(form, env)
     conditional, true_form, false_form = form
     Lasp::eval(conditional, env) ? Lasp::eval(true_form, env) : Lasp::eval(false_form, env)
+  end
+
+  def quote_special_form(form, _)
+    form.first
+  end
+
+  def macro_special_form(form, env)
+    params, func = form
+    Macro.new(params, func, env)
   end
 end

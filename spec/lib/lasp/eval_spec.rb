@@ -1,7 +1,9 @@
 require "lasp/eval"
+require "lasp/parser"
+require "tempfile"
 
 def lasp_eval(program, env = Lasp::global_env)
-  Lasp::eval(Lasp::parse(program), env)
+  Lasp::eval(Lasp::Parser.new.parse(program), env)
 end
 
 module Lasp
@@ -87,10 +89,44 @@ module Lasp
           expect(mock_fn).not_to have_received(:call)
         end
       end
+
+      describe "quote" do
+        it "returns symbol without evaluating it" do
+          expect(lasp_eval("(quote f)")).to eq :f
+        end
+
+        it "returns form without evaluating it" do
+          expect(lasp_eval("(quote (f 1 2))")).to eq [:f, 1, 2]
+        end
+
+        it "only quotes the first argument" do
+          expect(lasp_eval("(quote f g)")).to eq :f
+        end
+      end
+
+      describe "macro" do
+        it "creates macros" do
+          expect(lasp_eval("(macro (x) x)")).to be_a Macro
+        end
+
+        it "gives macros unevaluated forms as arguments" do
+          expect(lasp_eval("((macro (one op two) (list op one two)) 1 + 2)")).to eq 3
+        end
+      end
     end
 
     it "does ruby interop" do
       expect(lasp_eval('(. "hello" :upcase)')).to eq "HELLO"
+    end
+
+    it "requires files" do
+      Tempfile.open("lasp-test") do |file|
+        file.write("(def test true)")
+        file.rewind
+
+        lasp_eval("(require \"#{file.path}\")")
+        expect(lasp_eval("test")).to eq true
+      end
     end
   end
 end

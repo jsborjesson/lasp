@@ -1,5 +1,3 @@
-require "lasp/eval"
-
 require "lasp"
 Lasp::load_stdlib!
 

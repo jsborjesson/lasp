@@ -93,6 +93,7 @@ Implemented as Ruby lambdas.
 - `println`
 - `apply`
 - `.`
+- `require`
 
 ### Special forms
 
@@ -102,6 +103,8 @@ Implemented as special cases while evaluating.
 - `fn`
 - `do`
 - `if`
+- `quote`
+- `macro`
 
 ### Functions in stdlib
 
@@ -139,6 +142,12 @@ Implemented in Läsp itself.
 - `->str`
 - `pipe`
 - `reverse-str`
+
+## Macros in stdlib
+
+- `defn`
+- `defm`
+- `macroexpand`
 
 ## Developing
 
