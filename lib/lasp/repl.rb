@@ -16,12 +16,12 @@ module Lasp
       loop do
         begin
           history = true
-          input   = Readline.readline("lasp> ", history).to_s
+          input   = Readline.readline(prompt, history).to_s
           input   = autoclose_parentheses(input)
           result  = Lasp::execute(input)
-          puts "   => #{result.inspect}"
+          print_result(result)
         rescue => error
-          puts "   !> #{error.class}: #{error.message}"
+          print_error(error)
         end
       end
     end
@@ -36,14 +36,30 @@ module Lasp
       if num_opens > num_closes
         missing_closes = num_opens - num_closes
 
-        puts "   ?> Appending #{missing_closes} missing closing parentheses:"
+        print_info "Appending #{missing_closes} missing closing parentheses:"
         corrected_input = input + (")" * missing_closes)
-        puts "   ?> #{corrected_input}"
+        print_info "#{corrected_input}"
 
         corrected_input
       else
         input
       end
+    end
+
+    def prompt
+      "lasp> "
+    end
+
+    def print_error(error)
+      puts "   !> #{error.class}: #{error.message}"
+    end
+
+    def print_info(message)
+      puts "   ?> #{message}"
+    end
+
+    def print_result(result)
+      puts "   => #{result.inspect}"
     end
   end
 end
