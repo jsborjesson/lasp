@@ -93,6 +93,7 @@ Implemented as Ruby lambdas.
 - `println`
 - `apply`
 - `.`
+- `require`
 
 ### Special forms
 

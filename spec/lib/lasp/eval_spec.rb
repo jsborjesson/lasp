@@ -1,5 +1,6 @@
 require "lasp/eval"
 require "lasp/parser"
+require "tempfile"
 
 def lasp_eval(program, env = Lasp::global_env)
   Lasp::eval(Lasp::Parser.new.parse(program), env)
@@ -116,6 +117,16 @@ module Lasp
 
     it "does ruby interop" do
       expect(lasp_eval('(. "hello" :upcase)')).to eq "HELLO"
+    end
+
+    it "requires files" do
+      Tempfile.open("lasp-test") do |file|
+        file.write("(def test true)")
+        file.rewind
+
+        lasp_eval("(require \"#{file.path}\")")
+        expect(lasp_eval("test")).to eq true
+      end
     end
   end
 end

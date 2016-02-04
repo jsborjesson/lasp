@@ -1,3 +1,5 @@
+require "lasp"
+
 module Lasp
   CORELIB = {
     :+          => -> (*args)         { args.reduce(:+)                          },
@@ -21,5 +23,6 @@ module Lasp
     :println    => -> (output)        { puts output                              },
     :apply      => -> (f, list)       { f.call(*list)                            },
     :"."        => -> (obj, m, *args) { obj.send(m, *args)                       },
+    :require    => -> (path)          { Lasp::execute_file(path)                 },
   }
 end

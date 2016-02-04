@@ -1,4 +1,5 @@
 require "lasp/corelib"
+require "tempfile"
 
 module Lasp
   describe "corelib" do
@@ -140,6 +141,12 @@ module Lasp
 
     it "interop" do
       expect(CORELIB[:"."].("01011101", "to_i", 2)).to eq 93
+    end
+
+    it "require" do
+      path = "./path/to/lasp_file.lasp"
+      expect(Lasp).to receive(:execute_file).with(path)
+      CORELIB[:require].(path)
     end
   end
 end
