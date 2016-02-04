@@ -14,8 +14,7 @@ module Lasp
       end
 
       it "fails when trying to access the rest-parameter" do
-        # TODO: Correct error type???
-        expect { params.rest }.to raise_error(ArgumentError)
+        expect { params.rest }.to raise_error(LaspError)
       end
 
       it "has nice to_s output" do
@@ -75,25 +74,25 @@ module Lasp
       it "fails at instantiation when the same parameter name is used more than once" do
         expect {
           described_class.new([:a, :a])
-        }.to raise_error(ArgumentError, /Parameter names have to be unique./)
+        }.to raise_error(SyntaxError, /Parameter names have to be unique/)
       end
 
       it "fails at instantiation when more than one ampersand is used in a function definition" do
         expect {
           described_class.new([:a, :&, :b, :&, :c])
-        }.to raise_error(ArgumentError, /Rest-arguments may only be used once, at the end, with a single binding./)
+        }.to raise_error(SyntaxError, /Rest-arguments may only be used once, at the end, with a single binding/)
       end
 
       it "fails at instantiation when more than one binding is used after the ampersand" do
         expect {
           described_class.new([:a, :&, :b, :c])
-        }.to raise_error(ArgumentError, /Rest-arguments may only be used once, at the end, with a single binding./)
+        }.to raise_error(SyntaxError, /Rest-arguments may only be used once, at the end, with a single binding/)
       end
 
       it "fails at instantiation when & is last" do
         expect {
           described_class.new([:a, :&])
-        }.to raise_error(ArgumentError, /Rest-arguments may only be used once, at the end, with a single binding./)
+        }.to raise_error(SyntaxError, /Rest-arguments may only be used once, at the end, with a single binding/)
       end
     end
   end

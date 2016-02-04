@@ -37,7 +37,7 @@ module Lasp
         it "enforces arity" do
           expect {
             lasp_eval("((fn (x) (+ x 1)) 3 6)")
-          }.to raise_error(ArgumentError, "wrong number of arguments (2 for 1)")
+          }.to raise_error(Lasp::ArgumentError, "wrong number of arguments (2 for 1)")
         end
 
         it "executes defined functions" do

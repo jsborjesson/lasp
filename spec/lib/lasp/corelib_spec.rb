@@ -76,7 +76,7 @@ module Lasp
       end
 
       it "errors when given an uneven number of arguments" do
-        expect { CORELIB[:dict].("one", 1, "two") }.to raise_error ArgumentError, /odd number of arguments/
+        expect { CORELIB[:dict].("one", 1, "two") }.to raise_error ::ArgumentError, /odd number of arguments/
       end
     end
 

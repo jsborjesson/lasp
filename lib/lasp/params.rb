@@ -1,3 +1,5 @@
+require "lasp/errors"
+
 module Lasp
   class Params
     attr_reader :param_list
@@ -14,7 +16,7 @@ module Lasp
 
     def rest
       unless variadic?
-        fail ArgumentError, "A non-variadic function does not have rest-arguments"
+        fail LaspError, "A non-variadic function does not have rest-arguments"
       end
       param_list.last
     end
@@ -53,20 +55,20 @@ module Lasp
 
     def validate_unique_parameter_names!
       unless param_list.uniq.length == param_list.length
-        fail ArgumentError, "Parameter names have to be unique."
+        fail SyntaxError, "Parameter names have to be unique."
       end
     end
 
     def validate_single_ampersand!
-      unless param_list.select { |p| p == :& }.length <= 1
-        fail ArgumentError, "Rest-arguments may only be used once, at the end, with a single binding."
-      end
+      invalid_rest_argument_usage! unless param_list.select { |p| p == :& }.length <= 1
     end
 
     def validate_single_rest_parameter!
-      if variadic? && param_list[-2] != :&
-        fail ArgumentError, "Rest-arguments may only be used once, at the end, with a single binding."
-      end
+      invalid_rest_argument_usage! if variadic? && param_list[-2] != :&
+    end
+
+    def invalid_rest_argument_usage!
+      fail SyntaxError, "Rest-arguments may only be used once, at the end, with a single binding"
     end
   end
 end
