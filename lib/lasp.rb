@@ -1,5 +1,6 @@
 require "lasp/version"
 require "lasp/eval"
+require "lasp/parser"
 
 module Lasp
   STDLIB_PATH = File.expand_path("../lasp/stdlib.lasp", __FILE__)
