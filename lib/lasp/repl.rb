@@ -20,8 +20,8 @@ module Lasp
           input   = autoclose_parentheses(input)
           result  = Lasp::execute(input)
           puts "   => #{result.inspect}"
-        rescue
-          puts "   !> #{$!}"
+        rescue => error
+          puts "   !> #{error.class}: #{error.message}"
         end
       end
     end
