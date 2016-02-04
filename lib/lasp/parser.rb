@@ -14,18 +14,24 @@ module Lasp
       return if tokens.empty?
       token = tokens.shift
 
-      if token == "("
-        form = []
-        while tokens.first != ")"
-          form << build_ast(tokens)
-        end
-        tokens.shift
-        form
-      elsif token == "'"
-        [:quote] << build_ast(tokens)
-      else
-        atom(token)
+      case token
+      when "(" then form(tokens)
+      when "'" then quote(tokens)
+      else atom(token)
       end
+    end
+
+    def form(tokens)
+      form = []
+      while tokens.first != ")"
+        form << build_ast(tokens)
+      end
+      tokens.shift
+      form
+    end
+
+    def quote(tokens)
+      [:quote] << build_ast(tokens)
     end
 
     def atom(token)
