@@ -1,5 +1,39 @@
 # Läsp changelog
 
+## v0.8.0 - 2016-02-04
+
+### Added
+
+- Macro system
+    - `quote` special form to defer evaluation
+    - `macro` special form that works like a function but receives its arguments before evaluation
+    - `'` syntax sugar for quoting, `'f` becomes `(quote f)`
+- Variadic functions
+    - Both functions and macros can now accept rest-arguments with an `&`
+- Additions to core library
+    - `require`
+    - `apply`
+- Additions to standard library
+    - `nil?`
+    - `not=`
+    - `second`
+    - macros
+        - `defn`
+        - `defm`
+        - `macroexpand`
+- Lispy looking datastructures
+    - The REPL now displays `[:f, 12, 34]` as `(f 12 34)`
+
+### Changed
+
+- Rename `hash-map` to `dict`
+- `pipe` now uses rest-arguments instead of taking a list of functions
+
+### Fixed
+
+- Parentheses inside strings are now handled correctly
+- Negative numbers parsed correctly instead of appearing as symbols
+
 ## v0.7.0 - 2016-01-18
 
 - Arity is now enforced in function calls and will throw errors when mismatched
