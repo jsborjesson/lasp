@@ -143,6 +143,12 @@ Implemented in Läsp itself.
 - `pipe`
 - `reverse-str`
 
+## Macros in stdlib
+
+- `defn`
+- `defm`
+- `macroexpand`
+
 ## Developing
 
 ### Run the specs

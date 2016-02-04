@@ -1,0 +1,38 @@
+; Shorthand for defining macros
+;
+;   (defm m (form) (reverse form))
+; expands to:
+;   (def m (macro (form) (reverse form)))
+(def defm
+  (macro (name params body)
+         (list 'def name
+               (list 'macro params body))))
+
+; Shorthand for defining functions
+;
+;   (defn f (x) (+ x 1))
+; expands to:
+;   (def f (fn (x) (do (+ x 1))))
+(defm defn
+  (name params & body)
+  (list 'def name
+        (list 'fn params (cons 'do body))))
+
+; See unevaluated form the macro expands to for debugging macros
+;
+; This simply uses the fact that `apply` already has this effect
+; of expanding macros and makes the syntax a bit nicer, you can
+; also just use `apply` directly as shown below.
+;
+; Example:
+;     (macroexpand (defn f (x) (+ 1 x)))
+;
+; expands to:
+;     (apply defn (quote (f (x) (+ 1 x))))
+;
+; which in is evaulated and returns this form:
+;     (def f (fn (x) (do (+ 1 x))))
+(defm macroexpand
+  (form)
+  (list 'apply (first form)
+        (list 'quote (rest form))))
