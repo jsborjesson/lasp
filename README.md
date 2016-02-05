@@ -19,6 +19,10 @@ gem install lasp
 
 # If it doesn't work you might need to sudo
 sudo gem install lasp
+
+# You can update to the latest version the same way:
+gem update lasp
+sudo gem update lasp
 ```
 
 ## Running
@@ -34,6 +38,9 @@ lasp path/to/program.lasp
 ```
 
 ## The language
+
+Please reference the [documentation](DOCUMENTATION.md) for specific definitions
+and examples of particular functions.
 
 ### Examples
 
