@@ -36,6 +36,11 @@ nil
 ; inc is a function that increments its argument, and 1 is the single argument
 (inc 1) ;; => 2
 
+; Outputting to the terminal
+(println "hello world!")
+;; hello world!
+;; => nil
+
 ; Simple maths functions take any number of arguments
 (/ 20 2)     ;; => 10
 (+ 1 3 5)    ;; => 9
@@ -132,20 +137,13 @@ x ;; => (1 2 3)
 (sum x) ;; => 6
 ```
 
-## Misc
+## If
 
 ```lisp
-; Outputting to the terminal
-(println "hello world!")
-;; hello world!
-;; => nil
-
-; If
 (if (< 4.9 5)
-  (println "yep!")
-  (println "nope!"))
-;; yep!
-;; => nil
+  "under"
+  "over")
+;; => "under"
 
 (if (< 5.1 5)
   (println "yep!")
