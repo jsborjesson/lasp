@@ -65,9 +65,16 @@ module Lasp
       expect(CORELIB[:tail].([])).to eq []
     end
 
-    it "cons" do
-      expect(CORELIB[:cons].(1, [2, 3])).to eq [1, 2, 3]
-      expect(CORELIB[:cons].(1, [])).to eq [1]
+    describe "cons" do
+      it "adds items to the front of a list" do
+        expect(CORELIB[:cons].(1, [2, 3])).to eq [1, 2, 3]
+        expect(CORELIB[:cons].(1, [])).to eq [1]
+      end
+
+      it "does not change the original data structure" do
+        original = [2, 3]
+        expect { CORELIB[:cons].(1, original) }.not_to change { original }
+      end
     end
 
     describe "dict" do
