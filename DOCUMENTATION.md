@@ -6,7 +6,7 @@
 
 Adds arguments in order.
 
-```lisp
+```clojure
 (+ 1 2 3) ; => 6
 ```
 
@@ -14,7 +14,7 @@ Adds arguments in order.
 
 Subtracts arguments in order.
 
-```lisp
+```clojure
 (- 1 2 3) ; => -4
 ```
 
@@ -22,7 +22,7 @@ Subtracts arguments in order.
 
 Multiplies arguments in order.
 
-```lisp
+```clojure
 (* 2 3 4) ; => 24
 ```
 
@@ -30,7 +30,7 @@ Multiplies arguments in order.
 
 Divides arguments in order.
 
-```lisp
+```clojure
 (/ 20 2 2) ; => 5
 ```
 
@@ -38,7 +38,7 @@ Divides arguments in order.
 
 Mandatory increasing order.
 
-```lisp
+```clojure
 (< 20 10)    ; => false
 (< 10 11 12) ; => true
 (< 10 11 10) ; => false
@@ -49,7 +49,7 @@ Mandatory increasing order.
 
 Mandatory decreasing order.
 
-```lisp
+```clojure
 (> 20 10)   ; => true
 (> 10 9 8)  ; => true
 (> 10 9 10) ; => false
@@ -60,7 +60,7 @@ Mandatory decreasing order.
 
 Equality.
 
-```lisp
+```clojure
 (= 20 20 2)  ; => false
 (= 20 20 20) ; => true
 (= 20)       ; => true
@@ -70,7 +70,7 @@ Equality.
 
 Mandatory non-decreasing order.
 
-```lisp
+```clojure
 (<= 20 20 30) ; => true
 (<= 20 20 10) ; => false
 (<= 20 20)    ; => true
@@ -80,7 +80,7 @@ Mandatory non-decreasing order.
 
 Mandatory non-increasing order.
 
-```lisp
+```clojure
 (>= 20 20 30) ; => false
 (>= 20 20 10) ; => true
 (>= 20 20)    ; => true
@@ -90,7 +90,7 @@ Mandatory non-increasing order.
 
 Creates a list of all of its arguments.
 
-```lisp
+```clojure
 (list 1 2 3) ; => (1 2 3)
 ```
 
@@ -98,7 +98,7 @@ Creates a list of all of its arguments.
 
 Gets the first item in a list, otherwise `nil`.
 
-```lisp
+```clojure
 (head (list 1 2 3)) ; => 1
 (head (list))       ; => nil
 ```
@@ -107,7 +107,7 @@ Gets the first item in a list, otherwise `nil`.
 
 Gets all items in a list except the first, when empty it returns an empty list.
 
-```lisp
+```clojure
 (tail (list 1 2 3)) ; => (2 3)
 (tail (list))       ; => ()
 ```
@@ -116,7 +116,7 @@ Gets all items in a list except the first, when empty it returns an empty list.
 
 Pushes an item onto the front of a list. Does **not** change the original list.
 
-```lisp
+```clojure
 (cons 1 (list 2 3)) ; => (1 2 3)
 (cons 1 ())         ; => (1)
 ```
@@ -125,7 +125,7 @@ Pushes an item onto the front of a list. Does **not** change the original list.
 
 Creates a dictionary.
 
-```lisp
+```clojure
 (dict :one 1 :two 2) ; => {"one" 1, "two" 2}
 (dict :one 1 :two)   ; !> ArgumentError: odd number of arguments for Hash
 ```
@@ -134,7 +134,7 @@ Creates a dictionary.
 
 Get item by id in a list or dict.
 
-```lisp
+```clojure
 (get 0 (list 1 2 3))            ; => 1
 (get :one (dict :one 1 :two 2)) ; => 1
 ```
@@ -143,7 +143,7 @@ Get item by id in a list or dict.
 
 Add or change item in dict. Does **not** change the original dict.
 
-```lisp
+```clojure
 (assoc (dict) :one 1)        ; => {"one" 1}
 (assoc (dict :one 1) :one 2) ; => {"one" 2}
 
@@ -161,7 +161,7 @@ data                     ; => {"one" 1}
 
 Remove item from dict. Does **not** change the original dict.
 
-```lisp
+```clojure
 (dissoc (dict :one 1 :two 2) :one) ; => {"two" 2}
 
 ; It does NOT change the original data structure
@@ -174,7 +174,7 @@ data                            ; => {"one" 1, "two" 2}
 
 Returns the inverted truthiness of its argument.
 
-```lisp
+```clojure
 (not true)  ; => false
 (not false) ; => true
 (not nil)   ; => true
@@ -185,7 +185,7 @@ Returns the inverted truthiness of its argument.
 
 Prints its argument to stdout and returns `nil`.
 
-```lisp
+```clojure
 (println "Hello World!") ; => nil
 ;; Hello World!
 ```
@@ -194,7 +194,7 @@ Prints its argument to stdout and returns `nil`.
 
 Applies a function to a list of arguments as if they were passed in directly.
 
-```lisp
+```clojure
 (apply + (list 1 2 3)) ; => 6
 
 ; Equal to this:
@@ -209,7 +209,7 @@ The first argument is the object to send the message to, the second is a string
 with the message name, and all following arguments are passed in as arguments with
 that message.
 
-```lisp
+```clojure
 (. "01011101" :to_i 2) ; => 93
 ```
 
@@ -222,6 +222,6 @@ that message.
 
 Loads and runs a Läsp file.
 
-```lisp
+```clojure
 (require "./path/to/lasp_file.lasp")
 ```
