@@ -10,6 +10,7 @@ Adds arguments in order.
 (+ 1 2 3) ; => 6
 ```
 
+
 ### -
 
 Subtracts arguments in order.
@@ -17,6 +18,7 @@ Subtracts arguments in order.
 ```clojure
 (- 1 2 3) ; => -4
 ```
+
 
 ### *
 
@@ -26,6 +28,7 @@ Multiplies arguments in order.
 (* 2 3 4) ; => 24
 ```
 
+
 ### /
 
 Divides arguments in order.
@@ -33,6 +36,7 @@ Divides arguments in order.
 ```clojure
 (/ 20 2 2) ; => 5
 ```
+
 
 ### <
 
@@ -45,6 +49,7 @@ Mandatory increasing order.
 (< 10 10)    ; => false
 ```
 
+
 ### >
 
 Mandatory decreasing order.
@@ -56,6 +61,7 @@ Mandatory decreasing order.
 (> 10 10)   ; => false
 ```
 
+
 ### =
 
 Equality.
@@ -65,6 +71,7 @@ Equality.
 (= 20 20 20) ; => true
 (= 20)       ; => true
 ```
+
 
 ### <=
 
@@ -76,6 +83,7 @@ Mandatory non-decreasing order.
 (<= 20 20)    ; => true
 ```
 
+
 ### >=
 
 Mandatory non-increasing order.
@@ -86,6 +94,7 @@ Mandatory non-increasing order.
 (>= 20 20)    ; => true
 ```
 
+
 ### list
 
 Creates a list of all of its arguments.
@@ -93,6 +102,7 @@ Creates a list of all of its arguments.
 ```clojure
 (list 1 2 3) ; => (1 2 3)
 ```
+
 
 ### head
 
@@ -103,6 +113,7 @@ Gets the first item in a list, otherwise `nil`.
 (head (list))       ; => nil
 ```
 
+
 ### tail
 
 Gets all items in a list except the first, when empty it returns an empty list.
@@ -111,6 +122,7 @@ Gets all items in a list except the first, when empty it returns an empty list.
 (tail (list 1 2 3)) ; => (2 3)
 (tail (list))       ; => ()
 ```
+
 
 ### cons
 
@@ -121,6 +133,7 @@ Pushes an item onto the front of a list. Does **not** change the original list.
 (cons 1 ())         ; => (1)
 ```
 
+
 ### dict
 
 Creates a dictionary.
@@ -130,6 +143,7 @@ Creates a dictionary.
 (dict :one 1 :two)   ; !> ArgumentError: odd number of arguments for Hash
 ```
 
+
 ### get
 
 Get item by id in a list or dict.
@@ -138,6 +152,7 @@ Get item by id in a list or dict.
 (get 0 (list 1 2 3))            ; => 1
 (get :one (dict :one 1 :two 2)) ; => 1
 ```
+
 
 ### assoc
 
@@ -157,6 +172,7 @@ data                     ; => {"one" 1}
 (assoc (list 1 2 3) :one 1) ; !> TypeError: no implicit conversion of String into Integer
 ```
 
+
 ### dissoc
 
 Remove item from dict. Does **not** change the original dict.
@@ -170,6 +186,7 @@ Remove item from dict. Does **not** change the original dict.
 data                            ; => {"one" 1, "two" 2}
 ```
 
+
 ### not
 
 Returns the inverted truthiness of its argument.
@@ -181,6 +198,7 @@ Returns the inverted truthiness of its argument.
 (not 1)     ; => false
 ```
 
+
 ### println
 
 Prints its argument to stdout and returns `nil`.
@@ -189,6 +207,7 @@ Prints its argument to stdout and returns `nil`.
 (println "Hello World!") ; => nil
 ;; Hello World!
 ```
+
 
 ### apply
 
@@ -200,6 +219,7 @@ Applies a function to a list of arguments as if they were passed in directly.
 ; Equal to this:
 (+ 1 2 3)
 ```
+
 
 ### .
 
@@ -217,6 +237,7 @@ that message.
 # Equal to this Ruby code:
 "01011101".to_i(2)
 ```
+
 
 ### require
 
