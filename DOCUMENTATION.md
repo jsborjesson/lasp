@@ -248,3 +248,298 @@ Loads and runs a Läsp file.
 ```clojure
 (require "./path/to/lasp_file.lasp")
 ```
+
+
+
+## Standard library
+
+### first
+
+Alias of [head](#head)
+
+
+### rest
+
+Alias of [tail](#tail)
+
+
+### inc
+
+Increments its argument by 1.
+
+```clojure
+(inc 5) ; => 6
+```
+
+
+### dec
+
+Decrements its argument by 1.
+
+```clojure
+(dec 5) ; => 4
+```
+
+
+### nil?
+
+Whether its argument is exactly `nil`.
+
+```clojure
+(nil? (list)) ; => false
+(nil? false)  ; => false
+(nil? nil)    ; => true
+```
+
+
+### empty?
+
+Whether the given list is empty.
+
+```clojure
+(empty? (list 1)) ; => false
+(empty? (list))   ; => true
+```
+
+
+### not=
+
+Whether not all of the arguments are equal.
+
+```clojure
+(not= 2 2 3) ; => true
+(not= 2 2 2) ; => false
+```
+
+
+### second
+
+The second element in a list, otherwise `nil`.
+
+```clojure
+(second (list 1 2 3)) ; => 2
+(second (list 1))     ; => nil
+```
+
+
+### mod
+
+The remainder (or modulus) of the first argument divided by the second.
+
+```clojure
+(mod 38 7) ; => 3
+```
+
+
+### complement
+
+Given a function, returns a function that returns the negated result of the given function.
+
+```clojure
+(def not-empty? (complement empty?))
+(not-empty? (list 1)) ; => true
+```
+
+
+### even?
+
+Whether a number is even.
+
+```clojure
+(even? 7) ; => false
+(even? 4) ; => true
+```
+
+
+### odd?
+
+Whether a number is odd.
+
+```clojure
+(odd? 7) ; => true
+(odd? 4) ; => false
+```
+
+
+### zero?
+
+Whether a number is zero.
+
+```clojure
+(zero? 0) ; => true
+(zero? 1) ; => false
+```
+
+
+### len
+
+The length of a list.
+
+```clojure
+(len (list 1 2 3 4 5)) ; => 5
+```
+
+
+### nth
+
+Get item in list by index.
+
+```clojure
+(nth 2 (list 0 1 2 3 4)) ; => 2
+```
+
+
+### last
+
+The last item in a list.
+
+```clojure
+(last (list 0 1 2 3 4)) ; => 4
+```
+
+
+### reverse
+
+Reverse the order of a list.
+
+```clojure
+(reverse (list 1 2 3)) ; => (3 2 1)
+```
+
+
+### map
+
+Map a function over every item in a list.
+
+```clojure
+(map inc (list 1 2 3)) ; => (2 3 4)
+```
+
+
+### reduce
+
+Perform an operation over every item in a list, carrying the result.
+
+Parameters `(func acc coll)`:
+
+1. A 2-arity function taking `(accumulator item)`
+2. The initial value of the accumulator
+3. The collection to reduce over
+
+Each item in the collection is passed to `func` along with the result of the
+previous call as `accumulator`.
+
+```clojure
+(reduce + 0 (list 1 2 3)) ; => 6
+(reduce * 1 (list 5 10)) ; => 50
+```
+
+
+### filter
+
+Returns a collection with all the items that returned true when passed to the
+filter-function.
+
+```clojure
+(filter odd? (list 1 2 3)) ; => (1 3)
+```
+
+
+### sum
+
+The sum of all items in a list.
+
+```clojure
+(sum (list 5 10 15)) ; => 30
+```
+
+
+### take
+
+Take x items from the front of a list.
+
+```clojure
+(take 2 (list 1 2 3 4)) ; => (1 2)
+```
+
+
+### drop
+
+Drop x items from the front of a list.
+
+```clojure
+(drop 2 (list 1 2 3 4)) ; => (3 4)
+```
+
+
+### range
+
+A range of incrementing numbers from a to b-1.
+
+```clojure
+(range 0 10) ; => (0 1 2 3 4 5 6 7 8 9)
+(range 10 0) ; => ()
+```
+
+
+### max
+
+The highest value in a list.
+
+```clojure
+(max (list 4 6 1 5 3)) ; => 6
+```
+
+
+### min
+
+The lowest value in a list
+
+```clojure
+(min (list 4 6 1 5 3)) ; => 1
+```
+
+
+### str->list
+
+Turn a string into a list of its characters.
+
+```clojure
+(str->list "abcdef") ; => ("a" "b" "c" "d" "e" "f")
+```
+
+
+### list->str
+
+Turn a list into a string of its items.
+
+```clojure
+(list->str (list 1 2 3 4)) ; => "1234"
+```
+
+
+### ->str
+
+Turn a value into a string.
+
+```clojure
+(->str 5) ; => "5"
+```
+
+
+### pipe
+
+Pipe the first argument through a number of functions.
+
+```clojure
+(pipe 5 inc inc dec ->str) ; => "6"
+```
+
+
+### reverse-str
+
+Reverse a string.
+
+```clojure
+(reverse-str "hello") ; => "olleh"
+```
