@@ -225,9 +225,11 @@ Applies a function to a list of arguments as if they were passed in directly.
 
 Interoperability operator - calls a Ruby method.
 
-The first argument is the object to send the message to, the second is a string
-with the message name, and all following arguments are passed in as arguments with
-that message.
+Parameters `(object message & args)`:
+
+1. The object to send the message to
+2. A string with the message name
+3. Any number of arguments to be passed along with the message
 
 ```clojure
 (. "01011101" :to_i 2) ; => 93
