@@ -100,7 +100,7 @@ Parameters `(test true-form false-form)`:
 Returns a form as is, without evaluating it.
 
 ```clojure
-f               ; !> KeyError: key not found: f
+f               ; !> Lasp::NameError: f is not present in this context
 (quote f)       ; => f
 (quote (f 1 2)) ; => (f 1 2)
 
