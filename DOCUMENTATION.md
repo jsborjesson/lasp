@@ -162,6 +162,18 @@ Except for the order of evaluation, macros behave just like functions and can
 accept rest-arguments etc. the same way. Just like functions, you mostly want
 to define them before you use them, see [defm](#defm).
 
+**It is important to quote things that you do not want evaluated until after the macro has returned.**
+
+```clojure
+; Note that we want `if` to be evaluated after the macro has returned, so we have to quote it.
+(def reverse-if
+  (macro (test false-form true-form)
+    (list 'if test true-form false-form)))
+
+(if true "yes" "no")         ; => "yes"
+(reverse-if true "yes" "no") ; => "no"
+```
+
 To debug macros and see what they expand to without trying to evaluate the result, see [macroexpand](#macroexpand).
 
 
