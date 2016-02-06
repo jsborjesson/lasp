@@ -733,10 +733,12 @@ body-arguments in a `do`-block.
 (def plus-two
   (fn (x)
     (do
+      (println "doing stuff")
       (+ x 2))))
 
 (defn plus-two
   (x)
+  (println "doing stuff")
   (+ x 2))
 ```
 
