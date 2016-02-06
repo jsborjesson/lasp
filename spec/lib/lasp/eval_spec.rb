@@ -16,6 +16,10 @@ module Lasp
       expect(lasp_eval("(+ 1 (+ 2 2))")).to eq 5
     end
 
+    it "raises a NameError when trying to resolve a non existing symbol" do
+      expect { lasp_eval("not-here") }.to raise_error(Lasp::NameError, /not-here is not present in this context/)
+    end
+
     describe "special forms" do
       describe "def" do
         it "defines values in the environment" do

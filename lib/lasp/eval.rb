@@ -8,7 +8,7 @@ module Lasp
 
   def eval(form, env)
     case form
-    when Symbol then env.fetch(form)
+    when Symbol then resolve_symbol(form, env)
     when Array  then eval_form(form, env)
     else form
     end
@@ -26,6 +26,12 @@ module Lasp
     when :macro then macro_special_form(tail, env)
     else call_function(head, tail, env)
     end
+  end
+
+  def resolve_symbol(symbol, env)
+    env.fetch(symbol)
+  rescue KeyError
+    raise NameError, "#{symbol} is not present in this context"
   end
 
   def call_function(symbol, args, env)
