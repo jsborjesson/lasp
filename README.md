@@ -40,7 +40,7 @@ lasp path/to/program.lasp
 ## The language
 
 Please reference the [documentation](DOCUMENTATION.md) for specific definitions
-and examples of particular functions.
+and examples of all available functions.
 
 ### Examples
 
@@ -80,87 +80,6 @@ Comments start with a `;` and end at the end of a line
 ; This is a comment
 (+ 1 2) ; This is also a comment
 ```
-
-### Functions in corelib
-
-Implemented as Ruby lambdas.
-
-- `+`
-- `-`
-- `*`
-- `/`
-- `<`
-- `>`
-- `<=`
-- `>=`
-- `=`
-- `list`
-- `head`
-- `tail`
-- `cons`
-- `dict`
-- `get`
-- `assoc`
-- `dissoc`
-- `not`
-- `println`
-- `apply`
-- `.`
-- `require`
-
-### Special forms
-
-Implemented as special cases while evaluating.
-
-- `def`
-- `fn`
-- `do`
-- `if`
-- `quote`
-- `macro`
-
-### Functions in stdlib
-
-Implemented in Läsp itself.
-
-- `first` (alias of `head`)
-- `rest` (alias of `tail`)
-- `inc`
-- `dec`
-- `nil?`
-- `empty?`
-- `not=`
-- `second`
-- `mod`
-- `complement`
-- `even?`
-- `odd?`
-- `zero?`
-- `len`
-- `nth`
-- `last`
-- `reverse`
-- `map`
-- `reduce`
-- `filter`
-- `sum`
-- `take`
-- `drop`
-- `range`
-- `max`
-- `min`
-- `ruby-method`
-- `str->list`
-- `list->str`
-- `->str`
-- `pipe`
-- `reverse-str`
-
-## Macros in stdlib
-
-- `defn`
-- `defm`
-- `macroexpand`
 
 ## Developing
 
