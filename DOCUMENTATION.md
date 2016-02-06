@@ -708,3 +708,50 @@ Reverse a string.
 ```clojure
 (reverse-str "hello") ; => "olleh"
 ```
+
+
+### defn
+
+A shorthand macro for defining a function. As a bonus it also wraps
+body-arguments in a `do`-block.
+
+```clojure
+; These are equivalent
+
+(def plus-two
+  (fn (x)
+    (do
+      (+ x 2))))
+
+(defn plus-two
+  (x)
+  (+ x 2))
+```
+
+### defm
+
+A shorthand macro for defining a macro.
+
+```clojure
+; These are equivalent
+
+(def infix
+  (macro (form)
+    (list (second form) (first form) (last form))))
+
+(defm infix (form)
+  (list (second form) (first form) (last form)))
+```
+
+
+### macroexpand
+
+Returns the unevaluated result of a macro, indispensable for debugging.
+
+```clojure
+(defm infix (form)
+  (list (second form) (first form) (last form)))
+
+(infix (4 + 5))               ; => 9
+(macroexpand (infix (4 + 5))) ; => (+ 4 5)
+```
