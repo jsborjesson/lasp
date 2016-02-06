@@ -1,5 +1,170 @@
 # Documentation
 
+## Special forms
+
+### def
+
+Defines a symbol in the global environment.
+
+Parameters `(symbol value)`:
+
+1. The name to refer to the value as a symbol (no other type is allowed).
+2. The value to refer to, can be almost anything.
+
+```clojure
+(def five 5)
+five ; => 5
+```
+
+
+### fn
+
+Creates a function.
+
+Parameters `(parameters body)`
+
+1. A list of parameters that the function shall accept, e.g. `(arg1 arg2)`, `(one two & others)`, `(& args)`
+2. The body of the function, the declared parameters will be available in here.
+
+```clojure
+; This creates a function object, it can be read as "a function of x".
+(fn (x) (+ x 2)) ; => #<Fn (x)>
+
+; Functions are called when placed as the first item in a form:
+((fn (x) (+ x 2)) 40) ; => 42
+```
+
+Most of the time, you'll want to define a function before using it (see [defn](#defn)):
+
+```clojure
+(def plus-two (fn (x) (+ x 2)))
+(plus-two 40) ; => 42
+```
+
+Functions will enforce that the correct number of arguments is passed to them:
+
+```clojure
+; Here we pass 2 arguments to a 1-arity function, and we get an error:
+(plus-two 40 41) ; !> Lasp::ArgumentError: wrong number of arguments (2 for 1)
+```
+
+Functions can also accept any number of extra arguments as a list:
+
+```clojure
+(def show-args
+  (fn (one & others)
+    (list one others)))
+
+; All arguments after the fixed first one will be passed in as a list:
+(show-args 1 2 3) ; => (1 (2 3))
+
+; If only the arguments before the & are passed in, it will be an empty list:
+(show-args 1) ; => (1 ())
+
+; The arguments before the & are compulsory:
+(show-args) ; !> Lasp::ArgumentError: wrong number of arguments (0 for 1+)
+```
+
+
+### do
+
+Executes multiple forms in order and returns the result of the last one.
+This is useful when you need to have a single form that does several things.
+
+```clojure
+; This form will both print "hello" and return 3:
+(do (println "hello") (+ 1 2))
+; hello
+; => 3
+```
+
+### if
+
+If the first form is truthy, evaluates the second form, otherwise it evaluates the third form.
+
+Parameters `(test true-form false-form)`:
+
+1. Always evaluated to test which form to proceed with.
+2. Evaluated only when the first argument is truthy.
+3. Evaluated only when the first argument is falsy.
+
+```clojure
+(if (= 1 1)
+  "yep!"
+  (println "not evaled!")) ; => "yep!"
+```
+
+
+### quote
+
+Returns a form as is, without evaluating it.
+
+```clojure
+f               ; !> KeyError: key not found: f
+(quote f)       ; => f
+(quote (f 1 2)) ; => (f 1 2)
+
+; Quote ignores any extra arguments
+(quote f g)     ; => f
+```
+
+You can also use the shorthand syntax `'` to quote forms:
+
+```clojure
+'f       ; => f
+'(f 1 2) ; => (f 1 2)
+```
+
+There is no difference between lists that you use to store data and the lists
+that make up your program, therefore quoting a form and calling the
+[`list`](#list) function have the same effect:
+
+```clojure
+(list 1 2 3) ; => (1 2 3)
+'(1 2 3)     ; => (1 2 3)
+```
+
+These are both lists to start with, the difference is that the first one is
+evaluated and the `list` function returns a list of its arguments, and the
+second one is simply not evaluated and the list is returned as is.
+
+
+### macro
+
+Macros can restructure forms before they are evaluated - they work like
+functions but accept their arguments before evaluation. Instead the result of
+the macro is evaluated.
+
+Functions:
+
+1. Evaluate all the arguments in order.
+2. Call the function with the arguments.
+3. Return the result.
+
+Macros:
+
+1. Call the macro with the forms it was given as arguments.
+2. Evaluate the return value of the macro.
+3. Return the result.
+
+```clojure
+(def infix
+  ; Accept arguments in natural order for maths operators
+  (macro (form)
+    ; Return a list of arguments in correct prefix-notation to be run
+    (list (second form) (first form) (last form))))
+
+; This will be restructured to `(+ 4 5)` before it is run.
+(infix (4 + 5)) ; => 9
+```
+
+Except for the order of evaluation, macros behave just like functions and can
+accept rest-arguments etc. the same way. Just like functions, you mostly want
+to define them before you use them, see [defm](#defm).
+
+To debug macros and see what they expand to without trying to evaluate the result, see [macroexpand](#macroexpand).
+
+
 ## Core library
 
 ### +
