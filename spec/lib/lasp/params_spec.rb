@@ -71,6 +71,12 @@ module Lasp
     end
 
     describe "validations" do
+      it "fails at instantiation when params are not passed as a list" do
+        expect {
+          described_class.new(:a)
+        }.to raise_error(SyntaxError, /parameters must be a list/)
+      end
+
       it "fails at instantiation when the same parameter name is used more than once" do
         expect {
           described_class.new([:a, :a])

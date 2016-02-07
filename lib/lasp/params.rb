@@ -48,14 +48,21 @@ module Lasp
     private
 
     def validate_params!
+      validate_list!
       validate_single_ampersand!
       validate_single_rest_parameter!
       validate_unique_parameter_names!
     end
 
+    def validate_list!
+      unless Array === param_list
+        fail SyntaxError, "parameters must be a list"
+      end
+    end
+
     def validate_unique_parameter_names!
       unless param_list.uniq.length == param_list.length
-        fail SyntaxError, "parameter names have to be unique."
+        fail SyntaxError, "parameter names have to be unique"
       end
     end
 
