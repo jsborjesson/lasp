@@ -597,18 +597,30 @@ Map a function over every item in a list.
 
 Perform an operation over every item in a list, carrying the result.
 
-Parameters `(func acc coll)`:
+Parameters `(func memo coll)`:
 
-1. A 2-arity function taking `(accumulator item)`
-2. The initial value of the accumulator
-3. The collection to reduce over
+1. A 2-arity function taking a running total and the current item `(memo item)`.
+   The result of this function is passed in as the `memo` the next invokation.
+2. The initial value of `memo`.
+3. The collection to reduce over.
 
 Each item in the collection is passed to `func` along with the result of the
-previous call as `accumulator`.
+previous call.
 
 ```clojure
-(reduce + 0 (list 1 2 3)) ; => 6
-(reduce * 1 (list 5 10)) ; => 50
+; Calculate the sum of a list
+(reduce
+  (fn (memo item) (+ memo item)) ; Add the running total (memo) to this item
+  0                              ; Start counting from zero
+  (list 1 2 3))                  ; These will all be passed in as `item` in turn
+```
+
+Note that `+` already is a function that takes 2 parameters and adds them
+together, so this example can be shortened to just this (this is in fact
+exactly how the [sum](#sum) method in the standard library is implemented):
+
+```clojure
+(reduce + 0 (list 1 2 3))
 ```
 
 
