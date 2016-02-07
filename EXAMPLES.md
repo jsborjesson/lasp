@@ -3,9 +3,9 @@
 A complete list of the available functions can be found in the README.
 
 Since Läsp is very similar to Clojure, you can get pretty decent syntax
-highlighting by just setting your editor to treat .lasp files as .clj
+highlighting by just setting your editor to treat `.lasp` files as `.clj`
 
-In this document output is shown with ;; and normal comments with ;.
+In this document output is shown with `;;` and normal comments with `;`.
 
 ## Data types
 
