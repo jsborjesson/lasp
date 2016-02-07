@@ -254,3 +254,21 @@ x ;; => (1 2 3)
 (def parse_binary (fn (bin) (. bin :to_i 2)))
 (parse_binary "01011101") ;; => 93
 ```
+
+## Macros
+
+Since Läsp code is just lists, it is quite easy to write code that restructures
+those lists before they are executed - this is what macros do. If you would
+like to make a function that takes a form that performs maths in a more natural
+order like `(1 + 2)`, then you can accomplish it with macros:
+
+```clojure
+(def infix
+  (macro (form)
+    (list (second form) (first form) (last form))))
+
+; This will be restructured to `(+ 4 5)` before it is run.
+(infix (4 + 5)) ; => 9
+```
+
+Refer to the [macro](DOCUMENTATION.md#macro) section in the documentation for a more detailed explanation.
