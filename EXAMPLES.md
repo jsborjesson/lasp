@@ -9,7 +9,7 @@ In this document output is shown with ;; and normal comments with ;.
 
 ## Data types
 
-```lisp
+```clojure
 ; Number types
 1
 1.5
@@ -32,7 +32,7 @@ nil
 
 ## Basic function calls
 
-```lisp
+```clojure
 ; inc is a function that increments its argument, and 1 is the single argument
 (inc 1) ;; => 2
 
@@ -57,7 +57,7 @@ nil
 
 ## List operations
 
-```lisp
+```clojure
 (head (list 1 2 3))  ;; => 1
 (first (list 1 2 3)) ;; => 1
 
@@ -91,7 +91,7 @@ nil
 
 ## Dictionaries
 
-```lisp
+```clojure
 ; Create a dict
 (dict :one 1 :two 2) ;; => {"one" 1, "two" 2}
 
@@ -107,7 +107,7 @@ nil
 
 ## More complex functions
 
-```lisp
+```clojure
 ; Apply a function to all items in a list
 (map inc (list 1 2 3)) ;; => (2 3 4)
 
@@ -128,7 +128,7 @@ nil
 
 ## Variables
 
-```lisp
+```clojure
 ; Define and evaluate a variable
 (def x (list 1 2 3))
 x ;; => (1 2 3)
@@ -139,7 +139,7 @@ x ;; => (1 2 3)
 
 ## If
 
-```lisp
+```clojure
 (if (< 4.9 5)
   "under"
   "over")
@@ -154,7 +154,7 @@ x ;; => (1 2 3)
 
 ## Creating functions
 
-```lisp
+```clojure
 ; A function has 2 forms, one with the parameters and one with the body.
 ; Here's a function that adds 10 to its argument
 (fn (x) (+ 10 x))
@@ -201,7 +201,7 @@ x ;; => (1 2 3)
 
 ### Count the amount of 5:s in a list
 
-```lisp
+```clojure
 ; The list we will operate on
 (def fives (list 1 5 2 3 5 8 5)) ; 5 occurs 3 times.
 
@@ -217,7 +217,7 @@ x ;; => (1 2 3)
 
 ### Print a beautiful pyramid
 
-```lisp
+```clojure
 ; Print one row in the pyramid
 (defn print-row
   (length)
@@ -247,7 +247,7 @@ x ;; => (1 2 3)
 
 ## Interoperability
 
-```lisp
+```clojure
 ; The . function allows for Ruby interoperability.
 (. "01011101" :to_i 2) ;; => 93
 
