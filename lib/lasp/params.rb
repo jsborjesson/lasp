@@ -16,7 +16,7 @@ module Lasp
 
     def rest
       unless variadic?
-        fail LaspError, "A non-variadic function does not have rest-arguments"
+        fail LaspError, "a non-variadic function does not have rest-arguments"
       end
       param_list.last
     end
@@ -55,7 +55,7 @@ module Lasp
 
     def validate_unique_parameter_names!
       unless param_list.uniq.length == param_list.length
-        fail SyntaxError, "Parameter names have to be unique."
+        fail SyntaxError, "parameter names have to be unique."
       end
     end
 
@@ -68,7 +68,7 @@ module Lasp
     end
 
     def invalid_rest_argument_usage!
-      fail SyntaxError, "Rest-arguments may only be used once, at the end, with a single binding"
+      fail SyntaxError, "rest-arguments may only be used once, at the end, with a single binding"
     end
   end
 end
