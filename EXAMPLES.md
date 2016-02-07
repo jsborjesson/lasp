@@ -190,6 +190,13 @@ x ;; => (1 2 3)
 (add-first-two 1 2)   ;; => 3
 (add-first-two 1 2 3) ;; => 3
 (add-first-two 1)     ;; !> wrong number of arguments (1 for 2+)
+
+
+; Defining a function is a very common thing to do, therefore there is a shorthand.
+; This will do the same thing as the example above:
+(defn add-first-two
+  (a b & args)
+  (+ a b))
 ```
 
 ### Count the amount of 5:s in a list
@@ -212,18 +219,18 @@ x ;; => (1 2 3)
 
 ```lisp
 ; Print one row in the pyramid
-(def print-row
-  (fn (length)
-    (println (* "#" length)))) ; We use the fact that the host platform (Ruby) can multiply strings
+(defn print-row
+  (length)
+  (println (* "#" length))) ; We use the fact that the host platform (Ruby) can multiply strings
 
 ; Print the entire pyramid
-(def print-pyramid
-  (fn (height current-width)
+(defn print-pyramid
+  (height current-width)
     (if (= current-width height)
       nil
       (do
         (print-row current-width)
-        (print-pyramid height (inc current-width))))))
+        (print-pyramid height (inc current-width)))))
 
 ; Do it!
 (print-pyramid 10 1)
