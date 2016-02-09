@@ -69,7 +69,10 @@
 ; Reverses a list
 (def reverse
   (fn (coll)
-    (reduce (fn (acc item) (cons item acc)) (list) coll)))
+    (reduce
+      (fn (acc item) (cons item acc))
+      (list)
+      coll)))
 
 ; Apply f to all items in list
 (def map
