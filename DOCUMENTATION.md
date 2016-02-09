@@ -16,6 +16,11 @@ Parameters `(symbol value)`:
 five ; => 5
 ```
 
+You **can** redefine symbols at any time, which is especially handy when
+playing around in the REPL, however you **should** in most cases only define
+something once and treat it as a constant for all intents and purposes. To
+create a local binding, use [let](#let) instead.
+
 
 ### fn
 
