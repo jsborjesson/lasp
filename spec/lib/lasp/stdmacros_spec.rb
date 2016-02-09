@@ -18,6 +18,33 @@ describe "stdmacros" do
     expect(given).to eq expected
   end
 
+  describe "let" do
+    it "produces the expected form" do
+      given    = macroexpand("(let (x 1 y 2) (+ x y))")
+      expected = [:apply, [:fn, [:x, :y], [:do, [:+, :x, :y]]], [:list, 1, 2]]
+      expect(given).to eq expected
+    end
+
+    it "creates local bindings" do
+      code = <<-LASP
+        (let (one 1
+              two (+ 1 1))
+          (+ one two))
+      LASP
+      expect(Lasp::execute(code)).to eq 3
+    end
+
+    it "does not allow an uneven number of bindings" do
+      code = <<-LASP
+        (let (one 1
+              two 2
+              three)
+          (+ one two))
+      LASP
+      expect { Lasp::execute(code) }.to raise_error(Lasp::ArgumentError)
+    end
+  end
+
   it "macroexpand" do
     given    = macroexpand("(macroexpand (defn f (x) (+ 1 x)))")
     expected = [:apply, :defn, [:quote, [:f, [:x], [:+, 1, :x]]]]

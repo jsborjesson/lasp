@@ -768,6 +768,7 @@ body-arguments in a `do`-block.
   (+ x 2))
 ```
 
+
 ### defm
 
 A shorthand macro for defining a macro.
@@ -782,6 +783,41 @@ A shorthand macro for defining a macro.
 (defm infix (form)
   (list (second form) (first form) (last form)))
 ```
+
+
+### let
+
+Creates local variable bindings.
+
+Parameters `(bindings & body)`:
+
+1. Any number of bindings consisting of a symbol directly followed by a value
+   to bind it to. Declared in the same fashion as [dict](#dict) but with
+   symbols instead of strings.
+2. The body in which the bindings are in scope.
+
+Here `one` is bound to `1` and `two` is bound to `2`, they are available in the
+body of the `let` and then go out of scope.
+
+```clojure
+; Here we put a newline after every pair to clarify their connection:
+(let (one 1
+      two 2)
+  (+ one two)) ; => 3
+
+; The bindings are no longer in scope.
+one ; !> Lasp::NameError: one is not present in this context
+```
+
+There has to be an even number of bindings, when passed an uneven amount, `let`
+produces this error:
+
+```clojure
+(let (one 1 two 2 three) (+ one two)) ; !> Lasp::ArgumentError: wrong number of arguments (2 for 3)
+```
+
+It can be thought of as if `1` and `2` are arguments and `(one two three)` are
+the parameters you are trying to bind them to.
 
 
 ### macroexpand
