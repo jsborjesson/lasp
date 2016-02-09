@@ -1,5 +1,18 @@
 # Documentation
 
+## Data types
+
+| Data type | Example literals       | Description                             |
+| :---      | :---                   | :---                                    |
+| integer   | `1`, `-42`, `0`        | A whole number of any size              |
+| float     | `3.56`, `-0.5`         | A decimal number of any size            |
+| boolean   | `true`, `false`        | The value `true` or `false`             |
+| nil       | `nil`                  | The "null" or "no value" type           |
+| string    | `"a string"`, `:str`   | Text of any length                      |
+| list      | `(list 1 2 3.5)`       | A heterogeneous list of other types     |
+| dict      | `(dict :one 1 :two 2)` | A dictionary of keys that map to values |
+
+
 ## Special forms
 
 ### def

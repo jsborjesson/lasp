@@ -60,17 +60,6 @@ x ;; => 6
 (inc 5) ;; => 6
 ```
 
-### Data types
-
-Supports these datatypes (implemented as their Ruby counterparts)
-
-- integer
-- float
-- boolean
-- nil
-- string
-- list
-- dict
 
 ### Comments
 
