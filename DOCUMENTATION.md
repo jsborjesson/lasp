@@ -687,10 +687,19 @@ The highest value in a list.
 
 ### min
 
-The lowest value in a list
+The lowest value in a list.
 
 ```clojure
 (min (list 4 6 1 5 3)) ; => 1
+```
+
+### every
+
+Take a list of every Nth item in a list.
+
+```clojure
+(every 2 (list 1 2 3 4 5)) ; => (1 3 5)
+(every 3 (list 1 2 3 4 5)) ; => (1 4)
 ```
 
 

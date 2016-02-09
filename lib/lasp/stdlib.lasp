@@ -141,6 +141,23 @@
       (head coll)
       (tail coll))))
 
+; The naming suggests that it is an implementation detail of `every`, that
+; needs to be named to allow recursion. If it has value in itself, it should be
+; renamed and documented.
+(def every*
+  (fn (n coll acc)
+    (if (empty? coll)
+      acc
+      (every*
+        n
+        (drop n coll)
+        (cons (first coll) acc)))))
+
+; Every Nth item in list
+(def every
+  (fn (n coll)
+    (reverse (every* n coll (list)))))
+
 ; Takes a method from Ruby-land and returns a Lasp function
 (def ruby-method
   (fn (meth)

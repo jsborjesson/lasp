@@ -113,6 +113,11 @@ describe "stdlib" do
     expect(Lasp::execute("(min (list 4 6 1 5 3))")).to eq 1
   end
 
+  it "every" do
+    expect(Lasp::execute('(every 2 (list 1 2 3 4 5))')).to eq [1, 3, 5]
+    expect(Lasp::execute('(every 3 (list 1 2 3 4 5))')).to eq [1, 4]
+  end
+
   it "str->list" do
     expect(Lasp::execute('(str->list "abcdef")')).to eq %w[ a b c d e f ]
   end
