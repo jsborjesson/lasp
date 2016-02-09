@@ -5,164 +5,145 @@
 (def rest tail)
 
 ; Increment a number by one
-(def inc (fn (x) (+ x 1)))
+(defn inc (x) (+ x 1))
 
 ; Decrement a number by one
-(def dec (fn (x) (- x 1)))
+(defn dec (x) (- x 1))
 
 ; Is it nil?
-(def nil? (fn (arg) (= nil arg)))
+(defn nil? (arg) (= nil arg))
 
 ; If a list is empty
-(def empty?
-  (fn (coll)
-    (nil? (head coll))))
+(defn empty?
+  (coll)
+  (nil? (head coll)))
 
 ; If all arguments are not equal
-(def not=
-  (fn (& args)
-    (not (apply = args))))
+(defn not= (& args)
+  (not (apply = args)))
 
 ; The second item in a list
-(def second
-  (fn (coll)
-    (head (tail coll))))
+(defn second (coll)
+  (head (tail coll)))
 
 ; Modulus
-(def mod
-  (fn (x y) (- x (* (/ x y) y))))
+(defn mod (x y)
+  (- x (* (/ x y) y)))
 
 ; Returns a function that does the opposite of the given function
-(def complement
-  (fn (f) (fn (x) (not (f x)))))
+(defn complement (f)
+  (fn (x) (not (f x))))
 
 ; If a number is even
-(def even?
-  (fn (x) (zero? (mod x 2))))
+(defn even? (x)
+  (zero? (mod x 2)))
 
 ; If a number is odd
 (def odd? (complement even?))
 
 ; If a number is zero
-(def zero?
-  (fn (x) (= 0 x)))
+(defn zero? (x)
+  (= 0 x))
 
 ; Length of a list
-(def len
-  (fn (coll)
-    (if (empty? coll)
-      0
-      (inc (len (tail coll))))))
+(defn len (coll)
+  (if (empty? coll)
+    0
+    (inc (len (tail coll)))))
 
 ; Gets an item in a list by index
-(def nth
-  (fn (index coll)
-    (if (zero? index)
-      (head coll)
-      (nth (dec index) (tail coll)))))
+(defn nth (index coll)
+  (if (zero? index)
+    (head coll)
+    (nth (dec index) (tail coll))))
 
 ; Last item in list
-(def last
-  (fn (coll)
-    (nth (dec (len coll)) coll)))
+(defn last (coll)
+  (nth (dec (len coll)) coll))
 
 ; Reverses a list
-(def reverse
-  (fn (coll)
-    (reduce
-      (fn (acc item) (cons item acc))
-      (list)
-      coll)))
+(defn reverse (coll)
+  (reduce
+    (fn (acc item) (cons item acc))
+    (list)
+    coll))
 
 ; Apply f to all items in list
-(def map
-  (fn (f coll)
-    (if (nil? (head coll))
-      coll
-      (cons
-        (f (head coll))
-        (map f (tail coll))))))
+(defn map (f coll)
+  (if (nil? (head coll))
+    coll
+    (cons
+      (f (head coll))
+      (map f (tail coll)))))
 
 ; Go through a list passing an accumulator and each item of the list through f
-; f(acc item)
-(def reduce
-  (fn (f acc coll)
-    (if (empty? coll)
-      acc
-      (reduce f (f acc (head coll)) (tail coll)))))
+; f has the signature (acc item)
+(defn reduce (f acc coll)
+  (if (empty? coll)
+    acc
+    (reduce f (f acc (head coll)) (tail coll))))
 
 ; Filter a list of items based on a function
-(def filter
-  (fn (f coll)
-    (reduce
-      (fn (acc item) (if (f item) (cons item acc) acc))
-      (list)
-      (reverse coll))))
+(defn filter (f coll)
+  (reduce
+    (fn (acc item) (if (f item) (cons item acc) acc))
+    (list)
+    (reverse coll)))
 
 ; Sum of all items in a list
-(def sum
-  (fn (coll)
-    (reduce + 0 coll)))
+(defn sum (coll)
+  (reduce + 0 coll))
 
-; Take x items from list
-(def take
-  (fn (num coll)
-    (if (zero? num)
-      (list)
-      (cons (head coll) (take (dec num) (tail coll))))))
+; Take n items from list
+(defn take (n coll)
+  (if (zero? n)
+    (list)
+    (cons (head coll) (take (dec n) (tail coll)))))
 
 ; Drop x items from list
-(def drop
-  (fn (num coll)
-    (if (zero? num)
-      coll
-      (drop (dec num) (tail coll)))))
+(defn drop (num coll)
+  (if (zero? num)
+    coll
+    (drop (dec num) (tail coll))))
 
 ; Exclusive range
-(def range
-  (fn (from to)
-    (if (>= from to)
-      (list)
-      (cons from (range (inc from) to)))))
+(defn range (from to)
+  (if (>= from to)
+    (list)
+    (cons from (range (inc from) to))))
 
 ; Highest value in list
-(def max
-  (fn (coll)
-    (reduce
-      (fn (acc item) (if (< acc item) item acc))
-      (head coll)
-      (tail coll))))
+(defn max (coll)
+  (reduce
+    (fn (acc item) (if (< acc item) item acc))
+    (head coll)
+    (tail coll)))
 
 ; Lowest value in list
-(def min
-  (fn (coll)
-    (reduce
-      (fn (acc item) (if (> acc item) item acc))
-      (head coll)
-      (tail coll))))
+(defn min (coll)
+  (reduce
+    (fn (acc item) (if (> acc item) item acc))
+    (head coll)
+    (tail coll)))
 
 ; The naming suggests that it is an implementation detail of `every`, that
 ; needs to be named to allow recursion. If it has value in itself, it should be
 ; renamed and documented.
-(def every*
-  (fn (n coll acc)
-    (if (empty? coll)
-      acc
-      (every*
-        n
-        (drop n coll)
-        (cons (first coll) acc)))))
+(defn every* (n coll acc)
+  (if (empty? coll)
+    acc
+    (every*
+      n
+      (drop n coll)
+      (cons (first coll) acc))))
 
 ; Every Nth item in list
-(def every
-  (fn (n coll)
-    (reverse (every* n coll (list)))))
+(defn every (n coll)
+  (reverse (every* n coll (list))))
 
 ; Takes a method from Ruby-land and returns a Lasp function
-(def ruby-method
-  (fn (meth)
-    (fn (arg)
-      (. arg meth))))
+(defn ruby-method (meth)
+  (fn (arg) (. arg meth)))
 
 ; Convert string to list
 (def str->list (ruby-method :chars))
@@ -174,15 +155,13 @@
 (def ->str (ruby-method :to_s))
 
 ; Pass a value in order through a list of functions
-(def pipe
-  (fn (item & fns)
-    (if (empty? fns)
-      item
-      ; Note that you need to take special care when recursing with rest
-      ; arguments, hence the use of apply.
-      (apply pipe (cons ((head fns) item) (tail fns))))))
+(defn pipe (item & fns)
+  (if (empty? fns)
+    item
+    ; Note that you need to take special care when recursing with rest
+    ; arguments, hence the use of apply.
+    (apply pipe (cons ((head fns) item) (tail fns)))))
 
 ; Reverses a string
-(def reverse-str
-  (fn (str)
-    (pipe str str->list reverse list->str)))
+(defn reverse-str (str)
+  (pipe str str->list reverse list->str))
