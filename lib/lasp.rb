@@ -1,6 +1,6 @@
 require "lasp/version"
-require "lasp/eval"
 require "lasp/parser"
+require "lasp/interpreter"
 
 module Lasp
   STDLIB_PATH = File.expand_path("../lasp/stdlib.lasp", __FILE__)
@@ -12,7 +12,7 @@ module Lasp
   end
 
   def execute(program, env = global_env)
-    Lasp::eval(Parser.new.parse(program), env)
+    Interpreter.eval(Parser.parse(program), env)
   end
 
   def load_stdlib!

@@ -1,13 +1,13 @@
-require "lasp/eval"
+require "lasp/interpreter"
 require "lasp/parser"
 require "tempfile"
 
 def lasp_eval(program, env = Lasp::global_env)
-  Lasp::eval(Lasp::Parser.new.parse(program), env)
+  Lasp::Interpreter.eval(Lasp::Parser.parse(program), env)
 end
 
 module Lasp
-  describe "eval" do
+  describe Interpreter do
     it "handles simple forms" do
       expect(lasp_eval("(+ 1 1)")).to eq 2
     end

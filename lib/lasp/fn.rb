@@ -1,4 +1,4 @@
-require "lasp/eval"
+require "lasp/interpreter"
 require "lasp/params"
 require "lasp/errors"
 
@@ -13,7 +13,7 @@ module Lasp
     end
 
     def call(*args)
-      Lasp::eval(body, env_with_args(args))
+      Interpreter.eval(body, env_with_args(args))
     end
 
     def inspect

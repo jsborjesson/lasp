@@ -1,5 +1,9 @@
 module Lasp
   class Parser
+    def self.parse(program)
+      new.parse(program)
+    end
+
     def parse(program)
       build_ast(tokenize(sanitize(program)))
     end
