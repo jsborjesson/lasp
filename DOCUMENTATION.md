@@ -2,16 +2,16 @@
 
 ## Data types
 
-| Data type | Example literals       | Description                                                         |
-| :---      | :---                   | :---                                                                |
-| integer   | `1`, `-42`, `0`        | A whole number of any size                                          |
-| float     | `3.56`, `-0.5`         | A decimal number of any size                                        |
-| boolean   | `true`, `false`        | The value `true` or `false`                                         |
-| nil       | `nil`                  | The "null" or "no value" type                                       |
-| string    | `"a string"`, `:str`   | Text of any length                                                  |
-| list      | `(list 1 2 3.5)`       | A heterogeneous list of other types                                 |
-| dict      | `(dict :one 1 :two 2)` | A dictionary of keys that map to values                             |
-| symbol    | `symbol`, `'symbol`    | Used to name other things, but can be obtained in itself by quoting |
+| Data type | Example literals       | Description                                                                                                 |
+| :---      | :---                   | :---                                                                                                        |
+| integer   | `1`, `-42`, `0`        | A whole number of any size                                                                                  |
+| float     | `3.56`, `-0.5`         | A decimal number of any size                                                                                |
+| boolean   | `true`, `false`        | The value `true` or `false`                                                                                 |
+| nil       | `nil`                  | The "null" or "no value" type                                                                               |
+| string    | `"a string"`, `:str`   | Text of any length. When containing no whitespace, it can be written with a leading colon (handy in dicts)  |
+| list      | `(list 1 2 3.5)`       | A heterogeneous (allows mixed types) list of values, can be created with the [list](#list) function         |
+| dict      | `(dict :one 1 :two 2)` | A dictionary (a.k.a. hash-map) of keys that map to values, can be created with the [dict](#dict) function   |
+| symbol    | `symbol`, `'symbol`    | Used to name other things (see [def](#def)), but can be obtained in itself by quoting (see [quote](#quote)) |
 
 
 ## Special forms
@@ -297,6 +297,9 @@ Creates a list of all of its arguments.
 
 ```clojure
 (list 1 2 3) ; => (1 2 3)
+
+; Allows mixing arguments in any way
+(list true nil :thing) ; => (true nil "thing")
 ```
 
 
@@ -332,10 +335,19 @@ Pushes an item onto the front of a list. Does **not** change the original list.
 
 ### dict
 
-Creates a dictionary.
+Creates a dictionary. The entries are given in pairs directly following each
+other, you can use newlines to make this clearer. An uneven number of arguments
+will produce an error. To alter the contents, see [get](#get), [assoc](#assoc)
+and [dissoc](#dissoc).
 
 ```clojure
 (dict :one 1 :two 2) ; => {"one" 1, "two" 2}
+
+; Use whitespace to make the keys and values look paired together
+(dict :one   1
+      :two   2
+      :three 3) ; => {"one" 1, "two" 2, "three" 3}
+
 (dict :one 1 :two)   ; !> ArgumentError: odd number of arguments for Hash
 ```
 
