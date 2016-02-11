@@ -1,4 +1,3 @@
-require "lasp/env"
 require "lasp/fn"
 require "lasp/macro"
 require "lasp/errors"
@@ -76,6 +75,5 @@ module Lasp
       params, func = form
       Macro.new(params, func, env)
     end
-
   end
 end

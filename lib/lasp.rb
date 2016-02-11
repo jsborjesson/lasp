@@ -1,4 +1,5 @@
 require "lasp/version"
+require "lasp/env"
 require "lasp/parser"
 require "lasp/interpreter"
 
