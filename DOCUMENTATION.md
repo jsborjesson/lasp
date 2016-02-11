@@ -2,86 +2,16 @@
 
 ## Data types
 
-### integer
-
-A whole number of any size.
-
-```clojure
-1
--42
-0
-```
-
-### float
-
-A decimal number of any size.
-
-```clojure
-3.56
--0.5
-```
-
-### boolean
-
-The value `true` or `false`.
-
-```clojure
-true
-false
-```
-
-
-### nil
-
-The "null" or "no value" type.
-
-```clojure
-nil
-```
-
-
-### string
-
-Text of any length. When not containing any whitespace characters, it may be
-written with a prefixed colon instead of double quotes as a shorthand - this
-makes for a nicer way of creating [dict](#dict)s for example.
-
-```clojure
-"a string"
-:shorthand-string
-```
-
-
-### list (type)
-
-A heterogeneous (can contain mixed types) list of items. Created by the [list](#list) function.
-
-```clojure
-(list 1 2 3.5)
-```
-
-### dict (type)
-
-A dictionary of keys that map to values. Created by the [dict](#dict) function.
-
-```clojure
-(dict :one 1 :two 2)
-```
-
-### symbol
-
-Most often used to name other things (see [def](#def)), but can be obtained in itself by quoting it (see [quote](#quote)).
-
-```clojure
-; Nothing has been defined as `symbol`:
-symbol    ; !> Lasp::NameError: symbol is not present in this context
-
-; reverse is a method in the standard library, here it evaluates to a reference to that function:
-reverse   ; => #<Fn (coll)>
-
-; You can get the symbol in itself by quoting it:
-'symbol   ; => symbol
-```
+| Data type | Example literals       | Description                                                         |
+| :---      | :---                   | :---                                                                |
+| integer   | `1`, `-42`, `0`        | A whole number of any size                                          |
+| float     | `3.56`, `-0.5`         | A decimal number of any size                                        |
+| boolean   | `true`, `false`        | The value `true` or `false`                                         |
+| nil       | `nil`                  | The "null" or "no value" type                                       |
+| string    | `"a string"`, `:str`   | Text of any length                                                  |
+| list      | `(list 1 2 3.5)`       | A heterogeneous list of other types                                 |
+| dict      | `(dict :one 1 :two 2)` | A dictionary of keys that map to values                             |
+| symbol    | `symbol`, `'symbol`    | Used to name other things, but can be obtained in itself by quoting |
 
 
 ## Special forms
