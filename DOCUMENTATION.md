@@ -417,6 +417,17 @@ Prints its argument to stdout and returns `nil`.
 ```
 
 
+### readln
+
+Reads one line of input from the terminal. Halts the program until a newline
+has been received, the newline character will **not** be part of the returned
+string.
+
+```clojure
+(def input (readln)) ; Will pause here until the user has entered something
+```
+
+
 ### apply
 
 Applies a function to a list of arguments as if they were passed in directly.

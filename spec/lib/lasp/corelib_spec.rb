@@ -141,6 +141,11 @@ module Lasp
       expect(STDOUT).to have_received(:puts).with(5)
     end
 
+    it "readln" do
+      allow(STDIN).to receive(:gets).and_return("test input\n")
+      expect(CORELIB[:readln].call).to eq "test input"
+    end
+
     it "apply" do
       plus = CORELIB[:+]
       expect(CORELIB[:apply].(plus, [1, 2, 3])).to eq 6
