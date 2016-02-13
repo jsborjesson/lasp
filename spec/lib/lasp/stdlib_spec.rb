@@ -137,4 +137,11 @@ describe "stdlib" do
   it "reverse-str" do
     expect(Lasp::execute('(reverse-str "hello")')).to eq "olleh"
   end
+
+  it "prompt" do
+    expect(STDOUT).to receive(:print).with("Question: ")
+    allow(STDIN).to receive(:gets).and_return("answer\n")
+
+    expect(Lasp::execute('(prompt "Question: ")')).to eq "answer"
+  end
 end

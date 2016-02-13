@@ -165,3 +165,8 @@
 ; Reverses a string
 (defn reverse-str (str)
   (pipe str str->list reverse list->str))
+
+; Reads an answer to a question
+(defn prompt (question)
+  (print question)
+  (readln))

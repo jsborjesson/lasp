@@ -798,6 +798,17 @@ Reverse a string.
 ```
 
 
+### prompt
+
+Request an answer to a question from a terminal user.
+
+```clojure
+(prompt "yes/no: ")
+; The program halts waiting for the user, if she typed y and then pressed enter:
+; => "y"
+```
+
+
 ### defn
 
 A shorthand macro for defining a function. As a bonus it also wraps
