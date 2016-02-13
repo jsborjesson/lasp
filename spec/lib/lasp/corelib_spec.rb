@@ -135,6 +135,12 @@ module Lasp
       expect(CORELIB[:not].(true)).to eq false
     end
 
+    it "print" do
+      allow(STDOUT).to receive(:print)
+      CORELIB[:print].(5)
+      expect(STDOUT).to have_received(:print).with(5)
+    end
+
     it "println" do
       allow(STDOUT).to receive(:puts)
       CORELIB[:println].(5)

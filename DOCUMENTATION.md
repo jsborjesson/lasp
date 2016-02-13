@@ -407,9 +407,22 @@ Returns the inverted truthiness of its argument.
 ```
 
 
-### println
+### print
 
 Prints its argument to stdout and returns `nil`.
+
+```clojure
+(do
+  (print "Hello ")
+  (print "world!")) ; => nil
+
+;; Hello world!
+```
+
+
+### println
+
+Prints its argument and a newline to stdout and returns `nil`.
 
 ```clojure
 (println "Hello World!") ; => nil
