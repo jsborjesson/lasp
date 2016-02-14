@@ -145,14 +145,14 @@
 (defn ruby-method (meth)
   (fn (arg) (. arg meth)))
 
-; Convert string to list
-(def str->list (ruby-method :chars))
+; Convert text to list
+(def text->list (ruby-method :chars))
 
-; Convert list to string
-(def list->str (ruby-method :join))
+; Convert list to text
+(def list->text (ruby-method :join))
 
-; Convert most things to a string
-(def ->str (ruby-method :to_s))
+; Convert most things to a text
+(def ->text (ruby-method :to_s))
 
 ; Pass a value in order through a list of functions
 (defn pipe (item & fns)
@@ -162,9 +162,9 @@
     ; arguments, hence the use of apply.
     (apply pipe (cons ((head fns) item) (tail fns)))))
 
-; Reverses a string
-(defn reverse-str (str)
-  (pipe str str->list reverse list->str))
+; Reverses text
+(defn reverse-text (text)
+  (pipe text text->list reverse list->text))
 
 ; Reads an answer to a question
 (defn prompt (question)

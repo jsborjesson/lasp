@@ -8,7 +8,7 @@
 | float     | `3.56`, `-0.5`         | A decimal number of any size                                                                                |
 | boolean   | `true`, `false`        | The value `true` or `false`                                                                                 |
 | nil       | `nil`                  | The "null" or "no value" type                                                                               |
-| string    | `"a string"`, `:str`   | Text of any length. When containing no whitespace, it can be written with a leading colon (handy in dicts)  |
+| text      | `"some text"`, `:text` | Text of any length. When containing no whitespace, it can be written with a leading colon (handy in dicts)  |
 | list      | `(list 1 2 3.5)`       | A heterogeneous (allows mixed types) list of values, can be created with the [list](#list) function         |
 | dict      | `(dict :one 1 :two 2)` | A dictionary (a.k.a. hash-map) of keys that map to values, can be created with the [dict](#dict) function   |
 | symbol    | `symbol`, `'symbol`    | Used to name other things (see [def](#def)), but can be obtained in itself by quoting (see [quote](#quote)) |
@@ -434,7 +434,7 @@ Prints its argument and a newline to stdout and returns `nil`.
 
 Reads one line of input from the terminal. Halts the program until a newline
 has been received, the newline character will **not** be part of the returned
-string.
+text.
 
 ```clojure
 (def input (readln)) ; Will pause here until the user has entered something
@@ -460,7 +460,7 @@ Interoperability operator - calls a Ruby method.
 Parameters `(object message & args)`:
 
 1. The object to send the message to
-2. A string with the message name
+2. A text with the message name
 3. Any number of arguments to be passed along with the message
 
 ```clojure
@@ -753,30 +753,30 @@ Take a list of every Nth item in a list.
 ```
 
 
-### str->list
+### text->list
 
-Turn a string into a list of its characters.
+Turn a text into a list of its characters.
 
 ```clojure
-(str->list "abcdef") ; => ("a" "b" "c" "d" "e" "f")
+(text->list "abcdef") ; => ("a" "b" "c" "d" "e" "f")
 ```
 
 
-### list->str
+### list->text
 
-Turn a list into a string of its items.
+Turn a list into a text of its items.
 
 ```clojure
-(list->str (list 1 2 3 4)) ; => "1234"
+(list->text (list 1 2 3 4)) ; => "1234"
 ```
 
 
-### ->str
+### ->text
 
-Turn a value into a string.
+Turn a value into a text.
 
 ```clojure
-(->str 5) ; => "5"
+(->text 5) ; => "5"
 ```
 
 
@@ -785,16 +785,16 @@ Turn a value into a string.
 Pipe the first argument through a number of functions.
 
 ```clojure
-(pipe 5 inc inc dec ->str) ; => "6"
+(pipe 5 inc inc dec ->text) ; => "6"
 ```
 
 
-### reverse-str
+### reverse-text
 
-Reverse a string.
+Reverse text.
 
 ```clojure
-(reverse-str "hello") ; => "olleh"
+(reverse-text "hello") ; => "olleh"
 ```
 
 
@@ -854,7 +854,7 @@ Parameters `(bindings & body)`:
 
 1. Any number of bindings consisting of a symbol directly followed by a value
    to bind it to. Declared in the same fashion as [dict](#dict) but with
-   symbols instead of strings.
+   symbols instead of text.
 2. The body in which the bindings are in scope.
 
 Here `one` is bound to `1` and `two` is bound to `2`, they are available in the

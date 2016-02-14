@@ -118,24 +118,24 @@ describe "stdlib" do
     expect(Lasp::execute('(every 3 (list 1 2 3 4 5))')).to eq [1, 4]
   end
 
-  it "str->list" do
-    expect(Lasp::execute('(str->list "abcdef")')).to eq %w[ a b c d e f ]
+  it "text->list" do
+    expect(Lasp::execute('(text->list "abcdef")')).to eq %w[ a b c d e f ]
   end
 
-  it "list->str" do
-    expect(Lasp::execute("(list->str (list 1 2 3 4))")).to eq "1234"
+  it "list->text" do
+    expect(Lasp::execute("(list->text (list 1 2 3 4))")).to eq "1234"
   end
 
-  it "->str" do
-    expect(Lasp::execute("(->str 5)")).to eq "5"
+  it "->text" do
+    expect(Lasp::execute("(->text 5)")).to eq "5"
   end
 
   it "pipe" do
-    expect(Lasp::execute("(pipe 5 inc inc dec ->str)")).to eq "6"
+    expect(Lasp::execute("(pipe 5 inc inc dec ->text)")).to eq "6"
   end
 
-  it "reverse-str" do
-    expect(Lasp::execute('(reverse-str "hello")')).to eq "olleh"
+  it "reverse-text" do
+    expect(Lasp::execute('(reverse-text "hello")')).to eq "olleh"
   end
 
   it "prompt" do

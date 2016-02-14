@@ -19,10 +19,10 @@ true
 false
 nil
 
-; Strings
+; Text
 "hello world!" ;; => "hello world!"
 
-; Symbol-style strings (not its own type)
+; Symbol-style text (not its own type)
 :hey ;; => "hey"
 
 ; Lists
@@ -221,7 +221,7 @@ x ;; => (1 2 3)
 ; Print one row in the pyramid
 (defn print-row
   (length)
-  (println (* "#" length))) ; We use the fact that the host platform (Ruby) can multiply strings
+  (println (* "#" length))) ; We use the fact that the host platform (Ruby) can multiply text
 
 ; Print the entire pyramid
 (defn print-pyramid
