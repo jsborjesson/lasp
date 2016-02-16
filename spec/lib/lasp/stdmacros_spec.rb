@@ -35,7 +35,7 @@ describe "stdmacros" do
   describe "let" do
     it "produces the expected form" do
       given    = macroexpand("(let (x 1 y 2) (+ x y))")
-      expected = [:apply, [:fn, [:x, :y], [:do, [:+, :x, :y]]], [:list, 1, 2]]
+      expected = [[:fn, [:x], [[:fn, [:y], [:do, [:+, :x, :y]]], 2]], 1]
       expect(given).to eq expected
     end
 
@@ -48,14 +48,34 @@ describe "stdmacros" do
       expect(Lasp::execute(code)).to eq 3
     end
 
-    it "does not allow an uneven number of bindings" do
+    it "sets an empty binding to nil" do
       code = <<-LASP
         (let (one 1
               two 2
               three)
-          (+ one two))
+          (+ one two)
+          three)
       LASP
-      expect { Lasp::execute(code) }.to raise_error(Lasp::ArgumentError)
+      expect(Lasp::execute(code)).to eq nil
+    end
+
+    it "allows access to previous bindings" do
+      code = <<-LASP
+        (let (one 1
+              two (+ one 1))
+          two)
+      LASP
+
+      expect(Lasp::execute(code)).to eq 2
+    end
+
+    it "takes the bindings out of scope as soon as the let ends" do
+      code = <<-LASP
+        (do
+          (let (one 1))
+          (println one))
+      LASP
+      expect { Lasp::execute(code) }.to raise_error(Lasp::NameError, /one/)
     end
   end
 

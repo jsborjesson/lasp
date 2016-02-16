@@ -8,6 +8,7 @@
          (list 'def name
                (list 'macro params body))))
 
+
 ; Shorthand for defining functions
 ;
 ;   (defn f (x) (+ x 1))
@@ -18,27 +19,35 @@
   (list 'def name
         (list 'fn params (cons 'do body))))
 
+
 ; Creates local bindings.
 ;
-; It does this by rewriting the form as a function, declaring parameters and
-; instantly executing the function passing in corresponding arguments. This
-; should be considered an implementation detail, let can (and should) be used
-; without knowledge or regard to that it creates a function behind the scenes.
+; It does this by (ab)using closures. It rewrites the form as a recursively
+; nested tree of functions, declaring parameters and instantly executing the
+; function passing in corresponding arguments. This should be considered an
+; implementation detail, let can (and should) be used without knowledge or
+; regard to that it creates closures behind the scenes.
 
 ; Example:
 ;     (let (one 1
-;           two 2)
-;       (+ one two)) ; => 3
+;           two (+ one 1)) ; Previous bindings are available
+;       (+ one two))
+;     ; => 3
 ;
 ; expands to:
-;     (apply (fn (one two) (do (+ one two))) (list 1 2))
+;     ((fn (one) ((fn (two) (do (+ one two))) (+ one 1))) 1)
+(defn let*
+  (bindings body)
+  (if (empty? bindings)
+    (cons 'do body)
+    (list
+      (list 'fn (list (first bindings)) (let* (drop 2 bindings) body))
+      (second bindings))))
+
 (defm let
   (bindings & body)
-  (list 'apply
-        (list 'fn
-              (every 2 bindings)                 ; Parameters
-              (cons 'do body))
-        (cons 'list (every 2 (tail bindings))))) ; Arguments
+  (let* bindings body))
+
 
 ; See unevaluated form the macro expands to for debugging macros
 ;

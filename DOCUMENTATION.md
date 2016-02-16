@@ -870,17 +870,19 @@ body of the `let` and then go out of scope.
 
 ; The bindings are no longer in scope.
 one ; !> Lasp::NameError: one is not present in this context
+
+
+; Bindings can be used directly in subsequent bindings
+(let (one 1
+      two (+ one 1))
+  (+ one two)) ; => 3
 ```
 
-There has to be an even number of bindings, when passed an uneven amount, `let`
-produces this error:
+If given an uneven number of bindings, the last one will be assigned to `nil`.
 
 ```clojure
-(let (one 1 two 2 three) (+ one two)) ; !> Lasp::ArgumentError: wrong number of arguments (2 for 3)
+(let (one 1 two 2 three) three) ; => nil
 ```
-
-It can be thought of as if `1` and `2` are arguments and `(one two three)` are
-the parameters you are trying to bind them to.
 
 
 ### macroexpand
