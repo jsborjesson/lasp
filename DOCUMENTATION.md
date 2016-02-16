@@ -475,12 +475,14 @@ Parameters `(object message & args)`:
 
 ### require
 
-Loads and runs a Läsp file.
+Loads and runs a Läsp file. Paths are relative to the file they are being
+required in.
 
 ```clojure
-(require "./path/to/lasp_file.lasp")
+(require "lasp_file.lasp")     ; lasp_file.lasp is in the same directory as this code
+(require "dir/lasp_file.lasp") ; dir/ is a folder with a lasp file in this directory
+(require "../lasp_file.lasp")  ; lasp_file.lasp is in the parent folder
 ```
-
 
 
 ## Standard library

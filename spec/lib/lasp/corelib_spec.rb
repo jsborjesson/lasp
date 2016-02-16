@@ -162,8 +162,11 @@ module Lasp
     end
 
     it "require" do
-      path = "./path/to/lasp_file.lasp"
-      expect(Lasp).to receive(:execute_file).with(path)
+      path          = "./path/lasp_file.lasp"
+      expected_path = File.expand_path("../../../lib/lasp/path/lasp_file.lasp", __dir__)
+
+      expect(Lasp).to receive(:execute_file).with(expected_path)
+
       CORELIB[:require].(path)
     end
   end
