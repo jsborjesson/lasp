@@ -130,6 +130,14 @@ describe "stdlib" do
     expect(Lasp::execute("(->text 5)")).to eq "5"
   end
 
+  it "->integer" do
+    expect(Lasp::execute("(->integer :5)")).to eq 5
+  end
+
+  it "->decimal" do
+    expect(Lasp::execute('(->decimal "5.5")')).to eq 5.5
+  end
+
   it "pipe" do
     expect(Lasp::execute("(pipe 5 inc inc dec ->text)")).to eq "6"
   end

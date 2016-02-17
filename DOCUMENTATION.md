@@ -775,10 +775,32 @@ Turn a list into a text of its items.
 
 ### ->text
 
-Turn a value into a text.
+Turn a value into text.
 
 ```clojure
 (->text 5) ; => "5"
+```
+
+
+### ->integer
+
+Turn a value into an integer.
+
+```clojure
+(->integer "5") ; => 5
+(->integer 5.5) ; => 5
+(->integer nil) ; => nil
+```
+
+
+### ->decimal
+
+Turn a value into a decimal.
+
+```clojure
+(->decimal "5.5") ; => 5.5
+(->decimal 5)     ; => 5.0
+(->decimal nil)   ; => 0.0
 ```
 
 

@@ -151,8 +151,14 @@
 ; Convert list to text
 (def list->text (ruby-method :join))
 
-; Convert most things to a text
+; Convert to text
 (def ->text (ruby-method :to_s))
+
+; Convert to int
+(def ->integer (ruby-method :to_i))
+
+; Convert to decimal
+(def ->decimal (ruby-method :to_f))
 
 ; Pass a value in order through a list of functions
 (defn pipe (item & fns)
