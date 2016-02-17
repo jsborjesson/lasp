@@ -5,7 +5,7 @@
 | Data type | Example literals       | Description                                                                                                 |
 | :---      | :---                   | :---                                                                                                        |
 | integer   | `1`, `-42`, `0`        | A whole number of any size                                                                                  |
-| float     | `3.56`, `-0.5`         | A decimal number of any size                                                                                |
+| decimal   | `3.56`, `-0.5`         | A decimal number of any size                                                                                |
 | boolean   | `true`, `false`        | The value `true` or `false`                                                                                 |
 | nil       | `nil`                  | The "null" or "no value" type                                                                               |
 | text      | `"some text"`, `:text` | Text of any length. When containing no whitespace, it can be written with a leading colon (handy in dicts)  |

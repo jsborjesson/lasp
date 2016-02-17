@@ -63,7 +63,7 @@ module Lasp
         expect(subject.parse("-7")).to eq -7
       end
 
-      it "floats" do
+      it "decimals" do
         expect(subject.parse("7.5")).to eq 7.5
         expect(subject.parse("-7.5")).to eq -7.5
       end
