@@ -1,25 +1,25 @@
 class Array
-  def inspect
+  def to_s
     "(#{ map(&:inspect).join(" ") })"
   end
 
-  def to_s
-    inspect
-  end
-end
-
-class Symbol
   def inspect
     to_s
   end
 end
 
 class Hash
-  def inspect
+  def to_s
     "{#{ map { |pair| pair.map(&:inspect).join(" ")}.join(", ") }}"
   end
 
-  def to_s
-    inspect
+  def inspect
+    to_s
+  end
+end
+
+class Symbol
+  def inspect
+    to_s
   end
 end
