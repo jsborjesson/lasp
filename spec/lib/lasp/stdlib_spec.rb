@@ -152,4 +152,21 @@ describe "stdlib" do
 
     expect(Lasp::execute('(prompt "Question: ")')).to eq "answer"
   end
+
+  describe "println" do
+    it "prints its argument with a newline" do
+      expect(STDOUT).to receive(:print).with("test\n")
+      Lasp::execute('(println "test")')
+    end
+
+    it "prints several arguments each on a new line" do
+      expect(STDOUT).to receive(:print).with("one\ntwo\nthree\n")
+      Lasp::execute('(println :one :two :three)')
+    end
+
+    it "prints a single newline when given no arguments" do
+      expect(STDOUT).to receive(:print).with("\n")
+      Lasp::execute('(println)')
+    end
+  end
 end

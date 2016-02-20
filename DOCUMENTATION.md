@@ -433,22 +433,14 @@ Returns the inverted truthiness of its argument.
 
 Prints its argument to stdout and returns `nil`.
 
+See also [println](#println)
+
 ```clojure
 (do
   (print "Hello ")
-  (print "world!")) ; => nil
+  (print "world!\n")) ; => nil
 
 ;; Hello world!
-```
-
-
-### println
-
-Prints its argument and a newline to stdout and returns `nil`.
-
-```clojure
-(println "Hello World!") ; => nil
-;; Hello World!
 ```
 
 
@@ -852,6 +844,22 @@ Request an answer to a question from a terminal user.
 (prompt "yes/no: ")
 ; The program halts waiting for the user, if she typed y and then pressed enter:
 ; => "y"
+```
+
+
+### println
+
+Prints each of its arguments to stdout on a separate line and returns `nil`.
+
+```clojure
+(println "Hello World!")
+;; Hello World!
+
+(println "Hello" "World!")
+;; Hello
+;; World!
+
+(println) ; Prints a newline
 ```
 
 

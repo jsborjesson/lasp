@@ -141,12 +141,6 @@ module Lasp
       expect(STDOUT).to have_received(:print).with(5)
     end
 
-    it "println" do
-      allow(STDOUT).to receive(:puts)
-      CORELIB[:println].(5)
-      expect(STDOUT).to have_received(:puts).with(5)
-    end
-
     it "readln" do
       allow(STDIN).to receive(:gets).and_return("test input\n")
       expect(CORELIB[:readln].call).to eq "test input"

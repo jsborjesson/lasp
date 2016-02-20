@@ -21,7 +21,6 @@ module Lasp
     :dissoc     => -> (a, key)        { a.dup.tap { |a| a.delete(key) }            },
     :not        => -> (arg)           { !arg                                       },
     :print      => -> (output)        { STDOUT.print(output)                       },
-    :println    => -> (output)        { STDOUT.puts(output)                        },
     :readln     => -> ()              { STDIN.gets.chomp                           },
     :apply      => -> (f, list)       { f.call(*list)                              },
     :"."        => -> (obj, m, *args) { obj.send(m, *args)                         },
