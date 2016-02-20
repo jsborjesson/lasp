@@ -45,7 +45,7 @@ module Lasp
       when "nil"           then nil
       when /\A-?\d+\z/     then Integer(token)
       when /\A-?\d+.\d+\z/ then Float(token)
-      when /"(.*)"/        then String($1)
+      when /".*"/          then eval(token)
       when /:([^\s]+)/     then String($1) # Symbol style strings are actually just strings
       else token.to_sym
       end

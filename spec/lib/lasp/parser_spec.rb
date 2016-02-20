@@ -81,12 +81,18 @@ module Lasp
         expect(subject.parse("func")).to eq :func
       end
 
-      it "strings" do
-        expect(subject.parse('"a quick brown fox"')).to eq "a quick brown fox"
-      end
+      describe "strings" do
+        it "parses strings with double-quotes" do
+          expect(subject.parse('"a quick brown fox"')).to eq "a quick brown fox"
+        end
 
-      it "symbol-style strings" do
-        expect(subject.parse(":just-a-string")).to eq "just-a-string"
+        it "parses strings with leading colons" do
+          expect(subject.parse(":just-a-string")).to eq "just-a-string"
+        end
+
+        it "parses strings with escape characters" do
+          expect(subject.parse('"hello\nworld"')).to eq "hello\nworld"
+        end
       end
     end
   end
