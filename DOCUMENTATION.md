@@ -302,6 +302,16 @@ Creates a list of all of its arguments.
 (list true nil :thing) ; => (true nil "thing")
 ```
 
+See [head](#head), [tail](#tail) and [get](#get) for relevant operations (there
+are many others too).
+
+Instead of using `get`, lists also act as a function of their contents,
+allowing for this syntax:
+
+```clojure
+(def my-list (list 32 42 6 9))
+(my-list 1) ; => 42
+```
 
 ### head
 
@@ -337,8 +347,7 @@ Pushes an item onto the front of a list. Does **not** change the original list.
 
 Creates a dictionary. The entries are given in pairs directly following each
 other, you can use newlines to make this clearer. An uneven number of arguments
-will produce an error. To alter the contents, see [get](#get), [assoc](#assoc)
-and [dissoc](#dissoc).
+will produce an error.
 
 ```clojure
 (dict :one 1 :two 2) ; => {"one" 1, "two" 2}
@@ -351,14 +360,27 @@ and [dissoc](#dissoc).
 (dict :one 1 :two)   ; !> ArgumentError: odd number of arguments for Hash
 ```
 
+See [get](#get), [assoc](#assoc) and [dissoc](#dissoc) for relevant operations.
+
+Instead of using `get`, dicts also act as a function of their contents,
+allowing for this syntax:
+
+```clojure
+(def my-dict (dict :seven 7))
+(my-dict :seven) ; => 7
+```
+
 
 ### get
 
 Get item by id in a list or dict.
 
 ```clojure
-(get 0 (list 1 2 3))            ; => 1
-(get :one (dict :one 1 :two 2)) ; => 1
+(get 0 (list 1 2 3))              ; => 1
+(get 3 (list 1 2 3))              ; => nil
+
+(get :one (dict :one 1 :two 2))   ; => 1
+(get :three (dict :one 1 :two 2)) ; => nil
 ```
 
 

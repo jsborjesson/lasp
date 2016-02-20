@@ -1,6 +1,5 @@
 require "lasp"
 require "lasp/parser"
-require "lasp/representation"
 require "readline"
 
 module Lasp
