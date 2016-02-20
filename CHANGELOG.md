@@ -1,5 +1,35 @@
 # Läsp changelog
 
+## v0.9.0 - 2016-02-20
+
+### Added
+
+- Add support for let-bindings
+- Make list and dict be functions of their contents
+- Additions to core library
+    - `print`
+    - `readln`
+- Additions to standard library
+    - `prompt`
+    - `every`
+    - `->integer`
+    - `->decimal`
+
+### Changed
+
+- Make `require` use relative paths
+- Rename float type to "decimal"
+- Rename type string to "text"
+- Allow any non-whitespace in symbol-style strings
+- Raise `Lasp::NameError` instead of `KeyError` when unable to resolve symbol
+- Show error class in REPL output
+
+### Fixed
+
+- Consistently do not capitalise error messages
+- Properly enforce that def only be used with a symbol
+- Properly enforce that parameters are declared as a list
+
 ## v0.8.0 - 2016-02-04
 
 ### Added
