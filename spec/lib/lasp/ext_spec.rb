@@ -1,6 +1,6 @@
-require "lasp/representation"
+require "lasp/ext"
 
-describe "representation" do
+describe "core extensions" do
   it "shows lists with parentheses and no commas" do
     expect([1, 2, 3].inspect).to eq "(1 2 3)"
   end
