@@ -86,7 +86,7 @@ module Lasp
       end
 
       it "symbol-style strings" do
-        expect(subject.parse(":justastring")).to eq "justastring"
+        expect(subject.parse(":just-a-string")).to eq "just-a-string"
       end
     end
   end
