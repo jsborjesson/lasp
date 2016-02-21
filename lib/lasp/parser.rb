@@ -1,5 +1,12 @@
 module Lasp
   class Parser
+    ESCAPE_CHARACTERS = {
+      '\n'   => "\n",
+      '\t'   => "\t",
+      '\\\\' => "\\",
+      '\"'   => "\"",
+    }
+
     def self.parse(program)
       new.parse(program)
     end
@@ -45,7 +52,7 @@ module Lasp
       when "nil"           then nil
       when /\A-?\d+\z/     then Integer(token)
       when /\A-?\d+.\d+\z/ then Float(token)
-      when /".*"/          then eval(token)
+      when /"(.*)"/        then String(unescape($1))
       when /:([^\s]+)/     then String($1) # Symbol style strings are actually just strings
       else token.to_sym
       end
@@ -53,6 +60,10 @@ module Lasp
 
     def sanitize(string)
       string.gsub(/;.*$/, "")
+    end
+
+    def unescape(string)
+      string.gsub(/\\./, ESCAPE_CHARACTERS)
     end
   end
 end

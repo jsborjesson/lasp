@@ -91,7 +91,7 @@ module Lasp
         end
 
         it "parses strings with escape characters" do
-          expect(subject.parse('"hello\nworld"')).to eq "hello\nworld"
+          expect(subject.parse(%q{ "\\\\hello\t\"world\"\n\n" })).to eq %Q{\\hello\t"world"\n\n}
         end
       end
     end
