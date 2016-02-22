@@ -163,8 +163,8 @@ describe "stdlib" do
       Lasp::execute('(println "test")')
     end
 
-    it "prints several arguments each on a new line" do
-      expect(STDOUT).to receive(:print).with("one\ntwo\nthree\n")
+    it "prints several arguments on a line" do
+      expect(STDOUT).to receive(:print).with("onetwothree\n")
       Lasp::execute('(println :one :two :three)')
     end
 

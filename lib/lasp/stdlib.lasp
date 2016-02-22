@@ -177,8 +177,4 @@
 
 ; Print with a newline
 (defn println (& args)
-  (if (empty? args)
-    (print "\n")
-    (print
-      (list->text
-        (map (fn (item) (+ item "\n")) args)))))
+  (print (+ (list->text args) "\n")))

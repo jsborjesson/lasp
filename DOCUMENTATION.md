@@ -860,15 +860,14 @@ Request an answer to a question from a terminal user.
 
 ### println
 
-Prints each of its arguments to stdout on a separate line and returns `nil`.
+Prints each of its arguments to stdout on a line and returns `nil`.
 
 ```clojure
 (println "Hello World!")
 ;; Hello World!
 
-(println "Hello" "World!")
-;; Hello
-;; World!
+(println "Hello " "World!")
+;; Hello World!
 
 (println) ; Prints a newline
 ```
