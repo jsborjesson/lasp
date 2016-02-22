@@ -10,6 +10,13 @@ class Array
   def call(index)
     self[index]
   end
+
+  # Ruby 2.0 shim
+  unless Array.method_defined?(:to_h)
+    def to_h
+      Hash[self]
+    end
+  end
 end
 
 class Hash
