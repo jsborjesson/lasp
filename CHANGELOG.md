@@ -1,5 +1,12 @@
 # Läsp changelog
 
+## v0.10.1 - 2016-02-22
+
+### Fixed
+
+- Backwards compatibility with Ruby 2.0.0
+
+
 ## v0.10.0 - 2016-02-22
 
 ### Added
