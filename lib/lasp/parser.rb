@@ -1,3 +1,5 @@
+require "lasp/lexer"
+
 module Lasp
   class Parser
     ESCAPE_CHARACTERS = {
@@ -16,7 +18,7 @@ module Lasp
     end
 
     def tokenize(string)
-      string.scan(/(?:(?:[^\s"()']|"[^"]*")+|[()'])/)
+      Lexer.tokenize(string)
     end
 
     private

@@ -4,24 +4,6 @@ module Lasp
   describe Parser do
     subject { described_class.new }
 
-    it "tokenizes strings" do
-      expect(subject.tokenize("(func 1 2)")).to eq %w[( func 1 2 )]
-    end
-
-    it "tokenizes complex strings" do
-      input    = '(+  1.2 2 ( len "test test (")) ' # intentionally messy whitespace
-      expected = ["(", "+", "1.2", "2", "(", "len", "\"test test (\"", ")", ")"]
-
-      expect(subject.tokenize(input)).to eq expected
-    end
-
-    it "tokenizes quotes" do
-      input    = "('f '(gh 1 2))"
-      expected = ["(", "'", "f", "'", "(", "gh", "1", "2", ")", ")"]
-
-      expect(subject.tokenize(input)).to eq expected
-    end
-
     it "parses forms" do
       input  = "(func 1  2 (+ 1 2 )) "
       parsed = [:func, 1, 2, [:+, 1, 2]]
@@ -91,7 +73,7 @@ module Lasp
         end
 
         it "parses strings with escape characters" do
-          expect(subject.parse(%q{ "\\\\hello\t\"world\"\n\n" })).to eq %Q{\\hello\t"world"\n\n}
+          expect(subject.parse(%q{ "\\\\hello\\t\\"world\"\\n\\n" })).to eq %Q{\\hello\t"world"\n\n}
         end
       end
     end

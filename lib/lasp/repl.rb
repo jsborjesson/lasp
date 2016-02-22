@@ -1,5 +1,5 @@
 require "lasp"
-require "lasp/parser"
+require "lasp/lexer"
 require "readline"
 
 module Lasp
@@ -28,7 +28,7 @@ module Lasp
     private
 
     def autoclose_parentheses(input)
-      tokens     = Parser.new.tokenize(input)
+      tokens     = Lexer.tokenize(input)
       num_opens  = tokens.select { |t| t == "(" }.count
       num_closes = tokens.select { |t| t == ")" }.count
 
