@@ -1,4 +1,4 @@
-# Läsp
+# Läsp [![Build Status](https://travis-ci.org/alcesleo/lasp.svg?branch=master)](https://travis-ci.org/alcesleo/lasp)
 
 A Lisp implementation in Ruby.
 
