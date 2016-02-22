@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Jimmy Börjesson"]
   spec.email         = ["lagginglion@gmail.com"]
 
-  spec.summary       = %q{A simple programming language similar to Clojure, but much worse.}
+  spec.summary       = %q{A simple Lisp-dialect programming language inspired by Clojure.}
   spec.homepage      = "https://github.com/alcesleo/lasp"
   spec.license       = "MIT"
 
