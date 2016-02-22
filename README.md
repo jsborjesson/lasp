@@ -75,7 +75,7 @@ Comments start with a `;` and end at the end of a line
 ### Run the specs
 
 ```bash
-rake
+bundle exec rake
 ```
 
 ### Dev REPL
