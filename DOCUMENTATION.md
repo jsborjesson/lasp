@@ -769,6 +769,15 @@ Take a list of every Nth item in a list.
 ```
 
 
+### text
+
+Create a string by concatenating all arguments.
+
+```clojure
+(text "one " 1 ", two " 2) ; => "one 1, two 2"
+```
+
+
 ### text->list
 
 Turn a text into a list of its characters.

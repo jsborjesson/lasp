@@ -154,6 +154,10 @@
 (def ->decimal  (ruby-method :to_f))  ; Convert to decimal
 
 
+; Create a string by concatenating all arguments
+(defn text (& args)
+  (list->text args))
+
 ; Pass a value in order through a list of functions
 (defn pipe (item & fns)
   (if (empty? fns)

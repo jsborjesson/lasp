@@ -118,6 +118,10 @@ describe "stdlib" do
     expect(Lasp::execute('(every 3 (list 1 2 3 4 5))')).to eq [1, 4]
   end
 
+  it "text" do
+    expect(Lasp::execute('(text "one " 1 ", two " 2)')).to eq "one 1, two 2"
+  end
+
   it "text->list" do
     expect(Lasp::execute('(text->list "abcdef")')).to eq %w[ a b c d e f ]
   end
