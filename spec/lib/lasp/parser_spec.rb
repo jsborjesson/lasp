@@ -65,6 +65,10 @@ module Lasp
         it "parses strings with escape characters" do
           expect(subject.parse(%q{ "\\\\hello\\t\\"world\"\\n\\n" })).to eq %Q{\\hello\t"world"\n\n}
         end
+
+        it "parses unknown escape sequences as the escaped character" do
+          expect(subject.parse('"\unknown"')).to eq 'unknown'
+        end
       end
     end
   end

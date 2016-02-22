@@ -61,7 +61,7 @@ module Lasp
     end
 
     def unescape(string)
-      string.gsub(/\\./, ESCAPE_CHARACTERS)
+      string.gsub(/\\(.)/) { |match| ESCAPE_CHARACTERS.fetch(match, $1) }
     end
   end
 end
