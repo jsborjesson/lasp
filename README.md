@@ -4,11 +4,14 @@ A Lisp implementation in Ruby.
 
 ## Features
 
-- Very concise [core library](lib/lasp/corelib.rb) written in Ruby
-- [Standard library](lib/lasp/stdlib.lisp) written in Läsp itself
+- Comprehensive [documentation](DOCUMENTATION.md)
 - Interactive REPL with auto-closing of missing trailing parentheses
+- Closures
+- let-bindings
 - Fully functional macro system
 - Interoperability with Ruby
+- Very concise [core library](lib/lasp/corelib.rb) written in Ruby
+- [Standard library](lib/lasp/stdlib.lisp) written in Läsp itself
 
 ## Installation
 
