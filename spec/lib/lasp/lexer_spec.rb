@@ -27,4 +27,14 @@ describe Lexer do
 
     expect(subject.tokenize(input)).to eq expected
   end
+
+  it "ignores comments and whitespace" do
+    input  = <<-LASP
+      ; This is a comment
+      (+ 1  2  ) ; End of line comment
+    LASP
+    tokens = ["(", "+", "1", "2", ")"]
+
+    expect(subject.tokenize(input)).to eq tokens
+  end
 end

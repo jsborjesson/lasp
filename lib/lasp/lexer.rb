@@ -13,7 +13,7 @@ class Lexer
   end
 
   def initialize(program)
-    @scanner = StringScanner.new(program)
+    @scanner = StringScanner.new(sanitize(program))
   end
 
   def tokenize
@@ -35,5 +35,10 @@ class Lexer
     TOKENS.each do |token|
       return scanner.scan(token) if scanner.match?(token)
     end
+  end
+
+  def sanitize(string)
+    # Remove comments
+    string.gsub(/;.*$/, "")
   end
 end

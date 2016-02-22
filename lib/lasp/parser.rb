@@ -14,11 +14,11 @@ module Lasp
     end
 
     def parse(program)
-      build_ast(tokenize(sanitize(program)))
+      build_ast(tokenize(program))
     end
 
-    def tokenize(string)
-      Lexer.tokenize(string)
+    def tokenize(program)
+      Lexer.tokenize(program)
     end
 
     private
@@ -58,10 +58,6 @@ module Lasp
       when /:([^\s]+)/     then String($1) # Symbol style strings are actually just strings
       else token.to_sym
       end
-    end
-
-    def sanitize(string)
-      string.gsub(/;.*$/, "")
     end
 
     def unescape(string)

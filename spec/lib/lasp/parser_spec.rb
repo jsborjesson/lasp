@@ -25,16 +25,6 @@ module Lasp
       expect(subject.parse(input)).to eq parsed
     end
 
-    it "handles comments and whitespace" do
-      input  = <<-LASP
-        ; This is a comment
-        (+ 1 2) ; End of line comment
-      LASP
-      parsed = [:+, 1, 2]
-
-      expect(subject.parse(input)).to eq parsed
-    end
-
     it "returns nil when input is empty" do
       expect(subject.parse("")).to eq nil
     end
