@@ -20,7 +20,7 @@ module Lasp
     :assoc      => -> (a, key, val)   { a.dup.tap { |a| a[key] = val  }            },
     :dissoc     => -> (a, key)        { a.dup.tap { |a| a.delete(key) }            },
     :not        => -> (arg)           { !arg                                       },
-    :print      => -> (output)        { STDOUT.print(output)                       },
+    :print      => -> (*output)       { STDOUT.print(*output)                      },
     :readln     => -> ()              { STDIN.gets.chomp                           },
     :apply      => -> (f, list)       { f.call(*list)                              },
     :"."        => -> (obj, m, *args) { obj.send(m, *args)                         },

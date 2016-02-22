@@ -137,8 +137,8 @@ module Lasp
 
     it "print" do
       allow(STDOUT).to receive(:print)
-      CORELIB[:print].(5)
-      expect(STDOUT).to have_received(:print).with(5)
+      CORELIB[:print].("one", "two")
+      expect(STDOUT).to have_received(:print).with("one", "two")
     end
 
     it "readln" do

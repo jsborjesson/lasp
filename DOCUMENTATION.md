@@ -431,15 +431,17 @@ Returns the inverted truthiness of its argument.
 
 ### print
 
-Prints its argument to stdout and returns `nil`.
+Prints its arguments to stdout and returns `nil`.
 
-See also [println](#println)
+See also [println](#println) to print a line of output.
 
 ```clojure
-(do
-  (print "Hello ")
-  (print "world!\n")) ; => nil
+(print "Hello ")
+(print "world!\n") ; Manually add a newline
+;; Hello world!
 
+; It also takes several arguments and prints them after each other:
+(print "Hello " "world!")
 ;; Hello world!
 ```
 
