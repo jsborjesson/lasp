@@ -1,5 +1,18 @@
 # Läsp changelog
 
+## v0.10.0 - 2016-02-22
+
+### Added
+
+- Allow escape characters in strings
+    - `\n` - newline
+    - `\t` - tab
+    - `\"` - double quote
+    - `\\` - backslash
+- Allow `print` and `println` to take any number of arguments
+- Add text function to stdlib for easier concatenation (works the same as
+  `print` and `println` now do but returns a string)
+
 ## v0.9.0 - 2016-02-20
 
 ### Added
