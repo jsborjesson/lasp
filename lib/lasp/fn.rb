@@ -1,5 +1,5 @@
 require "lasp/interpreter"
-require "lasp/params"
+require "lasp/params_builder"
 require "lasp/errors"
 
 module Lasp
