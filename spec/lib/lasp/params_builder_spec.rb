@@ -2,6 +2,14 @@ require "lasp/params_builder"
 
 module Lasp
   describe ParamsBuilder do
+    it "creates a Params object for normal params" do
+      expect(described_class.build([:a, :b])).to be_a Params
+    end
+
+    it "creates a VariadicParams object when there is an ampersand" do
+      expect(described_class.build([:a, :b, :&, :c])).to be_a VariadicParams
+    end
+
     it "fails when params are not passed as a list" do
       expect {
         described_class.build(:a)
