@@ -9,14 +9,6 @@ module Lasp
         expect(params.ordered).to eq [:one, :two]
       end
 
-      it "reports it is not variadic" do
-        expect(params.variadic?).to eq false
-      end
-
-      it "fails when trying to access the rest-parameter" do
-        expect { params.rest }.to raise_error(LaspError)
-      end
-
       it "has nice to_s output" do
         expect(params.to_s).to eq "(one two)"
       end
@@ -35,71 +27,63 @@ module Lasp
         expect(params.matches_arity?(3)).to eq false
       end
     end
+  end
 
-    context "variadic parameters" do
-      let(:params) { described_class.new([:one, :two, :&, :other]) }
+  describe VariadicParams do
+    let(:params) { described_class.new([:one, :two, :&, :other]) }
 
-      it "has a rest parameter" do
-        expect(params.rest).to eq :other
-      end
-
-      it "reports it is not variadic" do
-        expect(params.variadic?).to eq true
-      end
-
-      it "gives you ordered parameters" do
-        expect(params.ordered).to eq [:one, :two]
-      end
-
-      it "has nice to_s output" do
-        expect(params.to_s).to eq "(one two & other)"
-      end
-
-      it "reports arity as a string" do
-        expect(params.arity).to eq "2+"
-      end
-
-      it "reports length as the minimum number of parameters" do
-        expect(params.length).to eq 2
-      end
-
-      it "calculates if a number of arguments matches its arity" do
-        expect(params.matches_arity?(1)).to eq false
-        expect(params.matches_arity?(2)).to eq true
-        expect(params.matches_arity?(3)).to eq true
-      end
+    it "gives you ordered parameters" do
+      expect(params.ordered).to eq [:one, :two]
     end
 
-    describe "validations" do
-      it "fails at instantiation when params are not passed as a list" do
-        expect {
-          described_class.new(:a)
-        }.to raise_error(SyntaxError, /parameters must be a list/)
-      end
+    it "has nice to_s output" do
+      expect(params.to_s).to eq "(one two & other)"
+    end
 
-      it "fails at instantiation when the same parameter name is used more than once" do
-        expect {
-          described_class.new([:a, :a])
-        }.to raise_error(SyntaxError, /parameter names have to be unique/)
-      end
+    it "reports arity as a string" do
+      expect(params.arity).to eq "2+"
+    end
 
-      it "fails at instantiation when more than one ampersand is used in a function definition" do
-        expect {
-          described_class.new([:a, :&, :b, :&, :c])
-        }.to raise_error(SyntaxError, /rest-arguments may only be used once, at the end, with a single binding/)
-      end
+    it "reports length as the minimum number of parameters" do
+      expect(params.length).to eq 2
+    end
 
-      it "fails at instantiation when more than one binding is used after the ampersand" do
-        expect {
-          described_class.new([:a, :&, :b, :c])
-        }.to raise_error(SyntaxError, /rest-arguments may only be used once, at the end, with a single binding/)
-      end
+    it "calculates if a number of arguments matches its arity" do
+      expect(params.matches_arity?(1)).to eq false
+      expect(params.matches_arity?(2)).to eq true
+      expect(params.matches_arity?(3)).to eq true
+    end
+  end
 
-      it "fails at instantiation when & is last" do
-        expect {
-          described_class.new([:a, :&])
-        }.to raise_error(SyntaxError, /rest-arguments may only be used once, at the end, with a single binding/)
-      end
+  describe ParamsBuilder do
+    it "fails when params are not passed as a list" do
+      expect {
+        described_class.build(:a)
+      }.to raise_error(SyntaxError, /parameters must be a list/)
+    end
+
+    it "fails when the same parameter name is used more than once" do
+      expect {
+        described_class.build([:a, :a])
+      }.to raise_error(SyntaxError, /parameter names have to be unique/)
+    end
+
+    it "fails when more than one ampersand is used in a function definition" do
+      expect {
+        described_class.build([:a, :&, :b, :&, :c])
+      }.to raise_error(SyntaxError, /rest-arguments may only be used once, at the end, with a single binding/)
+    end
+
+    it "fails when more than one binding is used after the ampersand" do
+      expect {
+        described_class.build([:a, :&, :b, :c])
+      }.to raise_error(SyntaxError, /rest-arguments may only be used once, at the end, with a single binding/)
+    end
+
+    it "fails when & is last" do
+      expect {
+        described_class.build([:a, :&])
+      }.to raise_error(SyntaxError, /rest-arguments may only be used once, at the end, with a single binding/)
     end
   end
 end
