@@ -40,7 +40,7 @@ create a local binding, use [let](#let) instead.
 
 Creates a function.
 
-Parameters `(parameters body)`
+Parameters `(parameters body)`:
 
 1. A list of parameters that the function shall accept, e.g. `(arg1 arg2)`, `(one two & others)`, `(& args)`
 2. The body of the function, the declared parameters will be available in here.
@@ -49,11 +49,12 @@ Parameters `(parameters body)`
 ; This creates a function object, it can be read as "a function of x".
 (fn (x) (+ x 2)) ; => #<Fn (x)>
 
-; Functions are called when placed as the first item in a form:
+; Functions are called when placed as the first element in a form:
 ((fn (x) (+ x 2)) 40) ; => 42
 ```
 
-Most of the time, you'll want to define a function before using it (see [defn](#defn)):
+Most of the time, you'll want to define a function before using it (see
+[defn](#defn) for a nicer syntax for doing this):
 
 ```clojure
 (def plus-two (fn (x) (+ x 2)))
@@ -66,6 +67,8 @@ Functions will enforce that the correct number of arguments is passed to them:
 ; Here we pass 2 arguments to a 1-arity function, and we get an error:
 (plus-two 40 41) ; !> Lasp::ArgumentError: wrong number of arguments (2 for 1)
 ```
+
+#### Variadic parameter lists
 
 Functions can also accept any number of extra arguments as a list:
 
@@ -84,13 +87,14 @@ Functions can also accept any number of extra arguments as a list:
 (show-args) ; !> Lasp::ArgumentError: wrong number of arguments (0 for 1+)
 ```
 
+#### Ignoring parameters
+
 Normally you get an error from naming 2 parameters the same, but if you want to
 ignore parameters, the `_` is allowed to be used several times.
 
 ```clojure
-(def ignore-2 (fn (nope nope) (println "lalalala"))) ; !> Lasp::SyntaxError: parameter names have to be unique
-
-(def ignore-2 (fn (_ _) (println "lalalala")))       ; => #<Fn (_ _)>
+(def ignore-2 (fn (nope nope) (println "lalalala"))) ; !> Lasp::SyntaxError
+(def ignore-2 (fn (_ _)       (println "lalalala"))) ; => #<Fn (_ _)>
 ```
 
 
