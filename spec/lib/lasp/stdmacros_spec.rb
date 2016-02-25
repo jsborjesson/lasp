@@ -91,4 +91,19 @@ describe "stdmacros" do
       expect(form).to eq [:def, :"test-fn", [:fn, [:x], [:do, :x]]]
     end
   end
+
+  describe "or" do
+    it "returns nil when given no arguments" do
+      expect(Lasp::execute("(or)")).to eq nil
+    end
+
+    it "returns the last value if no truthy values are present" do
+      expect(Lasp::execute('(or nil nil false)')).to eq false
+    end
+
+    it "returns the first truthy value it valuates" do
+      expect(STDOUT).not_to receive(:print)
+      expect(Lasp::execute('(or (not true) 42 (println "nope"))')).to eq 42
+    end
+  end
 end

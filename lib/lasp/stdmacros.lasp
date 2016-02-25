@@ -67,3 +67,14 @@
   (form)
   (list 'apply (first form)
         (list 'quote (rest form))))
+
+(defm or
+  (& args)
+  (if (empty? args)
+    nil
+    (let (x    (head args)
+          next (tail args))
+      (if (empty? next)
+        x
+        (list 'let (list 'value x)
+              (list 'if 'value 'value (cons 'or next)))))))

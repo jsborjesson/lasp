@@ -960,6 +960,27 @@ If given an uneven number of bindings, the last one will be assigned to `nil`.
 ```
 
 
+### or
+
+Evaluates its arguments in turn, returning:
+
+- the first truthy value it encounters
+- the last value, if all forms evaluate to logical false
+- `nil` if no arguments are given
+
+```clojure
+; Typical usage in if-statements
+(or (= 1 2) (= 3 3)) ; => true
+(or (= 1 2) (= 3 4)) ; => false
+
+(or)               ; => nil
+(or nil nil false) ; => false
+
+; will return 42 without printing anything
+(or (not true) 42 (println "nope")) ; => 42
+```
+
+
 ### macroexpand
 
 Returns the unevaluated result of a macro, indispensable for debugging.
