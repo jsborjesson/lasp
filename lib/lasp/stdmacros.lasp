@@ -70,11 +70,9 @@
 
 (defm or
   (& args)
-  (if (empty? args)
-    nil
-    (let (x    (head args)
-          next (tail args))
-      (if (empty? next)
-        x
-        (list 'let (list 'value x)
-              (list 'if 'value 'value (cons 'or next)))))))
+  (if (empty? args)        nil
+  (if (empty? (tail args)) (head args)
+
+  (list 'let
+        (list 'or-value (head args))
+        (list 'if 'or-value 'or-value (cons 'or (tail args)))))))
