@@ -7,7 +7,9 @@ module Lasp
       super.merge(rest_args)
     end
 
-    def ordered
+    private
+
+    def fixed_params
       param_list.take_while { |p| p != :& }
     end
 
@@ -18,8 +20,6 @@ module Lasp
     def matches_arity?(num_args)
       num_args >= length
     end
-
-    private
 
     def rest
       param_list.last

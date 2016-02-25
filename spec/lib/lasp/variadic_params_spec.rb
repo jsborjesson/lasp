@@ -4,26 +4,20 @@ module Lasp
   describe VariadicParams do
     let(:params) { described_class.new([:one, :two, :&, :other]) }
 
-    it "gives you ordered parameters" do
-      expect(params.ordered).to eq [:one, :two]
-    end
-
     it "has nice to_s output" do
       expect(params.to_s).to eq "(one two & other)"
     end
 
-    it "reports arity as a string" do
-      expect(params.arity).to eq "2+"
+    it "raises an error when given too few arguments" do
+      expect { params.with_args([1]) }.to raise_error(Lasp::ArgumentError, "wrong number of arguments (1 for 2+)")
     end
 
-    it "reports length as the minimum number of parameters" do
-      expect(params.length).to eq 2
+    it "puts all superflous arguments in a list" do
+      expect(params.with_args([1, 2, 3, 4])).to eq({ one: 1, two: 2, other: [3, 4] })
     end
 
-    it "calculates if a number of arguments matches its arity" do
-      expect(params.matches_arity?(1)).to eq false
-      expect(params.matches_arity?(2)).to eq true
-      expect(params.matches_arity?(3)).to eq true
+    it "sets the rest to an empty list if no superflous arguments are given" do
+      expect(params.with_args([1, 2])).to eq({ one: 1, two: 2, other: [] })
     end
   end
 end

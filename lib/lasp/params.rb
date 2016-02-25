@@ -8,12 +8,23 @@ module Lasp
       @param_list = param_list
     end
 
-    def ordered
+    def to_s
+      "(" + param_list.join(" ") + ")"
+    end
+
+    def with_args(args)
+      enforce_arity!(args)
+      fixed_params.zip(args.take(length)).to_h
+    end
+
+    private
+
+    def fixed_params
       param_list
     end
 
     def arity
-      ordered.length.to_s
+      length.to_s
     end
 
     def matches_arity?(num_args)
@@ -21,20 +32,8 @@ module Lasp
     end
 
     def length
-      ordered.length
+      fixed_params.length
     end
-
-    def to_s
-      "(" + param_list.join(" ") + ")"
-    end
-
-    def with_args(args)
-      enforce_arity!(args)
-
-      ordered.zip(args.take(length)).to_h
-    end
-
-    private
 
     def enforce_arity!(args)
       wrong_number_of_args!(args) unless matches_arity?(args.length)
