@@ -22,7 +22,7 @@ describe "stdlib" do
   end
 
   it "empty?" do
-    expect(Lasp::execute("(empty? (list 1))")).to eq false
+    expect(Lasp::execute("(empty? (list nil))")).to eq false
     expect(Lasp::execute("(empty? (list))")).to eq true
   end
 

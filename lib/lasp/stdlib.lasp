@@ -16,7 +16,7 @@
 ; If a list is empty
 (defn empty?
   (coll)
-  (nil? (head coll)))
+  (= coll (rest coll)))
 
 ; If all arguments are not equal
 (defn not= (& args)
