@@ -84,6 +84,15 @@ Functions can also accept any number of extra arguments as a list:
 (show-args) ; !> Lasp::ArgumentError: wrong number of arguments (0 for 1+)
 ```
 
+Normally you get an error from naming 2 parameters the same, but if you want to
+ignore parameters, the `_` is allowed to be used several times.
+
+```clojure
+(def ignore-2 (fn (nope nope) (println "lalalala"))) ; !> Lasp::SyntaxError: parameter names have to be unique
+
+(def ignore-2 (fn (_ _) (println "lalalala")))       ; => #<Fn (_ _)>
+```
+
 
 ### do
 

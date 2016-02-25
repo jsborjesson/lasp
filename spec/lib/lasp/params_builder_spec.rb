@@ -19,7 +19,11 @@ module Lasp
     it "fails when the same parameter name is used more than once" do
       expect {
         described_class.build([:a, :a])
-      }.to raise_error(SyntaxError, /parameter names have to be unique/)
+      }.to raise_error(SyntaxError, /parameter names must be unique/)
+    end
+
+    it "allows _ to be used several times" do
+      expect(described_class.build([:_, :_])).to be_a Params
     end
 
     it "fails when more than one ampersand is used in a function definition" do

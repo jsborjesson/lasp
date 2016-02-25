@@ -47,8 +47,10 @@ module Lasp
     end
 
     def validate_unique_parameter_names!
-      unless param_list.uniq.length == param_list.length
-        fail SyntaxError, "parameter names have to be unique"
+      accepted_params = param_list.reject { |p| p == :_ }
+
+      unless accepted_params.uniq.length == accepted_params.length
+        fail SyntaxError, "parameter names must be unique (except for _)"
       end
     end
 
