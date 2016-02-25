@@ -76,3 +76,12 @@
   (list 'let
         (list 'or-value (head args))
         (list 'if 'or-value 'or-value (cons 'or (tail args)))))))
+
+(defm and
+  (& args)
+  (if (empty? args)        true
+  (if (empty? (tail args)) (head args)
+
+  (list 'let
+        (list 'and-value (head args))
+        (list 'if 'and-value (cons 'and (tail args)) 'and-value)))))

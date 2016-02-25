@@ -964,8 +964,8 @@ If given an uneven number of bindings, the last one will be assigned to `nil`.
 
 Evaluates its arguments in turn, returning:
 
-- the first truthy value it encounters
-- the last value, if all forms evaluate to logical false
+- the first **truthy** value it encounters
+- the last value, if all forms evaluate to logical **false**
 - `nil` if no arguments are given
 
 ```clojure
@@ -976,9 +976,31 @@ Evaluates its arguments in turn, returning:
 (or)               ; => nil
 (or nil nil false) ; => false
 
-; will return 42 without printing anything
+; will return without printing anything
 (or (not true) 42 (println "nope")) ; => 42
 ```
+
+
+### and
+
+Evaluates its arguments in turn, returning:
+
+- the first **falsy** value it encounters
+- the last value, if all forms evaluate to logical **true**
+- `true` if no arguments are given
+
+```clojure
+; Typical usage in if-statements
+(and (= 1 1) (= 2 2)) ; => true
+(and (= 1 1) (= 2 3)) ; => false
+
+(and)               ; => nil
+(and true true 42)  ; => 42
+
+; will return without printing anything
+(and 42 false (println "nope")) ; => false
+```
+
 
 
 ### macroexpand

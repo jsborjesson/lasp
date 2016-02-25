@@ -106,4 +106,19 @@ describe "stdmacros" do
       expect(Lasp::execute('(or (not true) 42 (println "nope"))')).to eq 42
     end
   end
+
+  describe "and" do
+    it "returns true when given no arguments" do
+      expect(Lasp::execute("(and)")).to eq true
+    end
+
+    it "returns the last value if no falsy values are present" do
+      expect(Lasp::execute('(and true true 42)')).to eq 42
+    end
+
+    it "returns the first falsy value it valuates" do
+      expect(STDOUT).not_to receive(:print)
+      expect(Lasp::execute('(and 42 false (println "nope"))')).to eq false
+    end
+  end
 end
