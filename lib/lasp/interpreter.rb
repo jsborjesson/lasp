@@ -1,3 +1,4 @@
+require "lasp"
 require "lasp/fn"
 require "lasp/macro"
 require "lasp/errors"
@@ -22,12 +23,13 @@ module Lasp
       head, *tail = *form
 
       case head
-      when :def   then def_special_form(tail, env)
-      when :fn    then fn_special_form(tail, env)
-      when :do    then do_special_form(tail, env)
-      when :if    then if_special_form(tail, env)
-      when :quote then quote_special_form(tail, env)
-      when :macro then macro_special_form(tail, env)
+      when :def     then def_special_form(tail, env)
+      when :fn      then fn_special_form(tail, env)
+      when :do      then do_special_form(tail, env)
+      when :if      then if_special_form(tail, env)
+      when :quote   then quote_special_form(tail, env)
+      when :macro   then macro_special_form(tail, env)
+      when :require then require_special_form(tail, env)
       else call_function(head, tail, env)
       end
     end
@@ -74,6 +76,11 @@ module Lasp
     def macro_special_form(form, env)
       params, func = form
       Macro.new(params, func, env)
+    end
+
+    def require_special_form(form, env)
+      path = form.first
+      Lasp::execute_file(File.expand_path(path, __dir__), env)
     end
   end
 end

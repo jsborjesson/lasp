@@ -194,7 +194,8 @@ Except for the order of evaluation, macros behave just like functions and can
 accept rest-arguments etc. the same way. Just like functions, you mostly want
 to define them before you use them, see [defm](#defm).
 
-**It is important to quote things that you do not want evaluated until after the macro has returned.**
+**It is important to quote things that you do not want evaluated until after
+the macro has returned.**
 
 ```clojure
 ; Note that we want `if` to be evaluated after the macro has returned, so we have to quote it.
@@ -206,7 +207,20 @@ to define them before you use them, see [defm](#defm).
 (reverse-if true "yes" "no") ; => "no"
 ```
 
-To debug macros and see what they expand to without trying to evaluate the result, see [macroexpand](#macroexpand).
+To debug macros and see what they expand to without trying to evaluate the
+result, see [macroexpand](#macroexpand).
+
+
+### require
+
+Loads and runs a Läsp file. Paths are relative to the file they are being
+required in.
+
+```clojure
+(require "lasp_file.lasp")     ; lasp_file.lasp is in the same directory as this code
+(require "dir/lasp_file.lasp") ; dir/ is a folder with a lasp file in this directory
+(require "../lasp_file.lasp")  ; lasp_file.lasp is in the parent folder
+```
 
 
 ## Core library
@@ -499,18 +513,6 @@ Parameters `(object message & args)`:
 ```ruby
 # Equal to this Ruby code:
 "01011101".to_i(2)
-```
-
-
-### require
-
-Loads and runs a Läsp file. Paths are relative to the file they are being
-required in.
-
-```clojure
-(require "lasp_file.lasp")     ; lasp_file.lasp is in the same directory as this code
-(require "dir/lasp_file.lasp") ; dir/ is a folder with a lasp file in this directory
-(require "../lasp_file.lasp")  ; lasp_file.lasp is in the parent folder
 ```
 
 

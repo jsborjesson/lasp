@@ -2,6 +2,7 @@ require "lasp/version"
 require "lasp/env"
 require "lasp/parser"
 require "lasp/interpreter"
+require "lasp/corelib"
 require "lasp/ext"
 
 module Lasp
@@ -9,15 +10,21 @@ module Lasp
 
   module_function
 
-  def execute_file(path)
-    execute("(do #{File.read(path)})")
-  end
-
-  def execute(program, env = global_env)
+  def execute(program, env = env_with_corelib)
     Interpreter.eval(Parser.parse(program), env)
   end
 
-  def load_stdlib!
-    Lasp::execute_file(STDLIB_PATH)
+  def execute_file(path, env = env_with_corelib)
+    execute("(do #{File.read(path)})", env)
+  end
+
+  def env_with_corelib
+    Env.new(CORELIB.dup)
+  end
+
+  def env_with_stdlib
+    env_with_corelib.tap do |env|
+      Lasp::execute_file(STDLIB_PATH, env)
+    end
   end
 end

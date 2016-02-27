@@ -154,14 +154,5 @@ module Lasp
     it "interop" do
       expect(CORELIB[:"."].("01011101", "to_i", 2)).to eq 93
     end
-
-    it "require" do
-      path          = "./path/lasp_file.lasp"
-      expected_path = File.expand_path("../../../lib/lasp/path/lasp_file.lasp", __dir__)
-
-      expect(Lasp).to receive(:execute_file).with(expected_path)
-
-      CORELIB[:require].(path)
-    end
   end
 end
