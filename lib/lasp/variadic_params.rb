@@ -3,8 +3,7 @@ require "lasp/params"
 module Lasp
   class VariadicParams < Params
     def with_args(args)
-      rest_args = { rest => args.drop(length) }
-      super.merge(rest_args)
+      super.merge(rest_args(args))
     end
 
     private
@@ -21,8 +20,8 @@ module Lasp
       num_args >= length
     end
 
-    def rest
-      param_list.last
+    def rest_args(args)
+      { param_list.last => args.drop(length) }
     end
   end
 end
