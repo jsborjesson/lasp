@@ -11,13 +11,15 @@ module Lasp
     def run
       trap("SIGINT") { puts "\n\nBye!"; exit }
 
+      env = Lasp::env_with_stdlib
+
       puts "((( Läsp v#{Lasp::VERSION} REPL (ctrl+c to exit) )))\n\n"
       loop do
         begin
           history = true
           input   = Readline.readline(prompt, history).to_s
           input   = autoclose_parentheses(input)
-          result  = Lasp::execute(input)
+          result  = Lasp::execute(input, env)
           print_result(result)
         rescue => error
           print_error(error)

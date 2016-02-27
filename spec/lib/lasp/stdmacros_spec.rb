@@ -1,11 +1,16 @@
 require "lasp"
-Lasp::load_stdlib!
-
-def macroexpand(code)
-  Lasp::execute("(macroexpand #{code})")
-end
 
 describe "stdmacros" do
+  let(:env) { Lasp::env_with_stdlib }
+
+  def macroexpand(program)
+    execute("(macroexpand #{program})")
+  end
+
+  def execute(program)
+    Lasp::execute(program, env)
+  end
+
   describe "defm" do
     it "produces the expected form" do
       given    = macroexpand("(defm m (form) (reverse form))")
@@ -14,8 +19,8 @@ describe "stdmacros" do
     end
 
     it "creates a named macro" do
-      Lasp::execute("(defm test-macro (x) x)")
-      expect(Lasp::execute("test-macro").inspect).to eq "#<Macro (x)>"
+      execute("(defm test-macro (x) x)")
+      expect(execute("test-macro").inspect).to eq "#<Macro (x)>"
     end
   end
 
@@ -27,8 +32,8 @@ describe "stdmacros" do
     end
 
     it "creates a named function" do
-      Lasp::execute("(defn test-fn (x) x)")
-      expect(Lasp::execute("test-fn").inspect).to eq "#<Fn (x)>"
+      execute("(defn test-fn (x) x)")
+      expect(execute("test-fn").inspect).to eq "#<Fn (x)>"
     end
   end
 
@@ -45,7 +50,7 @@ describe "stdmacros" do
               two (+ 1 1))
           (+ one two))
       LASP
-      expect(Lasp::execute(code)).to eq 3
+      expect(execute(code)).to eq 3
     end
 
     it "sets an empty binding to nil" do
@@ -56,7 +61,7 @@ describe "stdmacros" do
           (+ one two)
           three)
       LASP
-      expect(Lasp::execute(code)).to eq nil
+      expect(execute(code)).to eq nil
     end
 
     it "allows access to previous bindings" do
@@ -66,7 +71,7 @@ describe "stdmacros" do
           two)
       LASP
 
-      expect(Lasp::execute(code)).to eq 2
+      expect(execute(code)).to eq 2
     end
 
     it "takes the bindings out of scope as soon as the let ends" do
@@ -75,7 +80,7 @@ describe "stdmacros" do
           (let (one 1))
           (println one))
       LASP
-      expect { Lasp::execute(code) }.to raise_error(Lasp::NameError, /one/)
+      expect { execute(code) }.to raise_error(Lasp::NameError, /one/)
     end
   end
 
@@ -87,38 +92,38 @@ describe "stdmacros" do
     end
 
     it "returns the unevaluated result of a macro" do
-      form = Lasp::execute("(macroexpand (defn test-fn (x) x))")
+      form = execute("(macroexpand (defn test-fn (x) x))")
       expect(form).to eq [:def, :"test-fn", [:fn, [:x], [:do, :x]]]
     end
   end
 
   describe "or" do
     it "returns nil when given no arguments" do
-      expect(Lasp::execute("(or)")).to eq nil
+      expect(execute("(or)")).to eq nil
     end
 
     it "returns the last value if no truthy values are present" do
-      expect(Lasp::execute('(or nil nil false)')).to eq false
+      expect(execute('(or nil nil false)')).to eq false
     end
 
     it "returns the first truthy value it valuates" do
       expect(STDOUT).not_to receive(:print)
-      expect(Lasp::execute('(or (not true) 42 (println "nope"))')).to eq 42
+      expect(execute('(or (not true) 42 (println "nope"))')).to eq 42
     end
   end
 
   describe "and" do
     it "returns true when given no arguments" do
-      expect(Lasp::execute("(and)")).to eq true
+      expect(execute("(and)")).to eq true
     end
 
     it "returns the last value if no falsy values are present" do
-      expect(Lasp::execute('(and true true 42)')).to eq 42
+      expect(execute('(and true true 42)')).to eq 42
     end
 
     it "returns the first falsy value it valuates" do
       expect(STDOUT).not_to receive(:print)
-      expect(Lasp::execute('(and 42 false (println "nope"))')).to eq false
+      expect(execute('(and 42 false (println "nope"))')).to eq false
     end
   end
 end

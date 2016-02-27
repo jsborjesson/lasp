@@ -1,9 +1,13 @@
-require "lasp/corelib"
+require "forwardable"
 
 module Lasp
-  module_function
+  class Env
+    extend Forwardable
 
-  def global_env
-    @global_env ||= {}.merge(CORELIB)
+    def_delegators :@env, :fetch, :merge, :[]=
+
+    def initialize(env = {})
+      @env = env
+    end
   end
 end
