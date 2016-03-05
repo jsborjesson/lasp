@@ -21,6 +21,13 @@ describe Lexer do
     expect(subject.tokenize(input)).to eq expected
   end
 
+  it "tokenizes dots" do
+    input    = "(.inspect :test)"
+    expected = ["(", ".", "inspect", ":test", ")"]
+
+    expect(subject.tokenize(input)).to eq expected
+  end
+
   it "tokenizes strings with escaped double-quotes" do
     input    = '(str "one \" two")'
     expected = ['(', 'str', '"one \\" two"', ')']

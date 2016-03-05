@@ -25,6 +25,13 @@ module Lasp
       expect(subject.parse(input)).to eq parsed
     end
 
+    it "converts dot-syntax to send" do
+      input  = "(.inspect :test)"
+      parsed = [:send, "inspect", "test"]
+
+      expect(subject.parse(input)).to eq parsed
+    end
+
     it "returns nil when input is empty" do
       expect(subject.parse("")).to eq nil
     end

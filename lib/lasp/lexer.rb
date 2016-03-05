@@ -4,6 +4,7 @@ class Lexer
   TOKENS = [
     /\(|\)/,          # parens
     /'/,              # quote
+    /\./,             # dot
     /"(\\"|[^"])*"/,  # string literal
     /[^\s)]+/,        # any non-whitespace character excluding )
   ]

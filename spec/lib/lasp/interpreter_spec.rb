@@ -156,7 +156,7 @@ module Lasp
     end
 
     it "does ruby interop" do
-      expect(execute('(. "hello" :upcase)')).to eq "HELLO"
+      expect(execute('(.upcase "hello")')).to eq "HELLO"
     end
   end
 end

@@ -30,6 +30,7 @@ module Lasp
       case token
       when "(" then form(tokens)
       when "'" then quote(tokens)
+      when "." then dot(tokens)
       else atom(token)
       end
     end
@@ -45,6 +46,12 @@ module Lasp
 
     def quote(tokens)
       [:quote] << build_ast(tokens)
+    end
+
+    def dot(tokens)
+      method = tokens.shift
+      tokens.unshift(":" + method)
+      :send
     end
 
     def atom(token)

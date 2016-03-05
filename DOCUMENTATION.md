@@ -520,6 +520,13 @@ Parameters `(message object & args)`:
 "01011101".to_i(2)
 ```
 
+You can accomplish the same by prepending a dot to the function name, this
+makes it look very similar to a normal Läsp function call:
+
+```clojure
+(.upcase "hello") ; => "HELLO"
+```
+
 
 ## Standard library
 
