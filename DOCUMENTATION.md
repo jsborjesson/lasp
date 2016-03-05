@@ -213,13 +213,12 @@ result, see [macroexpand](#macroexpand).
 
 ### require
 
-Loads and runs a Läsp file. Paths are relative to the file they are being
-required in.
+Loads and runs a Läsp file. Paths are relative to the folder where the `lasp` command was invoked.
 
 ```clojure
-(require "lasp_file.lasp")     ; lasp_file.lasp is in the same directory as this code
-(require "dir/lasp_file.lasp") ; dir/ is a folder with a lasp file in this directory
-(require "../lasp_file.lasp")  ; lasp_file.lasp is in the parent folder
+(require "lasp_file.lasp")
+(require "dir/lasp_file.lasp")
+(require "../lasp_file.lasp")
 ```
 
 
