@@ -1,26 +1,22 @@
+require "spec_helper"
 require "lasp"
-require "tempfile"
 
 module Lasp
   describe "execute" do
     it "executes plain text code" do
       expect(Lasp::execute("(+ 10 15)")).to eq 25
     end
+  end
 
+  describe "execute_file" do
     it "executes lasp-files" do
-      Tempfile.open("lasp-test") do |file|
-        file.write("(+ 10 15)")
-        file.rewind
-
+      with_tempfile("(+ 10 15)") do |file|
         expect(Lasp::execute_file(file.path)).to eq 25
       end
     end
 
     it "wraps files in a do-block" do
-      Tempfile.open("lasp-test") do |file|
-        file.write('(+ "fi" "rst") (+ "la" "st")')
-        file.rewind
-
+      with_tempfile('(+ "fi" "rst") (+ "la" "st")') do |file|
         expect(Lasp::execute_file(file.path)).to eq "last"
       end
     end
