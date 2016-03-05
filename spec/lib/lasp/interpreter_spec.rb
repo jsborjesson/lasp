@@ -9,6 +9,15 @@ module Lasp
       Lasp::execute(program, _env)
     end
 
+    def with_tempfile(content)
+      Tempfile.open("lasp-test") do |file|
+        file.write(content)
+        file.rewind
+
+        yield(file)
+      end
+    end
+
     it "handles simple forms" do
       expect(execute("(+ 1 1)")).to eq 2
     end
@@ -135,10 +144,7 @@ module Lasp
         end
 
         it "adds definitions from other file to the env" do
-          Tempfile.open("lasp-test") do |file|
-            file.write("(def test true)")
-            file.rewind
-
+          with_tempfile("(def test true)") do |file|
             execute(%Q{ (require "#{file.path}") })
             expect(execute("test")).to eq true
           end
