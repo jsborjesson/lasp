@@ -143,7 +143,7 @@
 
 ; Takes a method from Ruby-land and returns a Lasp function
 (defn ruby-method (meth)
-  (fn (arg) (. arg meth)))
+  (fn (arg) (send meth arg)))
 
 
 ; Conversion functions

@@ -21,6 +21,6 @@ module Lasp
     :print      => -> (*output)       { STDOUT.print(*output)                      },
     :readln     => -> ()              { STDIN.gets.chomp                           },
     :apply      => -> (f, list)       { f.call(*list)                              },
-    :"."        => -> (obj, m, *args) { obj.send(m, *args)                         },
+    :send       => -> (m, o, *args)   { o.public_send(m, *args)                    },
   }
 end

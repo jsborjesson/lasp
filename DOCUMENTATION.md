@@ -501,18 +501,18 @@ Applies a function to a list of arguments as if they were passed in directly.
 ```
 
 
-### .
+### send
 
-Interoperability operator - calls a Ruby method.
+Calls a Ruby method on an object.
 
-Parameters `(object message & args)`:
+Parameters `(message object & args)`:
 
 1. The object to send the message to
 2. A text with the message name
 3. Any number of arguments to be passed along with the message
 
 ```clojure
-(. "01011101" :to_i 2) ; => 93
+(send :to_i "01011101" 2) ; => 93
 ```
 
 ```ruby
