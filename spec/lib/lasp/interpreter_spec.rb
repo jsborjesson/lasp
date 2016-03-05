@@ -133,21 +133,21 @@ module Lasp
 
           execute("(require \"#{path}\")")
         end
+
+        it "adds definitions from other file to the env" do
+          Tempfile.open("lasp-test") do |file|
+            file.write("(def test true)")
+            file.rewind
+
+            execute(%Q{ (require "#{file.path}") })
+            expect(execute("test")).to eq true
+          end
+        end
       end
     end
 
     it "does ruby interop" do
       expect(execute('(. "hello" :upcase)')).to eq "HELLO"
-    end
-
-    it "requires files" do
-      Tempfile.open("lasp-test") do |file|
-        file.write("(def test true)")
-        file.rewind
-
-        execute(%Q{ (require "#{file.path}") })
-        expect(execute("test")).to eq true
-      end
     end
   end
 end
