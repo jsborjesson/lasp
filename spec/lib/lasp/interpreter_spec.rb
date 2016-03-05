@@ -18,8 +18,22 @@ module Lasp
       expect(execute("(+ 1 (+ 2 2))")).to eq 5
     end
 
-    it "raises a NameError when trying to resolve a non existing symbol" do
-      expect { execute("not-here") }.to raise_error(Lasp::NameError, /not-here is not present in this context/)
+    describe "symbol resolution" do
+      it "resolves a symbol to its value" do
+        expect(execute("fourty-two", { :"fourty-two" => 42 })).to eq 42
+      end
+
+      it "raises a NameError when trying to resolve a non existing symbol" do
+        expect { execute("not-here") }.to raise_error(Lasp::NameError, /not-here is not present in this context/)
+      end
+
+      it "resolves symbols that start with an uppercase letter as Ruby objects" do
+        expect(execute("Math")).to eq Math
+      end
+
+      it "resolves nested Ruby objects with slashes" do
+        expect(execute("Math/PI")).to eq Math::PI
+      end
     end
 
     describe "special forms" do

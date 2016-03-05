@@ -35,7 +35,11 @@ module Lasp
     end
 
     def resolve_symbol(symbol, env)
-      env.fetch(symbol)
+      if symbol.to_s.match(/^[A-Z]/)
+        Object.const_get(symbol.to_s.gsub("/", "::"))
+      else
+        env.fetch(symbol)
+      end
     rescue KeyError
       raise NameError, "#{symbol} is not present in this context"
     end
