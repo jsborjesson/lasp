@@ -1,4 +1,4 @@
-(require "stdmacros.lasp")
+(require "stdmacros.lasp" :relative)
 
 ; Aliases
 (def first head)

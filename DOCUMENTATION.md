@@ -213,12 +213,18 @@ result, see [macroexpand](#macroexpand).
 
 ### require
 
-Loads and runs a Läsp file. Paths are relative to the folder where the `lasp` command was invoked.
+Loads and runs a Läsp file. Paths are relative to the folder where the `lasp`
+command was invoked, or, if a second truthy parameter is passed, to the file
+where `require` is called.
 
 ```clojure
 (require "lasp_file.lasp")
 (require "dir/lasp_file.lasp")
 (require "../lasp_file.lasp")
+
+; Pass a truthy second parameter to use relative paths:
+(require "lasp_file.lasp" true)
+(require "lasp_file.lasp" :relative)
 ```
 
 

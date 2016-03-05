@@ -79,8 +79,12 @@ module Lasp
     end
 
     def require_special_form(form, env)
-      path = form.first
-      Lasp::execute_file(File.expand_path(path, __dir__), env)
+      require_path, is_relative = form
+
+      require_root  = is_relative ? File.dirname(env.fetch(:__FILE__)) : Dir.pwd
+      absolute_path = File.expand_path(require_path, require_root)
+
+      Lasp::execute_file(absolute_path, env)
     end
   end
 end

@@ -15,7 +15,10 @@ module Lasp
   end
 
   def execute_file(path, env = env_with_corelib)
-    execute("(do #{File.read(path)})", env)
+    env[:__FILE__] = path
+    result = execute("(do #{File.read(path)})", env)
+    env[:__FILE__] = nil
+    result
   end
 
   def env_with_corelib

@@ -1,3 +1,4 @@
+require "spec_helper"
 require "lasp"
 require "tempfile"
 
@@ -7,15 +8,6 @@ module Lasp
 
     def execute(program, _env = env)
       Lasp::execute(program, _env)
-    end
-
-    def with_tempfile(content)
-      Tempfile.open("lasp-test") do |file|
-        file.write(content)
-        file.rewind
-
-        yield(file)
-      end
     end
 
     it "handles simple forms" do
@@ -134,19 +126,30 @@ module Lasp
       end
 
       describe "require" do
-        it "executes a file" do
-          path          = "./path/lasp_file.lasp"
-          expected_path = File.expand_path("../../../lib/lasp/path/lasp_file.lasp", __dir__)
-
-          expect(Lasp).to receive(:execute_file).with(expected_path, env)
-
-          execute("(require \"#{path}\")")
-        end
-
-        it "adds definitions from other file to the env" do
+        it "carries the env" do
           with_tempfile("(def test true)") do |file|
             execute(%Q{ (require "#{file.path}") })
             expect(execute("test")).to eq true
+          end
+        end
+
+        it "executes a file with a path relative to the directory Läsp was started in" do
+          require_path  = "./path/test.lasp"
+          expected_path = File.expand_path("path/test.lasp", product_root)
+
+          expect(Lasp).to receive(:execute_file).with(expected_path, an_instance_of(Env))
+
+          execute("(require \"#{require_path}\")")
+        end
+
+        it "uses a path relative to the file when passed a truthy second argument" do
+          with_tempfile('(require "test.lasp" true)') do |file|
+            allow(Lasp).to receive(:execute_file).with(file.path).and_call_original
+
+            expected_path = File.expand_path(File.join(file.path, "../test.lasp"))
+            expect(Lasp).to receive(:execute_file).with(expected_path, an_instance_of(Env))
+
+            Lasp::execute_file(file.path)
           end
         end
       end
