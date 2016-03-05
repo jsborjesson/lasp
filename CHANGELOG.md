@@ -1,5 +1,29 @@
 # Läsp changelog
 
+## v0.11.0 - 2016-03-05
+
+### Added
+
+- Allow `require` to accept a second argument, when it is truthy it uses a path
+  relative to the file that called `require`.
+- Allow `_` to be used several times in parameter lists to ignore parameters
+- Additions to standard library
+  - `and`
+  - `or`
+
+### Changed
+
+- `require` now uses a static paths by default.
+- The `.` function has been renamed to `send`, the `.` can now instead be used
+  as a prefix to call Ruby methods, what previously looked like this: `(. obj method)`
+  now looks like this `(.method obj)`. This is equivalent to `(send :method obj)`.
+
+### Fixed
+
+- Relative paths in `require` was completely broken before this.
+- `empty?` no longer returns `true` for lists with a `nil` value at the first position.
+
+
 ## v0.10.1 - 2016-02-22
 
 ### Fixed
