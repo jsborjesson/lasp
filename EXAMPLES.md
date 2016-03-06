@@ -248,10 +248,11 @@ x ;; => (1 2 3)
 ## Interoperability
 
 ```clojure
-; The . function allows for Ruby interoperability.
-(. "01011101" :to_i 2) ;; => 93
+; Prepend a dot to the method name and pass the object as the first argument to
+; call a Ruby method.
+(.to_i "01011101" 2) ;; => 93
 
-(def parse_binary (fn (bin) (. bin :to_i 2)))
+(def parse_binary (fn (bin) (.to_i bin 2)))
 (parse_binary "01011101") ;; => 93
 ```
 
