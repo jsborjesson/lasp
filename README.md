@@ -42,6 +42,7 @@ lasp path/to/program.lasp
 
 ## Documentation
 
+- [Language](docs/language.md) - explains the core types and syntax of the language.
 - [Reference](docs/reference.md) - a list of every available function with description and usage examples.
 
 ### Examples
