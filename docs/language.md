@@ -107,7 +107,11 @@ the [dict](docs/reference.md#dict) function.
 ```
 
 ### symbol
-Used to name other things (see [def](#def)), but can be obtained in itself by quoting (see [quote](#quote))
+
+Used to name other things (see [def](docs/reference.md#def)), but can be obtained in itself by
+quoting (see [quote](docs/reference.md##quote)).
+
+Symbols should be lowercase, with words separated by dashes.
 
 ```clojure
 ; A symbol will resolve to what it has been defined as
@@ -115,6 +119,8 @@ symbol
 
 ; To obtain a symbol by itself, you have to quote it
 'symbol
+
+'a-long-symbol-name
 ```
 
 ## Ruby interoperability
