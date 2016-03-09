@@ -119,8 +119,12 @@ symbol
 
 ## Ruby interoperability
 
-You can access Ruby classes and modules, to access nested ones use `/`. To call Ruby methods, simply prepend a dot to the method name, and pass the object as the first parameter.
+You can access Ruby classes and modules, to access nested ones use `/`. To call
+Ruby methods, simply prepend a dot to the method name, and pass the object as
+the first parameter.
 
 ```clojure
-(.ceil Math/PI)
+(.ceil Math/PI) ; => 4
+
+(.to_i "010101" 2) ; => 21
 ```
