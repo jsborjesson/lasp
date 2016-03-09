@@ -4,14 +4,14 @@ A Lisp implementation in Ruby.
 
 ## Features
 
-- Comprehensive [documentation](DOCUMENTATION.md)
+- Comprehensive [documentation](#documentation)
 - Interactive REPL with auto-closing of missing trailing parentheses
 - Closures
 - let-bindings
 - Fully functional macro system
 - Interoperability with Ruby
 - Very concise [core library](lib/lasp/corelib.rb) written in Ruby
-- [Standard library](lib/lasp/stdlib.lisp) written in Läsp itself
+- [Standard library](lib/lasp/stdlib.lasp) written in Läsp itself
 
 ## Installation
 
@@ -40,38 +40,13 @@ lasp
 lasp path/to/program.lasp
 ```
 
-## The language
+## Documentation
 
-Please reference the [documentation](DOCUMENTATION.md) for specific definitions
-and examples of all available functions.
+- [Language](docs/language.md) - explains the core types and syntax of the language.
+- [Reference](docs/reference.md) - a list of every available function with description and usage examples.
+- [Examples](docs/examples.md) - various small examples of using the language.
+- [Zuul](https://github.com/alcesleo/zuul) - a small text-based game written in Läsp.
 
-### Examples
-
-More advanced examples can be found in [EXAMPLES.md](EXAMPLES.md), you can also
-look at the [standard library](lib/lasp/stdlib.lasp) which is implemented in
-Läsp itself.
-
-```lisp
-(+ 1 2 3) ;; => 6
-
-(def x 5)
-x ;; => 6
-
-(sum (list 5 10 15)) ;; => 30
-
-(def inc (fn (x) (+ x 1)))
-(inc 5) ;; => 6
-```
-
-
-### Comments
-
-Comments start with a `;` and end at the end of a line
-
-```lisp
-; This is a comment
-(+ 1 2) ; This is also a comment
-```
 
 ## Developing
 

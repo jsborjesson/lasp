@@ -1,18 +1,7 @@
-# Documentation
+# Reference
 
-## Data types
-
-| Data type | Example literals       | Description                                                                                                 |
-| :---      | :---                   | :---                                                                                                        |
-| integer   | `1`, `-42`, `0`        | A whole number of any size                                                                                  |
-| decimal   | `3.56`, `-0.5`         | A decimal number of any size                                                                                |
-| boolean   | `true`, `false`        | The value `true` or `false`                                                                                 |
-| nil       | `nil`                  | The "null" or "no value" type                                                                               |
-| text      | `"some text"`, `:text` | Text of any length. When containing no whitespace, it can be written with a leading colon (handy in dicts)  |
-| list      | `(list 1 2 3.5)`       | A heterogeneous (allows mixed types) list of values, can be created with the [list](#list) function         |
-| dict      | `(dict :one 1 :two 2)` | A dictionary (a.k.a. hash-map) of keys that map to values, can be created with the [dict](#dict) function   |
-| symbol    | `symbol`, `'symbol`    | Used to name other things (see [def](#def)), but can be obtained in itself by quoting (see [quote](#quote)) |
-
+This is a reference of all the functions you can call by default in any Läsp
+program.
 
 ## Special forms
 
