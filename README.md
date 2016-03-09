@@ -47,15 +47,6 @@ lasp path/to/program.lasp
 - [Examples](docs/examples.md) - various small examples of using the language.
 
 
-### Comments
-
-Comments start with a `;` and end at the end of a line
-
-```lisp
-; This is a comment
-(+ 1 2) ; This is also a comment
-```
-
 ## Developing
 
 ### Run the specs

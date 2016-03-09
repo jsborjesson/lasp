@@ -2,6 +2,16 @@
 
 This page describes the syntax and core types of the language.
 
+## Comments
+
+Comments start with a `;` and end at the end of a line
+
+```lisp
+; This is a comment
+(+ 1 2) ; This is also a comment
+```
+
+
 ## Data types
 
 The core types are backed by their corresponding Ruby classes. This can be seen
