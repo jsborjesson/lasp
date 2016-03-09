@@ -85,7 +85,7 @@ It supports these escape characters:
 ### list
 
 A heterogeneous (allows mixed types) list of values, can be created with the
-[list](#docs/reference.md#list) function. This type is also used to call a
+[list](reference.md#list) function. This type is also used to call a
 function. There is no difference between a list of data and a "list of code",
 a.k.a. **form**.
 
@@ -99,7 +99,7 @@ a.k.a. **form**.
 ### dict
 
 A dictionary (a.k.a. hash-map) of keys that map to values, can be created with
-the [dict](docs/reference.md#dict) function.
+the [dict](reference.md#dict) function.
 
 ```clojure
 ; Here we use the shorthand text syntax as keys
@@ -108,8 +108,8 @@ the [dict](docs/reference.md#dict) function.
 
 ### symbol
 
-Used to name other things (see [def](docs/reference.md#def)), but can be obtained in itself by
-quoting (see [quote](docs/reference.md##quote)).
+Used to name other things (see [def](reference.md#def)), but can be obtained in itself by
+quoting (see [quote](reference.md#quote)).
 
 Symbols should be lowercase, with words separated by dashes.
 
