@@ -4,7 +4,7 @@ A Lisp implementation in Ruby.
 
 ## Features
 
-- Comprehensive [documentation](DOCUMENTATION.md)
+- Comprehensive [documentation](#documentation)
 - Interactive REPL with auto-closing of missing trailing parentheses
 - Closures
 - let-bindings
@@ -40,10 +40,9 @@ lasp
 lasp path/to/program.lasp
 ```
 
-## The language
+## Documentation
 
-Please reference the [documentation](DOCUMENTATION.md) for specific definitions
-and examples of all available functions.
+- [Reference](docs/reference.md) - a list of every available function with description and usage examples.
 
 ### Examples
 
