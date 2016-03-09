@@ -11,7 +11,7 @@ A Lisp implementation in Ruby.
 - Fully functional macro system
 - Interoperability with Ruby
 - Very concise [core library](lib/lasp/corelib.rb) written in Ruby
-- [Standard library](lib/lasp/stdlib.lisp) written in Läsp itself
+- [Standard library](lib/lasp/stdlib.lasp) written in Läsp itself
 
 ## Installation
 
