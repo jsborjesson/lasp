@@ -44,24 +44,7 @@ lasp path/to/program.lasp
 
 - [Language](docs/language.md) - explains the core types and syntax of the language.
 - [Reference](docs/reference.md) - a list of every available function with description and usage examples.
-
-### Examples
-
-More advanced examples can be found in [EXAMPLES.md](EXAMPLES.md), you can also
-look at the [standard library](lib/lasp/stdlib.lasp) which is implemented in
-Läsp itself.
-
-```lisp
-(+ 1 2 3) ;; => 6
-
-(def x 5)
-x ;; => 6
-
-(sum (list 5 10 15)) ;; => 30
-
-(def inc (fn (x) (+ x 1)))
-(inc 5) ;; => 6
-```
+- [Examples](docs/examples.md) - various small examples of using the language.
 
 
 ### Comments
