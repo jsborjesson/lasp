@@ -1,5 +1,12 @@
 # Läsp changelog
 
+## v0.12.0 - 2016-03-18
+
+### Added
+
+- Allow access to Ruby constants, namespaces separated by `/`.
+
+
 ## v0.11.0 - 2016-03-05
 
 ### Added
