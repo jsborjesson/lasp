@@ -35,12 +35,14 @@ module Lasp
     end
 
     def resolve_symbol(symbol, env)
-      if symbol.to_s.match(/^[A-Z]/)
-        Object.const_get(symbol.to_s.gsub("/", "::"))
-      else
-        env.fetch(symbol)
-      end
+      env.fetch(symbol)
     rescue KeyError
+      resolve_ruby_constant(symbol)
+    end
+
+    def resolve_ruby_constant(symbol)
+      Object.const_get(symbol.to_s.gsub("/", "::"))
+    rescue ::NameError
       raise NameError, "#{symbol} is not present in this context"
     end
 
