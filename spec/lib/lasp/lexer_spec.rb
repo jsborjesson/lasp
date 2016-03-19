@@ -1,6 +1,6 @@
 require "lasp/lexer"
 
-describe Lexer do
+describe Lasp::Lexer do
   subject { described_class }
 
   it "tokenizes strings" do
