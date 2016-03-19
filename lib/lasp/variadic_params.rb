@@ -3,7 +3,7 @@ require "lasp/params"
 module Lasp
   class VariadicParams < Params
     def with_args(args)
-      super.merge(rest_args(args))
+      super.merge!(rest_args(args))
     end
 
     private
