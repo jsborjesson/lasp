@@ -1,8 +1,14 @@
 require "bundler/gem_tasks"
 
+# rake spec
 require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new(:spec)
-task default: :spec
+
+# rake style
+require "rubocop/rake_task"
+RuboCop::RakeTask.new(:style)
+
+task default: [:spec, :style]
 
 desc "Install and laund the Läsp REPL"
 task repl: [:install] do
