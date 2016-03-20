@@ -35,13 +35,7 @@ module Lasp
     end
 
     def resolve_symbol(symbol, env)
-      env.fetch(symbol)
-    rescue KeyError
-      resolve_ruby_constant(symbol)
-    end
-
-    def resolve_ruby_constant(symbol)
-      Object.const_get(symbol.to_s.gsub("/", "::"))
+      env.fetch(symbol) { Object.const_get(symbol.to_s.gsub("/", "::")) }
     rescue ::NameError
       raise NameError, "#{symbol} is not present in this context"
     end
