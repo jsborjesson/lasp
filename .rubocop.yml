@@ -6,6 +6,10 @@ Style/StringLiterals:
 
 Style/BlockDelimiters:
   EnforcedStyle: semantic
+  FunctionalMethods:
+    - let
+    - subject
+    - fetch
 
 Style/SignalException:
   EnforcedStyle: semantic
