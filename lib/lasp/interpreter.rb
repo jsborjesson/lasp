@@ -56,8 +56,8 @@ module Lasp
     end
 
     def fn_special_form(form, env)
-      params, func = form
-      Fn.new(params, func, env)
+      params, body = form
+      Fn.new(params, body, env)
     end
 
     def do_special_form(forms, env)
@@ -74,8 +74,8 @@ module Lasp
     end
 
     def macro_special_form(form, env)
-      params, func = form
-      Macro.new(params, func, env)
+      params, body = form
+      Macro.new(params, body, env)
     end
 
     def require_special_form(form, env)
