@@ -10,7 +10,7 @@ RuboCop::RakeTask.new(:style)
 
 task default: [:spec, :style]
 
-desc "Install and laund the Läsp REPL"
+desc "Install and launch the Läsp REPL"
 task repl: [:install] do
   sh "lasp"
 end
