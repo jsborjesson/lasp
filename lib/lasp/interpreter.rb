@@ -50,14 +50,14 @@ module Lasp
       fn = eval(symbol, env)
 
       case fn
-      when Macro then eval(fn.(*args), env)
-      else fn.(*args.map { |form| eval(form, env) })
+      when Macro then eval(fn.call(*args), env)
+      else fn.call(*args.map { |arg| eval(arg, env) })
       end
     end
 
     def def_special_form(form, env)
       key, value = form
-      fail ArgumentError, "you can only def symbols" unless Symbol === key
+      fail ArgumentError, "you can only def symbols" unless key.is_a?(Symbol)
       env[key] = eval(value, env)
     end
 
@@ -66,8 +66,8 @@ module Lasp
       Fn.new(params, func, env)
     end
 
-    def do_special_form(form, env)
-      form.map { |form| eval(form, env) }.last
+    def do_special_form(forms, env)
+      forms.map { |form| eval(form, env) }.last
     end
 
     def if_special_form(form, env)
@@ -90,7 +90,7 @@ module Lasp
       require_root  = is_relative ? File.dirname(env.fetch(:__FILE__)) : Dir.pwd
       absolute_path = File.expand_path(require_path, require_root)
 
-      Lasp::execute_file(absolute_path, env)
+      Lasp.execute_file(absolute_path, env)
     end
   end
 end

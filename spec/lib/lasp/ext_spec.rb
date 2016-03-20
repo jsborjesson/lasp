@@ -14,6 +14,6 @@ describe "core extensions" do
   end
 
   it "shows hashes without the hash-rockets" do
-    expect({"one"=>1, "two"=>2}.inspect).to eq '{"one" 1, "two" 2}'
+    expect({ "one" => 1, "two" => 2 }.inspect).to eq '{"one" 1, "two" 2}'
   end
 end

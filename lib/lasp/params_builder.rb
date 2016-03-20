@@ -41,9 +41,7 @@ module Lasp
     end
 
     def validate_list!
-      unless Array === param_list
-        fail SyntaxError, "parameters must be a list"
-      end
+      fail SyntaxError, "parameters must be a list" unless param_list.is_a?(Array)
     end
 
     def validate_unique_parameter_names!
@@ -55,7 +53,7 @@ module Lasp
     end
 
     def validate_single_ampersand!
-      invalid_rest_argument_usage! unless param_list.select { |p| p == :& }.length <= 1
+      invalid_rest_argument_usage! unless param_list.count { |p| p == :& } <= 1
     end
 
     def validate_single_rest_parameter!

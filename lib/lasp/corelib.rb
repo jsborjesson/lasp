@@ -15,12 +15,12 @@ module Lasp
     :cons       => -> (item, list)    { [item] + list                              },
     :dict       => -> (*args)         { Hash[*args]                                },
     :get        => -> (key, a)        { a[key]                                     },
-    :assoc      => -> (a, key, val)   { a.dup.tap { |a| a[key] = val  }            },
-    :dissoc     => -> (a, key)        { a.dup.tap { |a| a.delete(key) }            },
+    :assoc      => -> (dst, key, val) { dst.dup.tap { |d| d[key] = val  }          },
+    :dissoc     => -> (dst, key)      { dst.dup.tap { |d| d.delete(key) }          },
     :not        => -> (arg)           { !arg                                       },
     :print      => -> (*output)       { STDOUT.print(*output)                      },
     :readln     => -> ()              { STDIN.gets.chomp                           },
     :apply      => -> (f, list)       { f.call(*list)                              },
     :send       => -> (m, o, *args)   { o.public_send(m, *args)                    },
-  }
+  }.freeze
 end

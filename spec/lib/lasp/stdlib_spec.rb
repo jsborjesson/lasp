@@ -1,10 +1,10 @@
 require "lasp"
 
 describe "stdlib" do
-  let(:env) { Lasp::env_with_stdlib }
+  let(:env) { Lasp.env_with_stdlib }
 
   def execute(program)
-    Lasp::execute(program, env)
+    Lasp.execute(program, env)
   end
 
   it "aliases" do
@@ -106,7 +106,7 @@ describe "stdlib" do
   end
 
   it "range" do
-    expect(execute("(range 0 10)")).to eq (0...10).to_a
+    expect(execute("(range 0 10)")).to eq((0...10).to_a)
     expect(execute("(range 10 0)")).to eq []
   end
 
@@ -119,8 +119,8 @@ describe "stdlib" do
   end
 
   it "every" do
-    expect(execute('(every 2 (list 1 2 3 4 5))')).to eq [1, 3, 5]
-    expect(execute('(every 3 (list 1 2 3 4 5))')).to eq [1, 4]
+    expect(execute("(every 2 (list 1 2 3 4 5))")).to eq [1, 3, 5]
+    expect(execute("(every 3 (list 1 2 3 4 5))")).to eq [1, 4]
   end
 
   it "text" do
@@ -170,12 +170,12 @@ describe "stdlib" do
 
     it "prints several arguments on a line" do
       expect(STDOUT).to receive(:print).with("onetwothree\n")
-      execute('(println :one :two :three)')
+      execute("(println :one :two :three)")
     end
 
     it "prints a single newline when given no arguments" do
       expect(STDOUT).to receive(:print).with("\n")
-      execute('(println)')
+      execute("(println)")
     end
   end
 end

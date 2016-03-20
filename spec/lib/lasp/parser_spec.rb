@@ -39,12 +39,12 @@ module Lasp
     describe "datatypes" do
       it "integers" do
         expect(subject.parse("7")).to eq 7
-        expect(subject.parse("-7")).to eq -7
+        expect(subject.parse("-7")).to eq(-7)
       end
 
       it "decimals" do
         expect(subject.parse("7.5")).to eq 7.5
-        expect(subject.parse("-7.5")).to eq -7.5
+        expect(subject.parse("-7.5")).to eq(-7.5)
       end
 
       it "booleans" do
@@ -70,11 +70,11 @@ module Lasp
         end
 
         it "parses strings with escape characters" do
-          expect(subject.parse(%q{ "\\\\hello\\t\\"world\"\\n\\n" })).to eq %Q{\\hello\t"world"\n\n}
+          expect(subject.parse('"\\\\hello\\t\\"world\"\\n\\n"')).to eq %(\\hello\t"world"\n\n)
         end
 
         it "parses unknown escape sequences as the escaped character" do
-          expect(subject.parse('"\unknown"')).to eq 'unknown'
+          expect(subject.parse('"\unknown"')).to eq "unknown"
         end
       end
     end

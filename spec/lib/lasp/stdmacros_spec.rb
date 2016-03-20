@@ -1,14 +1,14 @@
 require "lasp"
 
 describe "stdmacros" do
-  let(:env) { Lasp::env_with_stdlib }
+  let(:env) { Lasp.env_with_stdlib }
 
   def macroexpand(program)
     execute("(macroexpand #{program})")
   end
 
   def execute(program)
-    Lasp::execute(program, env)
+    Lasp.execute(program, env)
   end
 
   describe "defm" do
@@ -103,7 +103,7 @@ describe "stdmacros" do
     end
 
     it "returns the last value if no truthy values are present" do
-      expect(execute('(or nil nil false)')).to eq false
+      expect(execute("(or nil nil false)")).to eq false
     end
 
     it "returns the first truthy value it valuates" do
@@ -118,7 +118,7 @@ describe "stdmacros" do
     end
 
     it "returns the last value if no falsy values are present" do
-      expect(execute('(and true true 42)')).to eq 42
+      expect(execute("(and true true 42)")).to eq 42
     end
 
     it "returns the first falsy value it valuates" do
