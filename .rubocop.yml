@@ -1,0 +1,37 @@
+Metrics/LineLength:
+  Max: 120
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/BlockDelimiters:
+  EnforcedStyle: semantic
+
+Style/SignalException:
+  EnforcedStyle: semantic
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+
+# Disabled
+
+Lint/Eval:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+Style/BracesAroundHashParameters:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
