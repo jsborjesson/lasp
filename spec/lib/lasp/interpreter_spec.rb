@@ -4,10 +4,10 @@ require "tempfile"
 
 module Lasp
   describe Interpreter do
-    let(:env) { Lasp::env_with_corelib }
+    let(:env) { Lasp.env_with_corelib }
 
-    def execute(program, _env = env)
-      Lasp::execute(program, _env)
+    def execute(program, environment = env)
+      Lasp.execute(program, environment)
     end
 
     it "handles simple forms" do
@@ -107,7 +107,7 @@ module Lasp
           # This is different than simply not returning its result, the other
           # form cannot even be evaluated.
           mock_fn  = spy
-          test_env = env.merge({ test: mock_fn })
+          test_env = env.merge(test: mock_fn)
 
           execute('(if (= 1 1) true (test "not evaled!"))', test_env)
 
@@ -142,7 +142,7 @@ module Lasp
       describe "require" do
         it "carries the env" do
           with_tempfile("(def test true)") do |file|
-            execute(%Q{ (require "#{file.path}") })
+            execute("(require \"#{file.path}\")")
             expect(execute("test")).to eq true
           end
         end
@@ -163,7 +163,7 @@ module Lasp
             expected_path = File.expand_path(File.join(file.path, "../test.lasp"))
             expect(Lasp).to receive(:execute_file).with(expected_path, an_instance_of(Env))
 
-            Lasp::execute_file(file.path)
+            Lasp.execute_file(file.path)
           end
         end
       end

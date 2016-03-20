@@ -1,6 +1,6 @@
 class Array
   def to_s
-    "(#{ map(&:inspect).join(" ") })"
+    "(#{map(&:inspect).join(' ')})"
   end
 
   def inspect
@@ -21,7 +21,7 @@ end
 
 class Hash
   def to_s
-    "{#{ map { |pair| pair.map(&:inspect).join(" ") }.join(", ") }}"
+    "{#{map { |pair| pair.map(&:inspect).join(' ') }.join(', ')}}"
   end
 
   def inspect

@@ -30,13 +30,13 @@ describe Lasp::Lexer do
 
   it "tokenizes strings with escaped double-quotes" do
     input    = '(str "one \" two")'
-    expected = ['(', 'str', '"one \\" two"', ')']
+    expected = ["(", "str", '"one \\" two"', ")"]
 
     expect(subject.tokenize(input)).to eq expected
   end
 
   it "ignores comments and whitespace" do
-    input  = <<-LASP
+    input = <<-LASP
       ; This is a comment
       (+ 1  2  ) ; End of line comment
     LASP

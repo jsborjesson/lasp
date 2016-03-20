@@ -8,7 +8,7 @@ module Lasp
       /\./,             # dot
       /"(\\"|[^"])*"/,  # string literal
       /[^\s)]+/,        # any non-whitespace character excluding )
-    ]
+    ].freeze
 
     def self.tokenize(program)
       new(program).tokenize

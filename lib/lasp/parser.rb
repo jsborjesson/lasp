@@ -7,7 +7,7 @@ module Lasp
       '\t'   => "\t",
       '\\\\' => "\\",
       '\"'   => "\"",
-    }
+    }.freeze
 
     def self.parse(program)
       new.parse(program)
@@ -37,9 +37,7 @@ module Lasp
 
     def form(tokens)
       form = []
-      while tokens.first != ")"
-        form << build_ast(tokens)
-      end
+      form << build_ast(tokens) while tokens.first != ")"
       tokens.shift
       form
     end
@@ -61,14 +59,14 @@ module Lasp
       when "nil"           then nil
       when /\A-?\d+\z/     then Integer(token)
       when /\A-?\d+.\d+\z/ then Float(token)
-      when /"(.*)"/        then String(unescape($1))
-      when /:([^\s]+)/     then String($1) # Symbol style strings are actually just strings
+      when /"(.*)"/        then String(unescape(Regexp.last_match(1)))
+      when /:([^\s]+)/     then String(Regexp.last_match(1)) # Symbol style strings are actually just strings
       else token.to_sym
       end
     end
 
     def unescape(string)
-      string.gsub(/\\(.)/) { |match| ESCAPE_CHARACTERS.fetch(match, $1) }
+      string.gsub(/\\(.)/) { |match| ESCAPE_CHARACTERS.fetch(match, match[1]) }
     end
   end
 end

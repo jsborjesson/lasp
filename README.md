@@ -53,7 +53,14 @@ lasp path/to/program.lasp
 ### Run the specs
 
 ```bash
+# Run all checks
 bundle exec rake
+
+# Run only tests
+bundle exec rake spec
+
+# Run only style checks
+bundle exec rake style
 ```
 
 ### Dev REPL

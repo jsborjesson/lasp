@@ -7,7 +7,7 @@ case ARGV.first
 when /-v|--version/
   puts "v#{Lasp::VERSION}"
 when String
-  Lasp::execute_file(ARGV.first, Lasp::env_with_stdlib)
+  Lasp.execute_file(ARGV.first, Lasp.env_with_stdlib)
 else
   Lasp::Repl.run
 end

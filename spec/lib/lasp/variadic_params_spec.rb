@@ -13,11 +13,11 @@ module Lasp
     end
 
     it "puts all superflous arguments in a list" do
-      expect(params.with_args([1, 2, 3, 4])).to eq({ one: 1, two: 2, other: [3, 4] })
+      expect(params.with_args([1, 2, 3, 4])).to eq(one: 1, two: 2, other: [3, 4])
     end
 
     it "sets the rest to an empty list if no superflous arguments are given" do
-      expect(params.with_args([1, 2])).to eq({ one: 1, two: 2, other: [] })
+      expect(params.with_args([1, 2])).to eq(one: 1, two: 2, other: [])
     end
   end
 end
