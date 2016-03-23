@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "lasp"
   spec.version       = Lasp::VERSION
   spec.authors       = ["Jimmy Börjesson"]
-  spec.email         = ["lagginglion@gmail.com"]
+  spec.email         = ["alcesleo@gmail.com"]
 
   spec.summary       = "A simple Lisp-dialect programming language inspired by Clojure."
   spec.homepage      = "https://github.com/alcesleo/lasp"
