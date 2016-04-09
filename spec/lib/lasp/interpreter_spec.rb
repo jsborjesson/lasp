@@ -52,6 +52,11 @@ module Lasp
           expect { execute("(def \"str\" 5)") }.to raise_error(Lasp::ArgumentError)
           expect { execute("(def (list) 5)") }.to raise_error(Lasp::ArgumentError)
         end
+
+        it "names functions things" do
+          defined_function = execute("(def my-func (fn () nil))")
+          expect(defined_function.name).to eq :"my-func"
+        end
       end
 
       describe "fn" do

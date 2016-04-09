@@ -20,7 +20,7 @@ describe "stdmacros" do
 
     it "creates a named macro" do
       execute("(defm test-macro (x) x)")
-      expect(execute("test-macro").inspect).to eq "#<Macro (x)>"
+      expect(execute("test-macro").inspect).to eq "#<Macro test-macro (x)>"
     end
   end
 
@@ -33,7 +33,7 @@ describe "stdmacros" do
 
     it "creates a named function" do
       execute("(defn test-fn (x) x)")
-      expect(execute("test-fn").inspect).to eq "#<Fn (x)>"
+      expect(execute("test-fn").inspect).to eq "#<Fn test-fn (x)>"
     end
   end
 

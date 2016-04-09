@@ -17,7 +17,7 @@ module Lasp
     end
 
     def inspect
-      "#<#{ [class_name, name, params].compact.join(" ") }>"
+      "#<#{[class_name, name, params].compact.join(' ')}>"
     end
 
     def name=(new_name)
