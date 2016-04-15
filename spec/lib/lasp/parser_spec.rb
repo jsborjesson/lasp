@@ -36,6 +36,10 @@ module Lasp
       expect(subject.parse("")).to eq nil
     end
 
+    it "throws a syntax error when parentheses do not match up" do
+      expect { subject.parse("(fn () (println :nope)") }.to raise_error SyntaxError
+    end
+
     describe "datatypes" do
       it "integers" do
         expect(subject.parse("7")).to eq 7

@@ -18,7 +18,10 @@ module Lasp
     end
 
     def tokenize(program)
-      Lexer.tokenize(program)
+      Lexer.tokenize(program).tap do |tokens|
+        fail SyntaxError, "unbalanced number of parentheses" unless
+          tokens.count { |token| token == "(" || token == ")" }.even?
+      end
     end
 
     private
