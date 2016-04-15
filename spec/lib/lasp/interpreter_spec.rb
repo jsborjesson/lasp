@@ -157,13 +157,17 @@ module Lasp
         end
 
         it "uses a path relative to the file when passed a truthy second argument" do
-          with_tempfile('(require "test.lasp" true)') do |file|
-            allow(Lasp).to receive(:execute_file).with(file.path).and_call_original
+          required_file = "test.lasp"
 
-            expected_path = File.expand_path(File.join(file.path, "../test.lasp"))
+          with_tempfile("(require \"#{required_file}\" true)") do |file|
+            expected_path = File.expand_path(File.join(file.path, "../", required_file))
             expect(Lasp).to receive(:execute_file).with(expected_path, an_instance_of(Env))
 
-            Lasp.execute_file(file.path)
+            # Set up things to have this explicit call to execute_file not interfere with the test
+            env = Lasp.env_with_corelib
+            allow(Lasp).to receive(:execute_file).with(file.path, env).and_call_original
+
+            Lasp.execute_file(file.path, env)
           end
         end
       end
