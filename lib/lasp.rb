@@ -26,8 +26,10 @@ module Lasp
   end
 
   def env_with_stdlib
-    env_with_corelib.tap do |env|
+    @env_with_stdlib ||= env_with_corelib.tap do |env|
       Lasp.execute_file(STDLIB_PATH, env)
     end
+
+    @env_with_stdlib.dup
   end
 end
