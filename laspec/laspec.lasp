@@ -1,0 +1,36 @@
+(defn describe (text & test-results)
+  (let (total-tests      (len test-results)
+        failed-tests     (filter (fn (result) (not (result :passed))) test-results)
+        num-passed-tests (len (filter (fn (result) (result :passed)) test-results))
+        num-failed-tests (len failed-tests))
+
+  (println)
+  (println)
+  (println "Total tests: " total-tests)
+  (println "Passed tests: " num-passed-tests)
+
+  (if (> num-failed-tests 0)
+    (do
+    (println)
+    (println "Failures:")
+    (println)
+    (map
+      (fn (test) (println "FAIL: " (test :text) " - " (test :failure)))
+      failed-tests)))))
+
+(defn it (text test-result)
+  (assoc test-result :text text))
+
+(defn expect-eq (lhs rhs)
+  (if (= lhs rhs)
+    (passed-spec)
+    (failed-spec (text "Expected " lhs ", got " rhs))))
+
+(defn passed-spec ()
+  (print ".")
+  (dict :passed true))
+
+(defn failed-spec (reason)
+  (print "F")
+  (dict :passed false
+        :failure reason))
