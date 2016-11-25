@@ -17,6 +17,9 @@ Style/SignalException:
 Style/TrailingCommaInLiteral:
   EnforcedStyleForMultiline: comma
 
+Style/SpaceInLambdaLiteral:
+  EnforcedStyle: require_space
+
 # Disabled
 
 Lint/Eval:
