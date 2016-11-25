@@ -128,7 +128,7 @@ describe "stdlib" do
   end
 
   it "text->list" do
-    expect(execute('(text->list "abcdef")')).to eq %w[ a b c d e f ]
+    expect(execute('(text->list "abcdef")')).to eq %w[a b c d e f]
   end
 
   it "list->text" do
