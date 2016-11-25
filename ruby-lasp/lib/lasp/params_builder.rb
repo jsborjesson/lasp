@@ -46,10 +46,9 @@ module Lasp
 
     def validate_unique_parameter_names!
       accepted_params = param_list.reject { |p| p == :_ }
+      duplicated_parameter = accepted_params.uniq.length != accepted_params.length
 
-      unless accepted_params.uniq.length == accepted_params.length
-        fail SyntaxError, "parameter names must be unique (except for _)"
-      end
+      fail SyntaxError, "parameter names must be unique (except for _)" if duplicated_parameter
     end
 
     def validate_single_ampersand!
