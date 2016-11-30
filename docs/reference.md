@@ -997,7 +997,7 @@ Evaluates its arguments in turn, returning:
 (and (= 1 1) (= 2 2)) ; => true
 (and (= 1 1) (= 2 3)) ; => false
 
-(and)               ; => nil
+(and)               ; => true
 (and true true 42)  ; => 42
 
 ; will return without printing anything
