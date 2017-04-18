@@ -52,7 +52,9 @@ module Lasp
     def def_special_form(form, env)
       key, value = form
       fail ArgumentError, "you can only def symbols" unless key.is_a?(Symbol)
-      env[key] = eval(value, env)
+      env[key] = eval(value, env).tap do |result|
+        result.name = key if result.respond_to?(:name=)
+      end
     end
 
     def fn_special_form(form, env)

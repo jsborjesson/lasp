@@ -4,7 +4,7 @@ require "lasp/errors"
 
 module Lasp
   class Fn
-    attr_reader :params, :body, :env
+    attr_reader :params, :body, :env, :name
 
     def initialize(params, body, env)
       @params = ParamsBuilder.build(params)
@@ -17,14 +17,21 @@ module Lasp
     end
 
     def inspect
-      class_name = self.class.name.split("::").last
-      "#<#{class_name} #{params}>"
+      "#<#{[class_name, name, params].compact.join(' ')}>"
+    end
+
+    def name=(new_name)
+      @name = new_name if name.nil?
     end
 
     private
 
     def env_with_args(args)
       env.merge(params.with_args(args))
+    end
+
+    def class_name
+      self.class.name.split("::").last
     end
   end
 end
