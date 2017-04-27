@@ -1,24 +1,5 @@
-Metrics/LineLength:
-  Max: 120
-
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
-
-Style/BlockDelimiters:
-  EnforcedStyle: semantic
-  FunctionalMethods:
-    - let
-    - subject
-    - fetch
-
-Style/SignalException:
-  EnforcedStyle: semantic
-
-Style/TrailingCommaInLiteral:
-  EnforcedStyleForMultiline: comma
-
-Style/SpaceInLambdaLiteral:
-  EnforcedStyle: require_space
+inherit_from:
+  - https://raw.githubusercontent.com/alcesleo/rubocop-config/master/.rubocop.yml
 
 # Disabled
 
@@ -26,12 +7,6 @@ Lint/Eval:
   Enabled: false
 
 Documentation:
-  Enabled: false
-
-Style/BracesAroundHashParameters:
-  Enabled: false
-
-Style/PercentLiteralDelimiters:
   Enabled: false
 
 Metrics/MethodLength:
