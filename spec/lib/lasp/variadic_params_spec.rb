@@ -2,7 +2,7 @@ require "lasp/variadic_params"
 
 module Lasp
   describe VariadicParams do
-    let(:params) { described_class.new([:one, :two, :&, :other]) }
+    let(:params) { described_class.new(%i[one two & other]) }
 
     it "has nice to_s output" do
       expect(params.to_s).to eq "(one two & other)"

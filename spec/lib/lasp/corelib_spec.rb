@@ -73,7 +73,7 @@ module Lasp
 
       it "does not change the original data structure" do
         original = [2, 3]
-        expect { CORELIB[:cons].call(1, original) }.not_to change { original }
+        expect { CORELIB[:cons].call(1, original) }.not_to(change { original })
       end
     end
 
@@ -93,7 +93,7 @@ module Lasp
       end
 
       it "returns item of key in dict" do
-        expect(CORELIB[:get].call("one", { "one" => 1, "two" => 2 })).to eq 1
+        expect(CORELIB[:get].call("one", "one" => 1, "two" => 2)).to eq 1
       end
     end
 
@@ -108,7 +108,7 @@ module Lasp
 
       it "does not change the original data structure" do
         data = { "one" => 1 }
-        expect { CORELIB[:assoc].call(data, "one", 2) }.not_to change { data }
+        expect { CORELIB[:assoc].call(data, "one", 2) }.not_to(change { data })
       end
 
       it "associates an index with a value in a list" do
@@ -127,7 +127,7 @@ module Lasp
 
       it "does not change the original data structure" do
         data = { "one" => 1, "two" => 2 }
-        expect { CORELIB[:dissoc].call(data, "one") }.not_to change { data }
+        expect { CORELIB[:dissoc].call(data, "one") }.not_to(change { data })
       end
     end
 

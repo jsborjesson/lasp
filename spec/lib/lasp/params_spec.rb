@@ -3,7 +3,7 @@ require "lasp/params"
 module Lasp
   describe Params do
     context "non-variadic parameters" do
-      let(:params) { described_class.new([:one, :two]) }
+      let(:params) { described_class.new(%i[one two]) }
 
       it "has nice to_s output" do
         expect(params.to_s).to eq "(one two)"
@@ -24,7 +24,7 @@ module Lasp
       end
 
       it "only counts the last underscore" do
-        ignored_params = described_class.new([:_, :_, :three])
+        ignored_params = described_class.new(%i[_ _ three])
         expect(ignored_params.with_args([1, 2, 3])).to eq(_: 2, three: 3)
       end
     end

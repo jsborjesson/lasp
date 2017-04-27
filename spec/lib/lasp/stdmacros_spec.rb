@@ -14,7 +14,7 @@ describe "stdmacros" do
   describe "defm" do
     it "produces the expected form" do
       given    = macroexpand("(defm m (form) (reverse form))")
-      expected = [:def, :m, [:macro, [:form], [:reverse, :form]]]
+      expected = [:def, :m, [:macro, [:form], %i[reverse form]]]
       expect(given).to eq expected
     end
 
@@ -40,7 +40,7 @@ describe "stdmacros" do
   describe "let" do
     it "produces the expected form" do
       given    = macroexpand("(let (x 1 y 2) (+ x y))")
-      expected = [[:fn, [:x], [[:fn, [:y], [:do, [:+, :x, :y]]], 2]], 1]
+      expected = [[:fn, [:x], [[:fn, [:y], [:do, %i[+ x y]]], 2]], 1]
       expect(given).to eq expected
     end
 
@@ -93,7 +93,7 @@ describe "stdmacros" do
 
     it "returns the unevaluated result of a macro" do
       form = execute("(macroexpand (defn test-fn (x) x))")
-      expect(form).to eq [:def, :"test-fn", [:fn, [:x], [:do, :x]]]
+      expect(form).to eq [:def, :"test-fn", [:fn, [:x], %i[do x]]]
     end
   end
 

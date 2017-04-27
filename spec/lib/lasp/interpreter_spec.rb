@@ -20,7 +20,7 @@ module Lasp
 
     describe "symbol resolution" do
       it "resolves a symbol to its value" do
-        expect(execute("fourty-two", { :"fourty-two" => 42 })).to eq 42
+        expect(execute("fourty-two", :"fourty-two" => 42)).to eq 42
       end
 
       it "raises a NameError when trying to resolve a non existing symbol" do
@@ -83,7 +83,7 @@ module Lasp
       describe "do" do
         it "executes multiple statements in order" do
           mock_fn  = spy
-          test_env = Env.new({ test: mock_fn })
+          test_env = Env.new(test: mock_fn)
 
           execute("(do (test 1) (test 2))", test_env)
 

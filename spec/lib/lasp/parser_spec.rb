@@ -20,7 +20,7 @@ module Lasp
 
     it "surrounds quoted forms in quote" do
       input  = "('f '(gh 1 2))"
-      parsed = [[:quote, :f], [:quote, [:gh, 1, 2]]]
+      parsed = [%i[quote f], [:quote, [:gh, 1, 2]]]
 
       expect(subject.parse(input)).to eq parsed
     end

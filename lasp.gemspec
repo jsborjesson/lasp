@@ -1,4 +1,5 @@
 # coding: utf-8
+
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "lasp/version"
@@ -14,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
 
   spec.files         = Dir.glob("{bin,docs,lib,spec}/**/*")
-  spec.files        += %w(LICENSE.txt README.md CHANGELOG.md Rakefile lasp.gemspec)
+  spec.files        += %w[LICENSE.txt README.md CHANGELOG.md Rakefile lasp.gemspec]
 
   spec.bindir        = "bin"
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }

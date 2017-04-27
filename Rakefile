@@ -8,7 +8,7 @@ RSpec::Core::RakeTask.new(:spec)
 require "rubocop/rake_task"
 RuboCop::RakeTask.new(:style)
 
-task default: [:spec, :style]
+task default: %i[spec style]
 
 desc "Install and launch the Läsp REPL"
 task repl: [:install] do
